@@ -1,4 +1,4 @@
-/* Apply box-sizing to all elements */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -240,9 +240,11 @@
     position: relative;
     margin-left: 10px;
   }
-
+  
   .nav-container {
     padding: 10px;
+    
+    
   }
 
   .sidebar {
@@ -263,4 +265,10 @@
   .overlay {
     display: none;
   }
+  .nav-container {
+    padding: 10px;
+    }
+    .navbar {
+      gap:50px
+    }
 }

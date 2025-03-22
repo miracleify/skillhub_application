@@ -250,9 +250,15 @@ input::placeholder {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .search-container {
     width: 90%;
+  }
+  .link-headline{
+    width: 680px;
+    font-weight: 600px;
+    font-size: 30px;
+    margin: 20px;
   }
   
   .input-Bar {
@@ -263,6 +269,7 @@ input::placeholder {
   
   .icon {
     height: 56px;
+    right: 400px;
   }
   
   .search-btn {
