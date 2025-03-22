@@ -147,61 +147,7 @@ const TopTrades = () => {
         ) : filteredPeople.length === 0 ? (
           <div className="no-results">No matching trades found</div>
         ) : (
-          <div className="trades-container" style={{ position: 'relative' }}>
-            {/* Mobile navigation buttons */}
-            {isMobileView && filteredPeople.length > 1 && (
-              <>
-                <button 
-                  onClick={scrollPrevious}
-                  className="nav-button prev-button"
-                  aria-label="Previous profile"
-                  style={{
-                    position: 'absolute',
-                    left: '5px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    zIndex: 2,
-                    backgroundColor: 'rgba(0,0,0,0.5)',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '50%',
-                    width: '40px',
-                    height: '40px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer'
-                  }}
-                >
-                  <FiChevronLeft size={24} />
-                </button>
-                <button 
-                  onClick={scrollNext}
-                  className="nav-button next-button"
-                  aria-label="Next profile"
-                  style={{
-                    position: 'absolute',
-                    right: '5px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    zIndex: 2,
-                    backgroundColor: 'rgba(0,0,0,0.5)',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '50%',
-                    width: '40px',
-                    height: '40px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer'
-                  }}
-                >
-                  <FiChevronRight size={24} />
-                </button>
-              </>
-            )}
-            
+          <div className="trades-container">
             <div 
               ref={scrollContainerRef}
               className="trades-scroll-container" 
@@ -259,6 +205,58 @@ const TopTrades = () => {
                 })()}
               </div>
             </div>
+            
+            {/* Navigation buttons moved to bottom */}
+            {isMobileView && filteredPeople.length > 1 && (
+              <div 
+                className="navigation-buttons"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  gap: '20px',
+                  marginTop: '20px'
+                }}
+              >
+                <button 
+                  onClick={scrollPrevious}
+                  className="nav-button prev-button"
+                  aria-label="Previous profile"
+                  style={{
+                    backgroundColor: '#007bff',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '50%',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <FiChevronLeft size={24} />
+                </button>
+                <button 
+                  onClick={scrollNext}
+                  className="nav-button next-button"
+                  aria-label="Next profile"
+                  style={{
+                    backgroundColor: '#007bff',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '50%',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <FiChevronRight size={24} />
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>

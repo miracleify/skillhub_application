@@ -12,21 +12,11 @@ function Home() {
     <div >
       <div className="home-container">
         <h2 className="link-headline">
-          LINKING YOU WITH EXPERTS THAT WORK WITH PASSION, AND PRECISION{" "}
+          LINKING YOU WITH EXPERTS THAT WORK WITH PASSION AND PRECISION
         </h2>
         <Search />
         <div></div>
       </div>
-      <br></br> <br></br>
-      <br /> <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br> <br></br> <br></br>
       <TopTrades />
       <hr />
       <div className="block"></div>

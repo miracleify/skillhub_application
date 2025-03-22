@@ -4,15 +4,12 @@ import { useState, useEffect } from 'react';
 const WhatweDo = () => {
   const features = [
     {
-
-        
-        id: 1,
-        image: "./userProfile/helpimages/handshake.png",
-        title: "BUILDING TRUST",
-        description: "Empowering users to share their experiences and recommendations, fostering a trusted network of skilled professionals."},
+      id: 1,
+      image: "./userProfile/helpimages/handshake.png",
+      title: "BUILDING TRUST",
+      description: "Empowering users to share their experiences and recommendations, fostering a trusted network of skilled professionals."
+    },
     {
-
-
       id: 2,
       image: "./userProfile/helpimages/girl.png",
       title: "COMPREHENSIVE PROFILES",
@@ -26,16 +23,24 @@ const WhatweDo = () => {
     },
     {
       id: 4,
-      image: "./userProfile /helpimages/laptop.png",
+      image: "./userProfile/helpimages/laptop.png",
       title: "SKILL VALIDATION & IMPROVEMENT",
       description: "We're bridging Nigeria's skills gap by partnering with institutions to offer certification programs. Skilled workers can validate their expertise, boost credibility, and unlock better opportunities on the platform."
     }
   ];
 
+  // Custom layout order for the features
+  const orderedFeatures = [
+    features[0], // 1st card
+    features[1], // 2nd card
+    features[2], // 3rd card
+    // 4th card will be positioned below 2nd card using CSS grid
+  ];
+
   return (
     <div className="features-page">
       <div className="features-grid">
-        {features.map((feature, index) => (
+        {orderedFeatures.map((feature, index) => (
           <div 
             key={feature.id}
             className="help-container"
@@ -52,6 +57,23 @@ const WhatweDo = () => {
             <span className="help-text">{feature.description}</span>
           </div>
         ))}
+        
+        {/* Fourth card positioned separately */}
+        <div 
+          key={features[3].id}
+          className="help-container fourth-card"
+          style={{ animationDelay: '0.6s' }}
+        >
+          <div className="help-img-wrapper">
+            <img 
+              src={features[3].image} 
+              alt={features[3].title} 
+              className="help-img"
+            />
+          </div>
+          <h2>{features[3].title}</h2>
+          <span className="help-text">{features[3].description}</span>
+        </div>
       </div>
       
       <style jsx>{`
@@ -59,14 +81,18 @@ const WhatweDo = () => {
           background-color: #f5f7fa;
           padding: 2rem;
           width: 100%;
+          max-width: 100%;
         }
         
         .features-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-areas: 
+            "card1 card2 card3"
+            ". card4 .";
           gap: 2rem;
-          max-width: 1200px;
           margin: 0 auto;
+          width: 100%;
         }
         
         .help-container {
@@ -81,6 +107,22 @@ const WhatweDo = () => {
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           animation: fadeIn 0.8s ease forwards;
           opacity: 0;
+        }
+        
+        .help-container:nth-child(1) {
+          grid-area: card1;
+        }
+        
+        .help-container:nth-child(2) {
+          grid-area: card2;
+        }
+        
+        .help-container:nth-child(3) {
+          grid-area: card3;
+        }
+        
+        .fourth-card {
+          grid-area: card4;
         }
         
         .help-container:hover {
@@ -144,9 +186,23 @@ const WhatweDo = () => {
           }
         }
         
+        @media (max-width: 1200px) {
+          .features-grid {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-areas: 
+              "card1 card2"
+              "card3 card4";
+          }
+        }
+        
         @media (max-width: 768px) {
           .features-grid {
             grid-template-columns: 1fr;
+            grid-template-areas: 
+              "card1"
+              "card2"
+              "card4"
+              "card3";
           }
           
           .help-container {

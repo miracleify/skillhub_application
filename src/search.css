@@ -1,6 +1,6 @@
 
 
-/* Top Trades Section Styles */
+
 .top-trades {
   padding: 60px 0;
 }
@@ -233,11 +233,12 @@
 
 @media (max-width: 480px) {
   .icon{
-    top: 80px;
-    left: 840px;
+    top: -226px;
+    left: 170px;
+    visibility:visible;
+    font-size: 60px;
     position: relative;
     
-   
   }
   
   .hero {
@@ -245,7 +246,7 @@
   }
   .trades-search-input{
     width: 300px;
-    top: 350px;
+    position: absolute;
   } 
   .headliner {
     font-size: 24px !important;

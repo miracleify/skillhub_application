@@ -1,15 +1,15 @@
-body {
+/* Apply box-sizing to all elements */
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: Arial, sans-serif;
-  overflow-x: hidden;
+  padding: 0;
 }
 
 /* Navbar Container */
 .nav-container {
   width: 100%;
-
   background-color: #fff;
-  padding: 10px 60px;
+  padding: 10px 20px; 
   position: fixed;
   top: 0;
   z-index: 1000;
@@ -21,7 +21,7 @@ body {
 
 .nav-container.scrolled {
   background-color: rgba(255, 255, 255, 0.95);
-  padding: 5px 60px;
+  padding: 5px 20px; 
 }
 
 /* Navbar */
@@ -31,7 +31,7 @@ body {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 60px;
+  padding: 0 20px;
   justify-content: space-between;
 }
 
@@ -39,10 +39,9 @@ body {
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 1px; /* Increased gap between logo and nav */
+  gap: 10px; 
   position: relative;
-  left: -100px;
-  
+  left: 0; 
 }
 
 .nav-logo img {
@@ -59,13 +58,14 @@ body {
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 80px; /* Further increased spacing between nav items */
+  gap: 90px; 
   list-style: none;
   padding: 0;
-  margin: 0 auto;
+  margin: 0;
   text-align: center;
   flex-grow: 1;
   justify-content: flex-end;
+  margin-right: 20px;
 }
 
 .nav-list li {
@@ -242,13 +242,12 @@ body {
   }
 
   .nav-container {
-    padding: 20px;
-    margin-left: 20px;
+    padding: 10px;
   }
 
   .sidebar {
-    right: -50%;
-    width: 50%;
+    right: -100%;
+    width: 80%; 
   }
 
   .sidebar.open {
