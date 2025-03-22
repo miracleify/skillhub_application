@@ -1,7 +1,7 @@
 import React from "react";
 
 function Signin(){
- return(
+ return( 
     <h1>sign in page</h1>
  );
 }

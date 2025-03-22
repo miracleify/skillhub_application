@@ -1,8 +1,13 @@
+// ViewProfile.js
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import "./viewProfile.css";
+import { useTrades } from './TradesContext'; // Import the context hook
 
-const ViewProfile = ({ tradespeople }) => {
+
+const ViewProfile = () => {
+  
+  const { tradespeople } = useTrades(); // Use context instead of props
   const { id } = useParams();
   const navigate = useNavigate();
   const person = tradespeople.find(p => p.id === parseInt(id));

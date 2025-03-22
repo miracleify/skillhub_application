@@ -7,26 +7,26 @@ const WhatweDo = () => {
 
         
         id: 1,
-        image: "./helpimages/handshake.png",
+        image: "./userProfile/helpimages/handshake.png",
         title: "BUILDING TRUST",
         description: "Empowering users to share their experiences and recommendations, fostering a trusted network of skilled professionals."},
     {
 
 
       id: 2,
-      image: "./helpimages/girl.png",
+      image: "./userProfile/helpimages/girl.png",
       title: "COMPREHENSIVE PROFILES",
       description: "Giving skilled workers the spotlight they deserve with detailed profiles that highlight their expertise."
     },
     {
       id: 3,
-      image: "./helpimages/boyG.png",
+      image: "./userProfile/helpimages/boyG.png",
       title: "HIRING MADE EASY",
       description: "Hire professionals directly through the platform using our integrated scheduling and payment system —no external calls or transactions needed."
     },
     {
       id: 4,
-      image: "./helpimages/laptop.png",
+      image: "./userProfile /helpimages/laptop.png",
       title: "SKILL VALIDATION & IMPROVEMENT",
       description: "We're bridging Nigeria's skills gap by partnering with institutions to offer certification programs. Skilled workers can validate their expertise, boost credibility, and unlock better opportunities on the platform."
     }

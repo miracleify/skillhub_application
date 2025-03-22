@@ -1,8 +1,10 @@
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { FiArrowRight, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import ('./search.css');
+
 const TopTrades = () => {
   const [tradespeople, setTradespeople] = useState([
     {
@@ -48,12 +50,32 @@ const TopTrades = () => {
     }
   ]);
 
-  // Search and pagination state
+  // Search state
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
   const [filteredPeople, setFilteredPeople] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const itemsPerPage = 2; // Number of cards per page
+  const navigate = useNavigate();
+  
+  // Ref for the scroll container
+  const scrollContainerRef = useRef(null);
+  // Track if we're in mobile view
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  // Check for mobile view on component mount and window resize
+  useEffect(() => {
+    const checkMobileView = () => {
+      setIsMobileView(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkMobileView();
+    
+    // Add resize listener
+    window.addEventListener('resize', checkMobileView);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', checkMobileView);
+  }, []);
 
   // Filter tradespeople based on search term
   useEffect(() => {
@@ -66,40 +88,58 @@ const TopTrades = () => {
         (person.expertise && person.expertise.toLowerCase().includes(searchTerm.toLowerCase()))
       );
       setFilteredPeople(filtered);
-      setCurrentPage(1); // Reset to first page when search changes
       setIsLoading(false);
     }, 300);
     
     return () => clearTimeout(timeoutId);
   }, [searchTerm, tradespeople]);
 
-  // Get current items for pagination
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredPeople.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(filteredPeople.length / itemsPerPage);
+  // Handle profile view click
+  const handleViewProfile = (e, person) => {
+    e.preventDefault(); // Prevent default link behavior
+    
+    // Store the complete person data in sessionStorage
+    sessionStorage.setItem('selectedTradesPerson', JSON.stringify(person));
+    
+    // Navigate programmatically using React Router's navigate
+    navigate(`/profile/${person.id}`);
+  };
 
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // Navigation functions for mobile view
+  const scrollPrevious = () => {
+    if (scrollContainerRef.current) {
+      const cardWidth = 270; // Width of card + gap
+      scrollContainerRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    }
+  };
+
+  const scrollNext = () => {
+    if (scrollContainerRef.current) {
+      const cardWidth = 270; // Width of card + gap
+      scrollContainerRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    }
+  };
 
   return (
     <section className="top-trades">
-      <div className="container">
-        <h2 className="section-title" data-aos="fade-up">
-          Top Trades & Artisans
-        </h2>
+      <div className="container"> <br /> <br></br><br></br><br></br> <br></br>
+        <h2 className="section-title" data-aos="fade-up" style={{position:"absolute", left:"30px"}}>
+          Top Trades & Artisans   <FiArrowRight size={25} />
+        </h2> <br></br>
         
+        <FaMapMarkerAlt className="icon" color="white" size={40} /> 
         {/* Search input within the component */}
         <div className="search-box" data-aos="fade-up">
-       
           <input
             type="text"
             placeholder="Search by name, profession or expertise..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="trades-search-input"
+            style={{
+              top:"260px"
+            }}
           />
-         
         </div>
         
         {isLoading ? (
@@ -107,61 +147,123 @@ const TopTrades = () => {
         ) : filteredPeople.length === 0 ? (
           <div className="no-results">No matching trades found</div>
         ) : (
-          <>
-            <div className="trades-grid" data-aos="fade-up" data-aos-delay="100">
-              {currentItems.map(person => (
-                <div className="trade-card" key={person.id}>
-                  <div className="trade-image">
-                    <img className="img" src={person.image} alt={person.name} />
-                    {person.verified && <span className="verified-badge"> <i className="fa-solid fa-circle-check verification-icon"></i></span>}
-                  </div>
-                  <h3>{person.name}</h3>
-                  <p style={{ color: "gold" }}>{person.ratings}</p>
-                  <p>{person.profession}</p>
-                  <Link to={`/profile/${person.id}`} className="view-profile-btn">
-                    View Profile
-                  </Link>
-                </div>
-              ))}
-            </div>
-            
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="pagination">
+          <div className="trades-container" style={{ position: 'relative' }}>
+            {/* Mobile navigation buttons */}
+            {isMobileView && filteredPeople.length > 1 && (
+              <>
                 <button 
-                  onClick={() => paginate(currentPage - 1)} 
-                  disabled={currentPage === 1}
-                  className="page-btn"
+                  onClick={scrollPrevious}
+                  className="nav-button prev-button"
+                  aria-label="Previous profile"
+                  style={{
+                    position: 'absolute',
+                    left: '5px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    zIndex: 2,
+                    backgroundColor: 'rgba(0,0,0,0.5)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '50%',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer'
+                  }}
                 >
-                  Prev
+                  <FiChevronLeft size={24} />
                 </button>
-                
-                {Array.from({ length: totalPages }, (_, i) => (
-                  <button
-                    key={i + 1}
-                    onClick={() => paginate(i + 1)}
-                    className={`page-btn ${currentPage === i + 1 ? 'active' : ''}`}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
-                
                 <button 
-                  onClick={() => paginate(currentPage + 1)} 
-                  disabled={currentPage === totalPages}
-                  className="page-btn"
+                  onClick={scrollNext}
+                  className="nav-button next-button"
+                  aria-label="Next profile"
+                  style={{
+                    position: 'absolute',
+                    right: '5px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    zIndex: 2,
+                    backgroundColor: 'rgba(0,0,0,0.5)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '50%',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer'
+                  }}
                 >
-                  Next
+                  <FiChevronRight size={24} />
                 </button>
-              </div>
+              </>
             )}
-          </>
+            
+            <div 
+              ref={scrollContainerRef}
+              className="trades-scroll-container" 
+              data-aos="fade-up" 
+              data-aos-delay="100"
+              style={{
+                overflowX: 'auto',
+                display: 'flex',
+                scrollBehavior: 'smooth',
+                padding: '10px 0',
+                WebkitOverflowScrolling: 'touch',
+                scrollbarWidth: isMobileView ? 'none' : 'auto', // Hide scrollbar in mobile view
+                msOverflowStyle: isMobileView ? 'none' : 'auto', // Hide scrollbar in IE/Edge
+              }}
+            >
+              <div 
+                className="trades-grid" 
+                style={{
+                  display: 'flex',
+                  gap: '20px',
+                  padding: '0 5px',
+                  minWidth: 'min-content'
+                }}
+              >
+                {(() => {
+                  const tradeCards = [];
+                  filteredPeople.forEach((person) => {
+                    tradeCards.push(
+                      <div 
+                        className="trade-card" 
+                        key={person.id}
+                        style={{
+                          flex: '0 0 auto',
+                          minWidth: '250px'
+                        }}
+                      >
+                        <div className="trade-image">
+                          <img className="img" src={person.image} alt={person.name} />
+                          {person.verified && <span className="verified-badge"> <i className="fa-solid fa-circle-check verification-icon"></i></span>}
+                        </div>
+                        <h3>{person.name}</h3>
+                        <p style={{ color: "gold" }}>{person.ratings}</p>
+                        <p>{person.profession}</p>
+                        <a 
+                          href={`/profile/${person.id}`} 
+                          className="view-profile-btn"
+                          onClick={(e) => handleViewProfile(e, person)}
+                        >
+                          View Profile
+                        </a>
+                      </div>
+                    );
+                  });
+                  return tradeCards;
+                })()}
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </section>
   );
 };
-
-
 
 export { TopTrades };

@@ -40,12 +40,13 @@
   .faq summary {
     font-size: 18px;
     font-weight: 500;
-    color: #0575E6;
+    color: black;
     padding: 10px;
+    margin: 0%;
     background-color: #f9f9f9;
     border-radius: 8px;
     transition: background-color 0.3s ease;
-    list-style: none; /* Remove default arrow */
+ 
     position: relative; /* For positioning the > button */
     padding-right: 30px; /* Space for the > button */
   }
@@ -56,7 +57,7 @@
   
   /* Add > button using ::after */
   .faq summary::after {
-    content: '>';
+    
     position: absolute;
     right: 10px;
     top: 50%;

@@ -10,6 +10,14 @@
   margin: 0 auto;
   padding: 0 20px;
 }
+.icon{
+  top: 280px;
+  left: 540px;
+  display: inline-block;
+  position: absolute;
+  
+ 
+}
 
 .section-title {
   text-align: center;
@@ -28,16 +36,16 @@
 .trades-search-input {
   position: absolute;
   left:30px ;
-  top: 370px;
+  top: 390px;
   width: 100%;
   max-width: 500px;
   padding: 12px 20px;
-  border: 3px solid #0575E6;
-  border-radius: 5px;
   font-size: 16px;
+  border-top-left-radius:15px ;
   height: 80px;
   transition: border-color 0.3s, box-shadow 0.3s;
-}
+  
+  }
 
 .trades-search-input:focus {
   border-color:  #0575E6;
@@ -220,12 +228,18 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
   
-  .pagination {
-    flex-wrap: wrap;
-  }
+  
 }
 
 @media (max-width: 480px) {
+  .icon{
+    top: 80px;
+    left: 840px;
+    position: relative;
+    
+   
+  }
+  
   .hero {
     height: 400px;
   }
