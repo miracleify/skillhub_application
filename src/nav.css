@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,19 +8,21 @@
 .nav-container {
   width: 100%;
   background-color: #fff;
-  padding: 10px 20px; 
+  padding: 10px 0; 
   position: fixed;
   top: 0;
   z-index: 1000;
   transition: background-color 0.3s ease, padding 0.3s ease;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  left: 0;
+  right: 0;
 }
 
 .nav-container.scrolled {
   background-color: rgba(255, 255, 255, 0.95);
-  padding: 5px 20px; 
+  padding: 5px 0; 
 }
 
 /* Navbar */
@@ -29,8 +30,8 @@
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 0 20px;
   justify-content: space-between;
 }
@@ -40,8 +41,6 @@
   display: flex;
   align-items: center;
   gap: 10px; 
-  position: relative;
-  left: 0; 
 }
 
 .nav-logo img {
@@ -58,14 +57,13 @@
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 90px; 
+  gap: clamp(20px, 4vw, 90px);
   list-style: none;
   padding: 0;
   margin: 0;
   text-align: center;
   flex-grow: 1;
-  justify-content: flex-end;
-  margin-right: 20px;
+  justify-content: center;
 }
 
 .nav-list li {
@@ -242,9 +240,8 @@
   }
   
   .nav-container {
-    padding: 10px;
-    
-    
+    padding: 10px 0;
+    width: 100%;
   }
 
   .sidebar {
@@ -265,10 +262,58 @@
   .overlay {
     display: none;
   }
+  
   .nav-container {
-    padding: 10px;
-    }
-    .navbar {
-      gap:50px
-    }
+    padding: 10px 0;
+    width: 100%;
+  }
+  
+  .navbar {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .nav-list {
+    justify-content: flex-end;
+    margin-right: 0;
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1400px) {
+  .nav-container {
+    width: 100%;
+    padding: 10px 0;
+  }
+  
+  .navbar {
+    width: 100%;
+    max-width: 100%; /* Full width */
+    margin: 0;
+    padding: 0 40px; /* Add some side padding for content breathing room */
+    gap: 90px;
+  }
+  
+  .nav-logo {
+    flex: 0 0 auto;
+  }
+  
+  .nav-list {
+    flex: 1;
+    justify-content: center;
+    margin-right: 0;
+  }
+  
+  .get-started {
+    flex: 0 0 auto;
+  }
+}
+
+/* Very large screen adjustments */
+@media (min-width: 1920px) {
+  .navbar {
+    max-width: 1920px; /* Limit content width on extremely large screens */
+    margin: 0 auto;
+    padding: 0 60px;
+  }
 }

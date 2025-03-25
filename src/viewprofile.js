@@ -17,7 +17,9 @@ const ViewProfile = () => {
     return <p>Profile not found. Redirecting...</p>;
   }
 
-  return (
+  return ( 
+    <div className="div">
+      <br></br> <br></br>
     <div className="profile-container">
       {/* Profile Header */}
       <div className="profile-header">
@@ -126,6 +128,7 @@ const ViewProfile = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -11,9 +11,9 @@ function Home() {
   return (
     <div >
       <div className="home-container">
-        <h2 className="link-headline">
+      <h1 className="link-headline" >
           LINKING YOU WITH EXPERTS THAT WORK WITH PASSION AND PRECISION
-        </h2>
+        </h1>
         <Search />
         <div></div>
       </div>

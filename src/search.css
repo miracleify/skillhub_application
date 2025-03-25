@@ -1,54 +1,71 @@
-
-
+.personP{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+  height: 40px;
+  background: #EAEAEA;
+  border-radius: 5px;
+}
 
 .top-trades {
   padding: 60px 0;
 }
 
 .container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 }
-.icon{
-  top: 280px;
-  left: 540px;
-  display: inline-block;
-  position: absolute;
-  
- 
-}
 
 .section-title {
-  text-align: center;
+  text-align:start;
   margin-bottom: 40px;
   color: #333;
   font-size: 32px;
 }
 
-/* Search Box in Trades Section */
 .search-box {
   margin-bottom: 30px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -200px; /* This moves the search box up */
 }
 
 .trades-search-input {
-  position: absolute;
-  left:30px ;
-  top: 390px;
   width: 100%;
   max-width: 500px;
-  padding: 12px 20px;
+  padding: 12px 50px 12px 20px; /* Increased right padding to make room for the icon */
   font-size: 16px;
-  border-top-left-radius:15px ;
-  height: 80px;
+  border-top-left-radius:8px ;
+  height: 60px;
   transition: border-color 0.3s, box-shadow 0.3s;
-  
-  }
+  display: block;
+  position: relative;
+  right: 65px;
+  margin-top: -40px;
+}
+
+.icon {
+  display: inline-block;
+  position: absolute;
+  left: 490px;
+  top: -50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  pointer-events: none; /* Makes sure clicks go through to the input */
+}
 
 .trades-search-input:focus {
-  border-color:  #0575E6;
+  border-color: #0575E6;
   box-shadow: 0 0 5px rgba(255, 107, 0, 0.3);
   outline: none;
 }
@@ -119,7 +136,7 @@
 .view-profile-btn {
   display: block;
   text-align: center;
-  background-color:  #0575E6;
+  background-color: #0575E6;
   color: white;
   text-decoration: none;
   margin: 15px;
@@ -130,7 +147,7 @@
 }
 
 .view-profile-btn:hover {
-  background-color:  #4ba2fa;
+  background-color: #4ba2fa;
 }
 
 /* Loading and No Results States */
@@ -176,8 +193,8 @@
 }
 
 .page-btn.active {
-  background-color:  #0575E6;
-  border-color:  #0575E6;
+  background-color: #0575E6;
+  border-color: #0575E6;
   color: white;
 }
 
@@ -205,7 +222,6 @@
 }
 
 .result-card {
-  /* Similar to trade-card styles */
   background-color: white;
   border-radius: 8px;
   overflow: hidden;
@@ -213,59 +229,155 @@
 }
 
 /* Responsive Designs */
+/* Styles for iPad Mini (768px) */
+@media (min-width: 768px) and (max-width: 769px) {
+  .headliner {
+    width: 100% !important;
+    font-size: 36px !important; /* Adjusted for iPad Mini */
+    line-height: 44px !important;
+  }
+
+  .search-box {
+    max-width: 450px; /* Adjusted for iPad Mini */
+    margin-bottom: -110px;
+  }
+
+  .trades-search-input {
+    font-size: 15px; 
+    height: 50px; 
+    width: 85%; 
+    padding: 12px 45px 12px 20px; 
+    margin-top: -350px;
+  }
+
+  .icon {
+    left: 310px;
+    width: 28px; 
+    height: 28px; /* Adjusted for iPad Mini */
+    margin-top: -175px;
+  }
+
+  .trades-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Adjusted for iPad Mini */
+  }
+}
+
+/* Styles for iPad Air (820px) */
+@media (min-width: 820px) and (max-width: 821px) {
+  .headliner {
+    width: 100% !important;
+    font-size: 38px !important; /* Adjusted for iPad Air */
+    line-height: 46px !important;
+  }
+
+  .search-box {
+    max-width: 500px; /* Adjusted for iPad Air */
+    margin-top: -20px; 
+  }
+
+  .trades-search-input {
+    font-size: 16px; /* Adjusted for iPad Air */
+    height: 55px; 
+    width: 90%; 
+    padding: 15px 50px 15px 25px; 
+  }
+
+  .icon {
+    right: 20px; 
+    width: 30px; 
+    height: 30px; 
+  }
+
+  .trades-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Adjusted for iPad Air */
+  }
+}
+
+/* Existing styles for smaller screens (768px and below) */
 @media (max-width: 768px) {
   .headliner {
     width: 100% !important;
     font-size: 32px !important;
     line-height: 40px !important;
   }
-  .trades-search-input{
-    width: 300px;
-    top: 450px;
-  } 
-  
+
+  .search-box {
+    max-width: 400px;
+    margin-top: -40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .trades-search-input {
+    font-size: 14px;
+    height: 45px;
+    width: 80%;
+    padding: 10px 40px 10px 15px;
+  }
+
+  .icon {
+    position: absolute;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+  }
+
   .trades-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
-  
-  
 }
 
+/* Existing styles for very small screens (480px and below) */
 @media (max-width: 480px) {
-  .icon{
-    top: -226px;
-    left: 170px;
-    visibility:visible;
-    font-size: 60px;
-    position: relative;
-    
+  .search-box {
+    margin: 70px;
+    max-width: 280px;
+    margin-top: -175px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  
-  .hero {
-    height: 400px;
+
+  .trades-search-input {
+    height: 40px;
+    font-size: 13px;
+    width: 75%;
+    padding: 8px 35px 8px 10px;
+    margin-top:-90px ;
   }
-  .trades-search-input{
-    width: 300px;
+
+  .icon {
     position: absolute;
-  } 
-  .headliner {
-    font-size: 24px !important;
-    line-height: 32px !important;
+    left: 185px;
+    width: 20px;
+    margin-top: -48px;
+    height: 20px;
   }
-  
+
+  .hero {
+    height: 350px;
+  }
+
+  .headliner {
+    font-size: 22px !important;
+    line-height: 30px !important;
+  }
+
   .search-container {
     flex-direction: column;
+    align-items: center;
   }
-  
+
   .input-Bar {
     border-radius: 4px;
     margin-bottom: 10px;
   }
-  
+
   .search-btn {
     border-radius: 4px;
   }
-  
+
   .trades-grid {
     grid-template-columns: 1fr;
   }

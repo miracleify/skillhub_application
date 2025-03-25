@@ -16,7 +16,7 @@ const initialTradespeople = [
       "Hi, I'm Kelly, a certified electrician with over 10 years of experience in residential and commercial electrical work. I take pride in delivering reliable, professional, and affordable electrical solutions. Whether it's a small repair or a major installation, you can count on me to get it done right the first time. My goal is to provide top-quality service while keeping your home or business powered and secure.",
     video: '/video.png',
     caption: 'Get to know Kelly via this short introductory video',
-    serviceArea: 'https://youtu.be/rEEZD5hXgrQ',
+    serviceArea:  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253682.46310560885!2d3.1191404803109495!3d6.548369375048859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos!5e0!3m2!1sen!2sng!4v1742706871742!5m2!1sen!2sng",
     isOnline: true,
   },
   {
@@ -33,8 +33,8 @@ const initialTradespeople = [
       "Hi, I'm Kelly, a certified electrician with over 10 years of experience in residential and commercial electrical work. I take pride in delivering reliable, professional, and affordable electrical solutions. Whether it's a small repair or a major installation, you can count on me to get it done right the first time. My goal is to provide top-quality service while keeping your home or business powered and secure.",
     video: '/video.png',
     caption: 'Get to know Kelly via this short introductory video',
-    serviceArea: 'https://youtu.be/rEEZD5hXgrQ',
-    isOnline: false,
+    serviceArea:  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253682.46310560885!2d3.1191404803109495!3d6.548369375048859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos!5e0!3m2!1sen!2sng!4v1742706871742!5m2!1sen!2sng",
+    isOnline: true,
   },
   {
     id: 2,
@@ -50,7 +50,7 @@ const initialTradespeople = [
       "Hi, I'm Kelly, a certified electrician with over 10 years of experience in residential and commercial electrical work. I take pride in delivering reliable, professional, and affordable electrical solutions. Whether it's a small repair or a major installation, you can count on me to get it done right the first time. My goal is to provide top-quality service while keeping your home or business powered and secure.",
     video: '/video.png',
     caption: 'Get to know Kelly via this short introductory video',
-    serviceArea: 'https://youtu.be/rEEZD5hXgrQ',
+    serviceArea:  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253682.46310560885!2d3.1191404803109495!3d6.548369375048859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos!5e0!3m2!1sen!2sng!4v1742706871742!5m2!1sen!2sng",
     isOnline: false,
   },
   {
@@ -67,10 +67,12 @@ const initialTradespeople = [
       "Hi, I'm Kelly, a certified electrician with over 10 years of experience in residential and commercial electrical work. I take pride in delivering reliable, professional, and affordable electrical solutions. Whether it's a small repair or a major installation, you can count on me to get it done right the first time. My goal is to provide top-quality service while keeping your home or business powered and secure.",
     video: '/video.png',
     caption: 'Get to know Kelly via this short introductory video',
-    serviceArea: 'https://youtu.be/rEEZD5hXgrQ',
-    isOnline: true,
+
+    serviceArea:  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253682.46310560885!2d3.1191404803109495!3d6.548369375048859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos!5e0!3m2!1sen!2sng!4v1742706871742!5m2!1sen!2sng",
+ isOnline: true,
   },
 ];
+"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253682.46310560885!2d3.1191404803109495!3d6.548369375048859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos!5e0!3m2!1sen!2sng!4v1742706871742!5m2!1sen!2sng" 
 
 const TradesContext = createContext();
 

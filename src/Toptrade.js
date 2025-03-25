@@ -98,17 +98,16 @@ const TopTrades = () => {
   const handleViewProfile = (e, person) => {
     e.preventDefault(); // Prevent default link behavior
     
-    // Store the complete person data in sessionStorage
     sessionStorage.setItem('selectedTradesPerson', JSON.stringify(person));
     
-    // Navigate programmatically using React Router's navigate
+   
     navigate(`/profile/${person.id}`);
   };
 
   // Navigation functions for mobile view
   const scrollPrevious = () => {
     if (scrollContainerRef.current) {
-      const cardWidth = 270; // Width of card + gap
+      const cardWidth = 270; 
       scrollContainerRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
     }
   };
@@ -122,31 +121,31 @@ const TopTrades = () => {
 
   return (
     <section className="top-trades">
-      <div className="container"> <br /> <br></br><br></br><br></br> <br></br>
-        <h2 className="section-title" data-aos="fade-up" style={{position:"absolute", left:"30px"}}>
+  
+      <div className="container"> 
+        <h2 className="section-title" data-aos="fade-up" >
           Top Trades & Artisans   <FiArrowRight size={25} />
         </h2> <br></br>
         
-        <FaMapMarkerAlt className="icon" color="white" size={40} /> 
+        
         {/* Search input within the component */}
         <div className="search-box" data-aos="fade-up">
-          <input
-            type="text"
-            placeholder="Search by name, profession or expertise..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="trades-search-input"
-            style={{
-              top:"260px"
-            }}
-          />
-        </div>
-        
+        <FaMapMarkerAlt className="icon" color="white" size={40} />
+  <input
+    type="text"
+    placeholder=" What skill are you looking?"
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    className="trades-search-input"
+  />
+ 
+</div>
+        <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>
         {isLoading ? (
           <div className="loading">Loading...</div>
         ) : filteredPeople.length === 0 ? (
           <div className="no-results">No matching trades found</div>
-        ) : (
+        ) : ( 
           <div className="trades-container">
             <div 
               ref={scrollContainerRef}
@@ -171,7 +170,7 @@ const TopTrades = () => {
                   padding: '0 5px',
                   minWidth: 'min-content'
                 }}
-              >
+              > 
                 {(() => {
                   const tradeCards = [];
                   filteredPeople.forEach((person) => {
@@ -190,7 +189,7 @@ const TopTrades = () => {
                         </div>
                         <h3>{person.name}</h3>
                         <p style={{ color: "gold" }}>{person.ratings}</p>
-                        <p>{person.profession}</p>
+                        <p className="personP">{person.profession}</p>
                         <a 
                           href={`/profile/${person.id}`} 
                           className="view-profile-btn"
