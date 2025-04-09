@@ -2,6 +2,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Lexend';
+}
+
+:root {
+  --white: #FFFFFF;
+  --black: #000000;
+  --inactive-grey: #8F8F8F;
+  --skillhub-blue: #0575E6;
+  --skillhub-hover-blue: #0518E6;
 }
 
 body, html {
@@ -42,6 +51,7 @@ body, html {
   margin-right: -50vw; /* Offset to ensure full width */
   margin-top: 30px;
 }
+
 .block-text{
   position: relative;
   max-width: 1135px;
@@ -98,7 +108,7 @@ input::placeholder {
 
 .icon img {
   width: 24px;
-  height: 24px;
+  height: 14px;
 }
 
 .search-btn {
@@ -114,7 +124,7 @@ input::placeholder {
   height: 64px;
   top: 6px;
   left: 270px;
-  background: #0575E6;
+  background: var(--skillhub-blue);
   border-radius: 10px;
 }
 

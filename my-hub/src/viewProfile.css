@@ -1,3 +1,17 @@
+:root {
+  --white: #FFFFFF;
+  --black: #000000;
+  --grey: #8F8F8F;
+  --light-grey: #EAEAEA;
+  --dark-grey: #666666;
+  --skillhub-blue: #0575E6;
+  --skillhub-hover-blue: #0518E6;
+  --skillhub-light-blue: #e5f1ff;
+  --star-colour: #FF9988;
+  --green: #1fff26;
+  --status-green: #027A48;
+}
+
 /* Main container */
 .profile-container {
   border: 1px solid #ddd;
@@ -7,7 +21,7 @@
   max-width: 1149px;
   margin: 0 auto;
   box-sizing: border-box;
-  font-family: 'Lexend', sans-serif;
+  /* font-family: 'Lexend', sans-serif; */
   background-color: #f9f9f9;
 }
 
@@ -48,7 +62,7 @@
 }
 
 .verification-icon {
-  color: #0575E6;
+  color: var(--skillhub-blue);
   font-size: 18px;
 }
 
@@ -72,7 +86,7 @@
 }
 
 .rating-stars {
-  color: gold;
+  color: var(--star-colour) ;
 }
 
 /* Action buttons */
@@ -100,31 +114,31 @@
 }
 
 .hire-btn {
-  background: #0575E6;
-  color: white;
+  background: var(--skillhub-blue);
+  color: var(--white);
 }
 
 .viewPort-btn {
-  background: #0575E6;
-  color: white;
+  background: var(--skillhub-blue);
+  color: var(--white);
 }
 
 .message-btn {
   background: transparent;
-  color: #0575E6;
-  border: 2px solid #0575E6;
+  color: var(--skillhub-blue);
+  border: 2px solid var(--skillhub-blue);
 }
 
 .emoji-btn {
   background: none;
   font-size: 22px;
   padding: 10px;
-  color: #0575E6;
+  color: var(--skillhub-blue);
 }
 
 .hire-btn:hover,
 .viewPort-btn:hover {
-  background: #0366c7;
+  background: var(--skillhub-hover-blue);
   transform: translateY(-2px);
 }
 
@@ -147,7 +161,7 @@
   font-weight: 500;
   margin-bottom: 20px;
   color: #000000;
-  border-bottom: 2px solid #0575E6;
+  border-bottom: 2px solid var(--skillhub-blue);
   display: inline-block;
   padding-bottom: 5px;
 }
@@ -194,7 +208,7 @@
   font-weight: 500;
   margin-bottom: 20px;
   color: #000000;
-  border-bottom: 2px solid #0575E6;
+  border-bottom: 2px solid var(--skillhub-blue);
   display: inline-block;
   padding-bottom: 5px;
 }
@@ -216,7 +230,7 @@
   border: 1px solid #e5e5e5;
   border-radius: 10px;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: var(--white);
 }
 
 .map-container {
@@ -238,7 +252,7 @@
   border: 1px solid #e5e5e5;
   border-radius: 10px;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: var(--white);
 }
 
 .user-availability {
@@ -272,7 +286,7 @@
 }
 
 .status-text.online {
-  color: #28a745;
+  color: var(--status-green);
 }
 
 .status-text.offline {

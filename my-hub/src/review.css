@@ -1,3 +1,7 @@
+:root {
+  --star-colour: #FF9988;
+}
+
 .review-container{
 position: absolute;
 width: 1252px;
@@ -74,7 +78,7 @@ top: 3216px;
 }
 
 .review-stars {
-  color: #ffc107;
+  color: var(--star-colour);
   font-size: 16px;
   letter-spacing: 2px;
 }

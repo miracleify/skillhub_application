@@ -1,8 +1,13 @@
-
 body{
   margin: 0;
   padding: 0;
-
+}
+:root {
+  --white: #FFFFFF;
+  --black: #000000;
+  --inactive-grey: #8F8F8F;
+  --skillhub-blue: #0575E6;
+  --skillhub-hover-blue: #0518E6;
 }
 
 /* Container for the entire section */
@@ -54,7 +59,7 @@ body{
 /* Image container */
 .trade-image {
   position: relative;
-  width: 150px;
+  width: 200px;
   height: 150px;
   overflow: hidden;
   background-color: #f0f0f0; /* Placeholder background */
@@ -110,7 +115,7 @@ body{
 .view-profile-btn {
   width: 85%;
   padding: 12px 0;
-  background-color: #2c7be5;
+  background-color: var(--skillhub-blue);
   color: white;
   text-align: center;
   border-radius: 6px;
@@ -123,7 +128,7 @@ body{
 }
 
 .view-profile-btn:hover {
-  background-color: #1a68d1;
+  background-color: var(--skillhub-hover-blue);
 }
 
 /* Responsive adjustments */

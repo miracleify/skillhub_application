@@ -1,8 +1,16 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --grey: #8f8f8f;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
+  --skillhub-light-blue: #e5f1ff;
+}
 
-body{
+body {
   margin: 0;
   padding: 0;
-overflow: auto;
+  overflow: auto;
 }
 
 /* Container for the entire section */
@@ -76,7 +84,7 @@ overflow: auto;
   position: absolute;
   top: 5px;
   right: 5px;
-  background-color: #4CAF50;
+  background-color: #d4ffd6;
   color: white;
   width: 28px;
   height: 28px;
@@ -109,7 +117,7 @@ overflow: auto;
 .view-profile-btn {
   width: 85%;
   padding: 12px 0;
-  background-color: #2c7be5;
+  background-color: var(--skillhub-blue);
   color: white;
   text-align: center;
   border-radius: 6px;
@@ -122,7 +130,7 @@ overflow: auto;
 }
 
 .view-profile-btn:hover {
-  background-color: #1a68d1;
+  background-color: var(--skillhub-hover-blue);
 }
 
 /* Responsive adjustments */
@@ -131,16 +139,17 @@ overflow: auto;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 25px;
   }
-  
+
   .trade-card h3 {
     font-size: 1.4rem;
   }
-  
+
   .trade-card p {
     font-size: 1rem;
   }
-  
-  .trade-image, .trade-image img {
+
+  .trade-image,
+  .trade-image img {
     width: 130px;
     height: 130px;
   }
@@ -153,8 +162,9 @@ overflow: auto;
     margin-left: auto;
     margin-right: auto;
   }
-  
-  .trade-image, .trade-image img {
+
+  .trade-image,
+  .trade-image img {
     width: 120px;
     height: 120px;
   }

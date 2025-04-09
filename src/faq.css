@@ -1,11 +1,19 @@
+:root {
+  --white: #FFFFFF;
+  --black: #000000;
+  --grey: #8F8F8F;
+  --skillhub-blue: #0575E6;
+  --skillhub-hover-blue: #0518E6;
+  --skillhub-light-blue: #e5f1ff;
+}
+
 /* FAQ Container */
 .faq {
   width: 100%;
   max-width: 100%;
   margin: 0;
   padding: 20px 0;
-  font-family: 'Lexend', sans-serif;
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
 }
 
 /* FAQ Content Wrapper */
@@ -27,7 +35,7 @@
 
 /* FAQ List - Flex Layout */
 .faq ol {
-  list-style: none;
+  /* list-style: none; */
   padding: 0;
   margin: 0;
 }
@@ -35,9 +43,8 @@
 .faq li {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #e5e5e5;
-  padding-bottom: 15px;
+  /* margin-bottom: 15px; */
+  padding-bottom: 30px;
 }
 
 /* Index Numbering */
@@ -68,10 +75,11 @@
   padding: 10px;
   margin: 0;
   background-color: #ffffff;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   transition: background-color 0.3s ease;
   cursor: pointer;
   list-style: none;
+  border-top: 2px solid;
 }
 
 /* Remove default marker */
@@ -82,6 +90,8 @@
 /* Dropdown Indicator */
 .faq summary::after {
   content: '▶';
+  transform: rotate(-90deg);
+  /* content: '🔼'; */
   font-size: 16px;
   color: black;
   transition: transform 0.3s ease;
@@ -93,7 +103,7 @@
 }
 
 .faq summary:hover {
-  background-color: #e5f1ff;
+  background-color: var(--skillhub-light-blue);
 }
 
 /* FAQ Content */
@@ -103,16 +113,20 @@
   color: #2A2A2A;
   margin-top: 10px;
   padding: 0 10px;
+  text-align: left;
 }
 
 .faq a {
-  color: black;
+  color: var(--skillhub-blue);
   text-decoration: none;
   font-weight: 500;
+  transform: scale(1);
+  transition: 0.2s;
+  text-decoration: underline;
 }
 
 .faq a:hover {
-  text-decoration: underline;
+  color: var(--skillhub-hover-blue);
 }
 
 .faq hr {
@@ -123,16 +137,16 @@
 }
 
 /* Animations */
-@keyframes slideDown {
+/* @keyframes slideDown {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(0);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
-}
+} */
 
 .faq details[open] {
   animation: slideDown 0.5s ease;
@@ -173,6 +187,7 @@
 @media (max-width: 480px) {
   .faq {
     padding: 10px 0;
+    text-align: left;
   }
 
   .faq-content {
@@ -185,6 +200,7 @@
 
   .faq summary {
     font-size: 14px;
+    border-top: 2px solid;
   }
 
   .faq p {

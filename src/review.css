@@ -1,3 +1,16 @@
+:root {
+  --white: #FFFFFF;
+  --black: #000000;
+  --grey: #8F8F8F;
+  --light-grey: #EAEAEA;
+  --dark-grey: #666666;
+  --skillhub-blue: #0575E6;
+  --skillhub-hover-blue: #0518E6;
+  --skillhub-light-blue: #e5f1ff;
+  --star-colour: #FF9988;
+  --green: #1fff26;
+}
+
 .review-container {
   position: relative;
   width: 100%;
@@ -80,7 +93,7 @@
 }
 
 .review-stars {
-  color: #ffc107;
+  color: var(--star-colour);
   font-size: 16px;
   letter-spacing: 2px;
 }

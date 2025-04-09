@@ -16,7 +16,8 @@ const TopTrades = () => {
       expertise: "Wiring, repairs, lighting, electrical upgrades",
       location: "Lagos, Nigeria",
       ratings: "★★★★★",
-      biography: "Hi, I'm Kelly, a certified electrician with over 10 years of experience in residential and commercial electrical work. I take pride in delivering reliable, professional, and affordable electrical solutions. Whether it's a small repair or a major installation, you can count on me to get it done right the first time. My goal is to provide top-quality service while keeping your home or business powered and secure."
+      biography: "Hi, I'm Kelly, a certified electrician with over 10 years of experience in residential and commercial electrical work. I take pride in delivering reliable, professional, and affordable electrical solutions. Whether it's a small repair or a major installation, you can count on me to get it done right the first time. My goal is to provide top-quality service while keeping your home or business powered and secure.",
+      jobs: "12",
     },
     {
       id: 2,
@@ -27,6 +28,7 @@ const TopTrades = () => {
       expertise: "Wiring, repairs, lighting, electrical upgrades",
       location: "Lagos, Nigeria",
       ratings: "★★★★★",
+      jobs: "25",
     },
     {
       id: 3,
@@ -37,6 +39,7 @@ const TopTrades = () => {
       expertise: "Wiring, repairs, lighting, electrical upgrades",
       location: "Lagos, Nigeria",
       ratings: "★★★★★",
+      jobs: "8",
     },
     {
       id: 4,
@@ -47,6 +50,7 @@ const TopTrades = () => {
       expertise: "Wiring, repairs, lighting, electrical upgrades",
       location: "Lagos, Nigeria",
       ratings: "★★★★★",
+      jobs: "42",
     }
   ]);
 
@@ -124,7 +128,7 @@ const TopTrades = () => {
   
       <div className="container"> 
         <h2 className="section-title" data-aos="fade-up" >
-          Top Trades & Artisans   <FiArrowRight size={25} />
+          Top Trades & Artisans <FiArrowRight size={25} />
         </h2> <br></br>
         
         
@@ -185,11 +189,16 @@ const TopTrades = () => {
                       >
                         <div className="trade-image">
                           <img className="img" src={person.image} alt={person.name} />
-                          {person.verified && <span className="verified-badge"> <i className="fa-solid fa-circle-check verification-icon"></i></span>}
                         </div>
-                        <h3>{person.name}</h3>
-                        <p style={{ color: "gold" }}>{person.ratings}</p>
-                        <p className="personP">{person.profession}</p>
+                        <h3>
+                          {person.name} 
+                          
+                          {person.verified && <span className="verified-badge"> <i className="fa-solid fa-circle-check verification-icon"></i></span>}
+                        </h3>
+                        <p className="personP">{person.profession} </p>
+                        {/* <p style={{ color: "gold" }}>{person.ratings} <span className="jobs-done">({`${person.jobs} Jobs`})</span></p> */}
+
+                        <p><span className="star-rating">{person.ratings}</span> <span className="jobs-done">({`${person.jobs} Jobs`})</span></p> {/* Star rating */}
                         <a 
                           href={`/profile/${person.id}`} 
                           className="view-profile-btn"
