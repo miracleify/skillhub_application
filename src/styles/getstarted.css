@@ -1,0 +1,475 @@
+/* Base styles */
+.getstarted {
+  margin-top: 0;
+  width: 100%;
+  padding-top: 20px;
+  animation: fadeIn 1s ease-out;
+}
+
+/* Header styles */
+header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+  animation: slideDown 0.8s ease-out;
+}
+
+header img {
+  height: 50px;
+  animation: pulse 2s infinite alternate;
+}
+
+/* Content container */
+.content-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  animation: fadeIn 1.2s ease-out;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+/* Title section */
+.title-section {
+  text-align: center;
+  margin-bottom: 30px;
+  animation: fadeIn 1.4s ease-out;
+  padding: 0 15px;
+}
+
+.title-section h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  animation: slideUp 1s ease-out;
+}
+
+.title-section h3 {
+  font-size: 16px;
+  margin-bottom: 20px;
+  animation: slideUp 1.2s ease-out;
+}
+
+.title-section a {
+  color: #0575E6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.title-section a:hover {
+  color: #0464c8;
+  text-decoration: underline;
+}
+
+/* Button styles */
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 340px;
+  height: 66px;
+  gap: 30px;
+  background: #FFFFFF;
+  border-radius: 300px;
+  border: 2px solid #ddd;
+  margin: 0 auto;
+  animation: scaleIn 0.5s ease-out;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  box-shadow: 0 5px 15px rgba(5, 117, 230, 0.2);
+}
+
+.consumer-btn, .skill-btn {
+  width: 150px;
+  height: 45px;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: black;
+  border: none;
+  border-radius: 300px;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.consumer-btn.active, .skill-btn.active,
+.skill-btn:hover, .consumer-btn:hover {
+  background-color: #0575E6;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Profile section */
+.profilepice {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  padding: 30px;
+  animation: fadeUp 0.8s ease-out;
+  transition: box-shadow 0.3s ease;
+}
+
+.profilepice:hover {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+}
+
+.dotted-border {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px dotted #0575E6;
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: bounce 1s ease-out;
+}
+
+.dotted-border:hover {
+  border-color: #0464c8;
+  transform: scale(1.05);
+}
+
+.dotted-border img {
+  width: 50px;
+  height: 50px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.dotted-border:hover img {
+  opacity: 0.8;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  animation: fadeIn 1.5s ease-out;
+}
+
+/* Form container */
+.form-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+  gap: 20px;
+  animation: fadeIn 1.6s ease-out;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.signup-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: slideInRight 0.8s ease-out;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.form-group label {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 500;
+
+ margin-left: -270px;
+}
+
+.form-group span {
+  font-size: 12px;
+  color: #666;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  height: 50px;
+  padding: 0 15px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #0575E6;
+  box-shadow: 0px 0px 8px rgba(5, 117, 230, 0.2);
+}
+
+.form-group textarea {
+  width: 100%;
+  height: 250px;
+  padding: 15px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  resize: none;
+  transition: all 0.3s ease;
+}
+
+.form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 15px;
+}
+
+.bio-group, .video-group {
+  flex: 1;
+}
+
+.video-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  height: 250px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  animation: fadeIn 1.7s ease-out;
+}
+
+.video-upload:hover {
+  border-color: #0575E6;
+}
+
+.dotted-border-video {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+  cursor: pointer;
+  border: 5px dotted #0464c8;
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite alternate;
+}
+
+.dotted-border-video:hover {
+  transform: scale(1.05);
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-left: 0;
+  width: 100%;
+  animation: fadeIn 1.8s ease-out;
+}
+
+.submit-btn, .next-btn {
+  width: 100%;
+  max-width: 200px;
+  height: 50px;
+  background: #0575E6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn {
+  animation: bounce 1s infinite alternate;
+}
+
+.submit-btn:hover, .next-btn:hover {
+  background-color: #0464c8;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(5, 117, 230, 0.3);
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .form-row {
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  .form-buttons {
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-section h2 {
+    font-size: 24px;
+  }
+  
+  .title-section h3 {
+    font-size: 14px;
+  }
+  
+  .button {
+    height: 60px;
+    gap: 15px;
+  }
+  
+  .consumer-btn, .skill-btn {
+    width: 120px;
+    font-size: 16px;
+    height: 40px;
+  }
+  
+  .dotted-border, .dotted-border-video {
+    height: 120px;
+    width: 120px;
+  }
+  
+  .form-group input, 
+  .form-group select,
+  .submit-btn, 
+  .next-btn {
+    height: 45px;
+    font-size: 15px;
+  }
+  
+  .form-group textarea,
+  .video-upload {
+    height: 200px;
+  }
+  
+  .profilepice {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 350px) {
+  .button {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .consumer-btn, .skill-btn {
+    width: 100%;
+  }
+}

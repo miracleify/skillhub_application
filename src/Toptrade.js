@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FiArrowRight, FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import ('./search.css');
+import './search.css';
 
 const TopTrades = () => {
   const [tradespeople, setTradespeople] = useState([
@@ -16,8 +16,7 @@ const TopTrades = () => {
       expertise: "Wiring, repairs, lighting, electrical upgrades",
       location: "Lagos, Nigeria",
       ratings: "★★★★★",
-      biography: "Hi, I'm Kelly, a certified electrician with over 10 years of experience in residential and commercial electrical work. I take pride in delivering reliable, professional, and affordable electrical solutions. Whether it's a small repair or a major installation, you can count on me to get it done right the first time. My goal is to provide top-quality service while keeping your home or business powered and secure.",
-      jobs: "12",
+      biography: "Hi, I'm Kelly, a certified electrician with over 10 years of experience in residential and commercial electrical work. I take pride in delivering reliable, professional, and affordable electrical solutions. Whether it's a small repair or a major installation, you can count on me to get it done right the first time. My goal is to provide top-quality service while keeping your home or business powered and secure."
     },
     {
       id: 2,
@@ -28,7 +27,6 @@ const TopTrades = () => {
       expertise: "Wiring, repairs, lighting, electrical upgrades",
       location: "Lagos, Nigeria",
       ratings: "★★★★★",
-      jobs: "25",
     },
     {
       id: 3,
@@ -39,7 +37,6 @@ const TopTrades = () => {
       expertise: "Wiring, repairs, lighting, electrical upgrades",
       location: "Lagos, Nigeria",
       ratings: "★★★★★",
-      jobs: "8",
     },
     {
       id: 4,
@@ -50,7 +47,6 @@ const TopTrades = () => {
       expertise: "Wiring, repairs, lighting, electrical upgrades",
       location: "Lagos, Nigeria",
       ratings: "★★★★★",
-      jobs: "42",
     }
   ]);
 
@@ -101,50 +97,44 @@ const TopTrades = () => {
   // Handle profile view click
   const handleViewProfile = (e, person) => {
     e.preventDefault(); // Prevent default link behavior
-    
     sessionStorage.setItem('selectedTradesPerson', JSON.stringify(person));
-    
-   
     navigate(`/profile/${person.id}`);
   };
 
   // Navigation functions for mobile view
   const scrollPrevious = () => {
     if (scrollContainerRef.current) {
-      const cardWidth = 270; 
-      scrollContainerRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+      const scrollAmount = scrollContainerRef.current.offsetWidth * 0.75;
+      scrollContainerRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     }
   };
 
   const scrollNext = () => {
     if (scrollContainerRef.current) {
-      const cardWidth = 270; // Width of card + gap
-      scrollContainerRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      const scrollAmount = scrollContainerRef.current.offsetWidth * 0.75;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
   return (
     <section className="top-trades">
-  
       <div className="container"> 
-        <h2 className="section-title" data-aos="fade-up" >
-          Top Trades & Artisans <FiArrowRight size={25} />
-        </h2> <br></br>
-        
+        <h2 className="section-title" data-aos="fade-up">
+          Top Trades & Artisans <FiArrowRight className="arrow-icon" />
+        </h2>
         
         {/* Search input within the component */}
         <div className="search-box" data-aos="fade-up">
-        <FaMapMarkerAlt className="icon" color="white" size={40} />
-  <input
-    type="text"
-    placeholder=" What skill are you looking?"
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-    className="trades-search-input"
-  />
- 
-</div>
-        <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>
+          <FaMapMarkerAlt className="search-icon" />
+          <input
+            type="text"
+            placeholder="What skill are you looking for?"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="trades-search-input"
+          />
+        </div>
+        
         {isLoading ? (
           <div className="loading">Loading...</div>
         ) : filteredPeople.length === 0 ? (
@@ -153,115 +143,52 @@ const TopTrades = () => {
           <div className="trades-container">
             <div 
               ref={scrollContainerRef}
-              className="trades-scroll-container" 
+              className={`trades-scroll-container ${isMobileView ? 'mobile-view' : ''}`}
               data-aos="fade-up" 
               data-aos-delay="100"
-              style={{
-                overflowX: 'auto',
-                display: 'flex',
-                scrollBehavior: 'smooth',
-                padding: '10px 0',
-                WebkitOverflowScrolling: 'touch',
-                scrollbarWidth: isMobileView ? 'none' : 'auto', // Hide scrollbar in mobile view
-                msOverflowStyle: isMobileView ? 'none' : 'auto', // Hide scrollbar in IE/Edge
-              }}
             >
-              <div 
-                className="trades-grid" 
-                style={{
-                  display: 'flex',
-                  gap: '20px',
-                  padding: '0 5px',
-                  minWidth: 'min-content'
-                }}
-              > 
-                {(() => {
-                  const tradeCards = [];
-                  filteredPeople.forEach((person) => {
-                    tradeCards.push(
-                      <div 
-                        className="trade-card" 
-                        key={person.id}
-                        style={{
-                          flex: '0 0 auto',
-                          minWidth: '250px'
-                        }}
-                      >
-                        <div className="trade-image">
-                          <img className="img" src={person.image} alt={person.name} />
-                        </div>
-                        <h3>
-                          {person.name} 
-                          
-                          {person.verified && <span className="verified-badge"> <i className="fa-solid fa-circle-check verification-icon"></i></span>}
-                        </h3>
-                        <p className="personP">{person.profession} </p>
-                        {/* <p style={{ color: "gold" }}>{person.ratings} <span className="jobs-done">({`${person.jobs} Jobs`})</span></p> */}
-
-                        <p><span className="star-rating">{person.ratings}</span> <span className="jobs-done">({`${person.jobs} Jobs`})</span></p> {/* Star rating */}
-                        <a 
-                          href={`/profile/${person.id}`} 
-                          className="view-profile-btn"
-                          onClick={(e) => handleViewProfile(e, person)}
-                        >
-                          View Profile
-                        </a>
-                      </div>
-                    );
-                  });
-                  return tradeCards;
-                })()}
+              <div className="trades-grid">
+                {filteredPeople.map((person) => (
+                  <div className="trade-card" key={person.id}>
+                    <div className="trade-image">
+                      <img className="img" src={person.image} alt={person.name} />
+                      {person.verified && (
+                        <span className="verified-badge">
+                          <i className="fa-solid fa-circle-check verification-icon"></i>
+                        </span>
+                      )}
+                    </div>
+                    <h3>{person.name}</h3>
+                    <p className="ratings">{person.ratings}</p>
+                    <p className="personP">{person.profession}</p>
+                    <a 
+                      href={`/profile/${person.id}`} 
+                      className="view-profile-btn"
+                      onClick={(e) => handleViewProfile(e, person)}
+                    >
+                      View Profile
+                    </a>
+                  </div>
+                ))}
               </div>
             </div>
             
-            {/* Navigation buttons moved to bottom */}
+            {/* Navigation buttons */}
             {isMobileView && filteredPeople.length > 1 && (
-              <div 
-                className="navigation-buttons"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  gap: '20px',
-                  marginTop: '20px'
-                }}
-              >
+              <div className="navigation-buttons">
                 <button 
                   onClick={scrollPrevious}
                   className="nav-button prev-button"
                   aria-label="Previous profile"
-                  style={{
-                    backgroundColor: '#007bff',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '50%',
-                    width: '40px',
-                    height: '40px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer'
-                  }}
                 >
-                  <FiChevronLeft size={24} />
+                  <FiChevronLeft />
                 </button>
                 <button 
                   onClick={scrollNext}
                   className="nav-button next-button"
                   aria-label="Next profile"
-                  style={{
-                    backgroundColor: '#007bff',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '50%',
-                    width: '40px',
-                    height: '40px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer'
-                  }}
                 >
-                  <FiChevronRight size={24} />
+                  <FiChevronRight />
                 </button>
               </div>
             )}

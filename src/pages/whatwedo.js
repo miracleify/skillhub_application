@@ -29,12 +29,12 @@ const WhatweDo = () => {
     }
   ];
 
-  // Custom layout order for the features
+
   const orderedFeatures = [
     features[0], // 1st card
     features[1], // 2nd card
     features[2], // 3rd card
-    // 4th card will be positioned below 2nd card using CSS grid
+  
   ];
 
   return (

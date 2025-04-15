@@ -1,0 +1,104 @@
+
+.consumer-btn, .skill-btn {
+    width: 150px;
+    height: 45px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: black;
+    border: none;
+    border-radius: 300px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .skill-btn.active,
+  .skill-btn:hover {
+    background-color: #0575E6;
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  .progressbar {
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+    animation: fadeIn 1.4s ease-in;
+  }
+  
+  .progressbar ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+  
+  .progressbar li {
+    display: flex;
+    align-items: center;
+  }
+  
+  .progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .step-circle {
+    width: 200px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #fffdfd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border: 1px solid #007bff;
+    margin-bottom: 5px;
+    font-size: 15px;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #007bff;
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .step-circle.active {
+    background-color:#007bff
+    ;
+    color: white;
+    width: 200px;
+    border-radius: 50px;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    text-align: center;
+    animation: pulseLight 1.5s infinite alternate;
+  }
+  
+  .connector-line {
+    height: 5px;
+    width: 320px;
+    background-color: #007bff;
+    transition: all 0.5s ease;
+  }
+  
+  .connector-line.active {
+    background-color: #007bff;
+    width: 270px;
+    animation: expandLine 1s ease-out;
+  }
+  

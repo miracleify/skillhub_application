@@ -52,7 +52,7 @@ const ViewProfile = () => {
         <div className="profile-actions">
           <button className="hire-btn">Hire</button>
           <button className="viewPort-btn">View Portfolio</button>
-          <button className="message-btn">Message</button>
+          <button     onClick={() => navigate("/chatbox")}  className="message-btn">Message</button>
           <button className="emoji-btn">
             <i className="fa-regular fa-heart"></i>
           </button>
