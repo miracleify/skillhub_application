@@ -1,17 +1,31 @@
-import React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 import "../styles/laststep.css";
 
 function Laststep() {
   const Navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState("consumer");
+  const location = useLocation();
+  const [selectedOption, setSelectedOption] = useState("skilled");
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [progressSteps] = useState([
     { id: 0, text: "Basic Details", longText: "Basic Details", completed: false },
     { id: 1, text: "Profile Information", longText: "Profile Information", completed: false },
     { id: 2, text: "Verification", longText: "Verification", completed: true }
   ]);
+
+  // Get form data from previous step
+  const prevFormData = location.state?.formData || {};
+  const [formData, setFormData] = useState({
+    ...prevFormData,
+    bvn: ""
+  });
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, bvn: e.target.value });
+  };
 
   const handleOptionChange1 = (option) => {
     setSelectedOption(option);
@@ -23,18 +37,35 @@ function Laststep() {
     Navigate('/consumerbtn');
   };
 
-  const laststep = () => {
-    Navigate('/laststep');
-  };
-
-  const handleCreateAccount = () => {
-    setShowModal(true);
+  const handleCreateAccount = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      const response = await axios.post(
+        "https://skillhub-api-y3gi.onrender.com/api/auth/signup",
+        formData,
+        { headers: { "Content-Type": "application/json" } }
+      );
+      if (response.status === 200 || response.status === 201) {
+        setShowModal(true);
+      } else {
+        setError(response.data.message || "Signup failed.");
+      }
+    } catch (err) {
+      setError(
+        (err.response?.data?.message || "Network error. Please try again.") +
+        "\n" +
+        err?.message
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleContinue = () => {
     setShowModal(false);
-    
-    // Add any navigation or further actions here
+    Navigate("/signin");
   };
 
   return (
@@ -77,9 +108,6 @@ function Laststep() {
               </React.Fragment>
             ))}
           </ul>
-
-          <form className="lastform">
-          </form>
         </div>
 
         <div className="lastdiv">
@@ -108,13 +136,25 @@ function Laststep() {
             <h3 style={{ marginLeft: "80px" }}>Why do we need this? <a href="" style={{ color: "blue" }}>Find Out</a></h3>
           </div>
           <div className="form-input">
-            <label htmlFor="number">BVN (X-digits) <sup style={{ color: "red", fontSize: "10px" }}>*</sup></label> <br></br>
-            <input className="input-bar" type="number" id="number" placeholder="Enter your BVN" required />
-          </div>
-          <br /> <br />
-          <div className="last-btn">
-            <button id="save-btn" className="btns">Save information</button>
-            <button id="create-btn" className="btns" onClick={handleCreateAccount}>Create Account</button>
+            <form className="lastform" onSubmit={handleCreateAccount}>
+              <label htmlFor="bvn">BVN (X-digits) <sup style={{ color: "red", fontSize: "10px" }}>*</sup></label> <br />
+              <input
+                className="input-bar"
+                type="number"
+                id="bvn"
+                placeholder="Enter your BVN"
+                required
+                value={formData.bvn}
+                onChange={handleInputChange}
+              />
+              <div className="last-btn">
+                <button id="save-btn" className="btns" type="button">Save information</button>
+                <button id="create-btn" className="btns" type="submit" disabled={loading}>
+                  {loading ? "Creating..." : "Create Account"}
+                </button>
+              </div>
+              {error && <div style={{ color: "red", marginTop: "10px" }}>{error}</div>}
+            </form>
           </div>
         </div>
       </div>
