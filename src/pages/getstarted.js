@@ -160,11 +160,10 @@ function Getstarted() {
           style={{ width: "1200px", maxWidth: "100%" }}
         >
           <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
-          <div className="dotted-border">
+          <div className="dotted-border" style={{ flexDirection: "column" }}>
             <img
               src={formData.photoURL || "/images/camera.png"}
               alt="Profile pic"
-              style={{ width: 100, height: 100, borderRadius: "50%" }}
             />
             <input
               type="file"
