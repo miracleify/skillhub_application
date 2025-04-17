@@ -13,6 +13,7 @@ function Getstarted() {
     password: "",
     bio: "",
     address: "",
+    photoURL: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -46,6 +47,48 @@ function Getstarted() {
       ...formData,
       bio: e.target.value,
     });
+  };
+
+  // Handle photo change
+  const handlePhotoChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setLoading(true);
+    setError("");
+    try {
+      // Convert file to base64
+      const toBase64 = (file) =>
+        new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result.split(',')[1]);
+          reader.onerror = (error) => reject(error);
+        });
+      const base64 = await toBase64(file);
+
+      // Upload to imgbb
+      const form = new FormData();
+      form.append("key", "f2acfbbcda824f11f3a15bdd6ffd9414");
+      form.append("image", base64);
+
+      const res = await fetch("https://api.imgbb.com/1/upload", {
+        method: "POST",
+        body: form,
+      });
+      const data = await res.json();
+      if (data.success) {
+        setFormData((prev) => ({
+          ...prev,
+          photoURL: data.data.url,
+        }));
+      } else {
+        setError("Image upload failed.");
+      }
+    } catch (err) {
+      setError("Image upload failed. " + err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Handle form submit
@@ -118,7 +161,18 @@ function Getstarted() {
         >
           <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
           <div className="dotted-border">
-            <img src="/images/camera.png" alt="Profile pic" />
+            <img
+              src={formData.photoURL || "/images/camera.png"}
+              alt="Profile pic"
+              style={{ width: 100, height: 100, borderRadius: "50%" }}
+            />
+            <input
+              type="file"
+              id="profile-photo"
+              accept="image/*"
+              style={{ display: "block", marginTop: 10 }}
+              onChange={handlePhotoChange}
+            />
           </div>
           <div className="text">
             <span>
