@@ -9,6 +9,7 @@ function Hire() {
     };
     
     return (
+     <>
         <div className="hirepage">
             <br></br>
          <div className="header">
@@ -91,8 +92,11 @@ function Hire() {
                     Continue to Payment
                 </button>
             </div>
-            <Footer className="footer"/>
+            
         </div>
+        <br></br> <br></br> <br></br> <br></br> <br></br>
+        <Footer />
+     </>
     );
 }
 
