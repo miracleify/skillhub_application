@@ -126,7 +126,7 @@ function Getstarted() {
 
   return (
     <div className="getstarted">
-      <br />222
+      <br />
       <div className="content-container">
         <div className="title-section">
           <h2>Create Account</h2>
@@ -153,6 +153,7 @@ function Getstarted() {
               Skilled Person
             </button>
           </div>
+          
         </div>
 
         <div

@@ -96,6 +96,7 @@ function Nextstep() {
   return (
     <>
       <br></br><br></br>
+      <br></br><br></br>
       <h2>Create Account</h2> <br />
       <h3>Already have an account? <a href="#">sign in</a></h3> <br />
 
@@ -135,20 +136,28 @@ function Nextstep() {
       </div>
 
       <div className="profilepice">
-        <div className="dotted-border" style={{ flexDirection: "column" }}>
-          <img
-            src={formData.photoURL || "/images/cam.png"}
-            alt="Profile pic"
-            style={{ width: 100, height: 100, borderRadius: "50%", objectFit: "cover" }}
-          />
-          <input
-            type="file"
-            id="profile-photo"
-            accept="image/*"
-            style={{ display: "block", marginTop: 10 }}
-            onChange={handlePhotoChange}
-          />
-        </div>
+  <div className="dotted-border" style={{ flexDirection: "column" }}>
+    <label htmlFor="profile-photo" style={{ cursor: "pointer" }}>
+      <img
+        src={formData.photoURL || "/images/cam.png"}
+        alt="Profile pic"
+        style={{ 
+          width: 100, 
+          height: 100, 
+          borderRadius: "50%", 
+          objectFit: "cover" 
+        }}
+      />
+    </label>
+    <input
+      type="file"
+      id="profile-photo"
+      accept="image/*"
+      style={{ display: "none" }}
+      onChange={handlePhotoChange}
+    />
+  </div>
+</div> <div>
         <div className="text">
           <span>Drag & drop or click to upload an image of your choice.</span>
           <span>(PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)</span>
@@ -161,7 +170,7 @@ function Nextstep() {
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="fullname">Full Name <sup style={{ color: "red", fontSize: "10px" }}>*</sup></label>
-              <input type="text" id="fullname" required value={formData.full_name} onChange={handleInputChange} />
+              <input type="text" id="fullname" required value={formData.full_name} onChange={handleInputChange} className="email"/>
             </div>
             <div className="form-group">
               <label htmlFor="email">Email<sup style={{ color: "red", fontSize: "10px" }}>*</sup></label>

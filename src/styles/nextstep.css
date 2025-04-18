@@ -102,3 +102,28 @@
     animation: expandLine 1s ease-out;
   }
   
+  @media (max-width:480px) {
+    .form-container{
+      flex-direction: column;
+    }
+    #fullname,#password,#technical-skills,#address,#service-area,#bio,.video-upload,.submit-btn .profilepice{
+      width: 390px;
+      border: 1px solid #007bff;
+    
+      margin: auto;
+    }
+    label{
+      
+      
+    }
+    .email{
+      width: 400px;
+      margin: auto;
+      background-color: red;
+    }
+    .profilepice{
+    
+      width: 390px;
+    }
+    
+  }

@@ -311,7 +311,18 @@ body {
       width: 120px;
     }
   }
-  
+  @media (max-width: 480px){
+    .login-pic{
+      display: none;
+    }
+    .step-container{
+      margin-top: -80px !important;
+    visibility: visible !important;
+    }
+    .progressbar{
+      visibility: hidden;
+    }
+  }
   /* For smaller screens */
   @media (max-width: 768px) {
     .form-container {

@@ -111,7 +111,14 @@ function ConsumerBTN() {
               </React.Fragment>
             ))}
           </ul>
-          
+         
+    </div>
+    <div className="step-container"  style={{visibility:"hidden"}}>
+      <div className="step active">1</div>
+      <div className="line"></div>
+      <div className="step">2</div>
+      <div className="line"></div>
+      <div className="step">3</div>
         </div>
         <div className="form-container">
           <img className="login-pic" src="./images/image.png" alt="Login" />
@@ -174,7 +181,45 @@ function ConsumerBTN() {
             </button>
           </form>
         </div>
+        <style jsx>{`
+              /* StepProgressBar.css */
+.step-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.step {
+  width: 60px;
+  height: 60px;
+  border: 4px solid #0084ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 24px;
+  color: #0084ff;
+  background-color: white;
+}
+
+.step.active {
+  background-color: #0084ff;
+  color: white;
+}
+
+.line {
+  height: 4px;
+  width: 80px;
+  background-color: #0084ff;
+}
+
+              }
+                
+            `}</style>
       </div>
+      
     </>
   );
 }

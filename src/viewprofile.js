@@ -3,7 +3,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import "./viewProfile.css";
 import { useTrades } from './TradesContext'; // Import the context hook
-
+import axios from 'axios';
 
 const ViewProfile = () => {
   
@@ -19,7 +19,15 @@ const ViewProfile = () => {
   function hireArtisanpage(){
     navigate(`/hiringartisanPage/${id}`)
   }
-
+  axios.get(`https://skillhub-api-y3gi.onrender.com/api/users/`)
+    .then(response => {
+      console.log('User data:', response.data);
+      console.log(response.data.full_name)
+      // Handle the retrieved data here
+    })
+    .catch(error => {
+      console.error('Error fetching user:', error);
+    });
   return ( 
     <div className="div">
       <br></br> <br></br>
@@ -34,7 +42,7 @@ const ViewProfile = () => {
         
         <div className="profile-details">
           <h2 className="viewprofile-name">
-            {person.fname} {person.lname}
+            {person.fname} {person.lname} 
             {person.verified && <i className="fa-solid fa-circle-check verification-icon"></i>}
           </h2>
           
