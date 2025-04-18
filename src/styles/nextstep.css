@@ -107,7 +107,7 @@
     animation: expandLine 1s ease-out;
   }
   
-  @media (max-width:480px) {
+  @media (min-width:300px) and (max-width: 768px) {
     .form-container{
       flex-direction: column;
     }

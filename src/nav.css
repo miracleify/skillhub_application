@@ -5,20 +5,19 @@
 }
 
 :root {
-  /* Colours */
-  --white: #FFFFFF;
+  --white: #ffffff;
   --black: #000000;
-  --inactive-grey: #8F8F8F;
-  --skillhub-blue: #0575E6;
-  --skillhub-hover-blue: #0518E6;
+  --inactive-grey: #8f8f8f;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
 }
 
 /* Navbar Container */
 .nav-container {
   width: 100%;
   height: 70px;
-  background-color: #fff;
-  padding: 10px 0; 
+  background-color: var(--white);
+  padding: 10px 0;
   position: fixed;
   top: 0;
   z-index: 1000;
@@ -31,27 +30,25 @@
 }
 
 .nav-container.scrolled {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
-  padding: 10px 0; 
 }
 
 /* Navbar */
 .navbar {
   display: flex;
   align-items: center;
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0 20px;
   justify-content: space-between;
+  width: 100%;
+  max-width: 1920px;
+  padding: 0 20px;
 }
 
 /* Logo */
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .nav-logo img {
@@ -78,8 +75,8 @@
 }
 
 .nav-list li {
-  position: relative;
-  transition: opacity 0.3s ease;
+  /* position: relative; */
+  transition: 0.3s ease;
 }
 
 .nav-list:hover li {
@@ -99,8 +96,12 @@
   display: inline-block;
 }
 
+.nav-list a:hover {
+  transform: translateY(-2px);
+}
+
 .signin a {
-  color: #007bff;
+  color: var(--skillhub-blue);
 }
 
 .signin a:hover {
@@ -110,8 +111,8 @@
 
 /* Get Started Button */
 .get-started a {
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--skillhub-blue);
+  color: var(--white);
   padding: 8px 15px;
   border-radius: 5px;
   transition: all 0.3s ease;
@@ -119,7 +120,7 @@
 
 .get-started a:hover {
   background-color: var(--skillhub-hover-blue);
-  transform: translateY(-2px);
+  transform: scale(1);
 }
 
 /* Mobile Sidebar Toggle Icon */
@@ -132,7 +133,7 @@
 }
 
 .nav-toggle:hover {
-  color: #007bff;
+  color: var(--skillhub-hover-blue);
 }
 
 /* Sidebar Styles */
@@ -140,7 +141,7 @@
   position: fixed;
   top: 0;
   right: -50%;
-  width: 50%;
+  width: 100%;
   height: 100vh;
   background-color: #fff;
   transition: right 0.3s ease-in-out;
@@ -168,7 +169,7 @@
 
 .close-icon:hover {
   transform: rotate(90deg);
-  color: #007bff;
+  color: var(--skillhub-hover-blue);
 }
 
 /* Sidebar Links */
@@ -205,12 +206,12 @@
 }
 
 .sidebar-list a:hover {
-  color: #007bff;
+  color: var(--skillhub-hover-blue);
   transform: translateX(5px);
 }
 
 .sidebar-list .get-started a {
-  background-color: #007bff;
+  background-color: var(--skillhub-blue);
   color: #fff;
   padding: 8px 15px;
   border-radius: 5px;
@@ -220,7 +221,7 @@
 }
 
 .sidebar-list .get-started a:hover {
-  background-color: #0056b3;
+  background-color: var(--skillhub-hover-blue);
   transform: translateY(-2px);
 }
 
@@ -254,7 +255,7 @@
     position: relative;
     margin-left: 10px;
   }
-  
+
   .nav-container {
     padding: 10px 0;
     width: 100%;
@@ -262,7 +263,7 @@
 
   .sidebar {
     right: -100%;
-    width: 80%; 
+    width: 80%;
   }
 
   .sidebar.open {
@@ -279,17 +280,17 @@
   .overlay {
     display: none;
   }
-  
+
   .nav-container {
     padding: 10px 0;
     width: 100%;
   }
-  
+
   .navbar {
     width: 100%;
     justify-content: space-between;
   }
-  
+
   .nav-list {
     justify-content: flex-end;
     margin-right: 0;
@@ -300,7 +301,7 @@
 @media (min-width: 1920px) and (max-width: 1400px) {
   .navbar {
     /* Limit content width on extremely large screens */
-    max-width: 1920px; 
+    max-width: 1920px;
 
     margin: 0 auto;
     padding: 0 60px;
@@ -313,7 +314,7 @@
     width: 100%;
     padding: 10px 0;
   }
-  
+
   .navbar {
     width: 100%;
     max-width: 100%; /* Full width */
@@ -321,17 +322,17 @@
     padding: 0 40px; /* Add some side padding for content breathing room */
     gap: 90px;
   }
-  
+
   .nav-logo {
     flex: 0 0 auto;
   }
-  
+
   .nav-list {
     flex: 1;
     justify-content: center;
     margin-right: 0;
   }
-  
+
   .get-started {
     flex: 0 0 auto;
   }
