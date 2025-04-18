@@ -159,6 +159,7 @@ function Getstarted() {
               Skilled Person
             </button>
           </div>
+          
         </div>
 
         {/* Profile Image Uplaod */}
