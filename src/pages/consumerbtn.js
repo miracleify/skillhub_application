@@ -59,13 +59,19 @@ function ConsumerBTN() {
 
   return (
     <>
+      {/* Titling */}
       <div className="title-section">
-        <br /> <br /> <br />
         <h2>Create Account</h2>
         <h3>
           Already have an account? <a href="#">sign in</a>
         </h3>
+      </div>
+
+      {/* Switch buttons */}
+      <div className="switch-buttons-container">
+        <div className="account-switch-buttons">
         <div className="button">
+          {/* Consumer button */}
           <button
             className={`consumer-btn ${
               selectedOption === "consumer" ? "active" : ""
@@ -74,6 +80,8 @@ function ConsumerBTN() {
           >
             Consumer
           </button>
+
+          {/* skilled person button */}
           <button
             id="ski-btn"
             className={`skill-btn ${
@@ -84,144 +92,148 @@ function ConsumerBTN() {
             Skilled Person
           </button>
         </div>
-        <div className="progressbar">
-          <ul>
-            {progressSteps.map((step, index) => (
-              <React.Fragment key={step.id}>
-                <li>
-                  <div className="progress-step">
-                    <div
-                      className={`step-circle ${
-                        step.completed ? "active" : ""
-                      }`}
-                    >
-                      {step.text}
-                    </div>
-                  </div>
-                </li>
-                {index < progressSteps.length - 1 && (
+      </div>
+      </div>
+
+      {/* Progression indicators workout*/}
+      <div className="progressbar">
+        <ul>
+          {progressSteps.map((step, index) => (
+            <React.Fragment key={step.id}>
+              <li>
+                <div className="progress-step">
                   <div
-                    className={`connector-line ${
-                      step.completed ? "active" : ""
-                    }`}
-                  />
-                )}
-                     
-                
-              </React.Fragment>
-            ))}
-          </ul>
-         
-    </div>
-    <div className="step-container"  style={{visibility:"hidden"}}>
-      <div className="step active">1</div>
-      <div className="line"></div>
-      <div className="step">2</div>
-      <div className="line"></div>
-      <div className="step">3</div>
-        </div>
-        <div className="form-container">
-          <img className="login-pic" src="./images/image.png" alt="Login" />
+                    className={`step-circle ${step.completed ? "active" : ""}`}
+                  >
+                    {step.text}
+                  </div>
+                </div>
+              </li>
+              {index < progressSteps.length - 1 && (
+                <div
+                  className={`connector-line ${step.completed ? "active" : ""}`}
+                />
+              )}
+            </React.Fragment>
+          ))}
+        </ul>
+      </div>
+      <div className="step-container">
+        <div className="step active">1</div>
+        <div className="line"></div>
+        <div className="step">2</div>
+        <div className="line"></div>
+        <div className="step">3</div>
+      </div>
 
-          <form className="newform" onSubmit={handleSubmit}>
-            <br />
-            <div className="input-labels">
-              <label>
-                <h3 style={{ marginLeft: "-340px" }} className="label-text">
-                  Email<sup style={{ color: "red", fontSize: "10px" }}>*</sup>{" "}
-                </h3>
-                <input
-                  className="bar"
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="enter your name"
-                  required
-                />
+      <div className="container">
+        {/* image form container */}
+        <div className="image-form-container">
+          <img
+            className="login-pic"
+            src="./images/image.png"
+            alt="Login Image"
+          />
+
+          {/* New Form */}
+          <form className="new-form" onSubmit={handleSubmit}>
+            {/* Email */}
+            <div className="input-field-container">
+              <label className="label-text">
+                Email<sup className="mandatory-asterik">*</sup>{" "}
               </label>
-              <br />
-              <label>
-                <h3 style={{ marginLeft: "-310px" }} className="label-text">
-                  Password
-                  <sup style={{ color: "red", fontSize: "10px" }}>*</sup>{" "}
-                </h3>
-                <input
-                  className="bar"
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  placeholder="enter your password"
-                  required
-                />
-              </label>{" "}
-              <br />
-              <label>
-                <h3 style={{ marginLeft: "-250px" }} className="label-text">
-                  Confirm password{" "}
-                  <sup style={{ color: "red", fontSize: "10px" }}>*</sup>{" "}
-                </h3>
-                <input
-                  className="bar"
-                  type="password"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleInputChange}
-                  placeholder="confirm your password"
-                  required
-                />
-              </label>
+
+              <input
+                className="input-field"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="Enter a valid email address"
+                required
+              />
             </div>
-            <br />
-            <br />
 
-            <button  style={{width:"400px"}}onClick={changepage} className="next-btn" type="submit">
+            {/* Password */}
+            <div className="input-field-container">
+              <label className="label-text">
+                Password
+                <sup className="mandatory-asterik">*</sup>
+              </label>
+
+              <input
+                className="input-field"
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+
+            {/* Password confirmation */}
+            <div className="input-field-container">
+              <label className="label-text">
+                Confirm password <sup className="mandatory-asterik">*</sup>
+              </label>
+
+              <input
+                className="input-field"
+                type="password"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                placeholder="Re-enter your password"
+                required
+              />
+            </div>
+
+            <button onClick={changepage} className="next-btn" type="submit">
               Next Step
             </button>
           </form>
         </div>
-        <style jsx>{`
-              /* StepProgressBar.css */
-.step-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 40px;
-}
-
-.step {
-  width: 60px;
-  height: 60px;
-  border: 4px solid #0084ff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 24px;
-  color: #0084ff;
-  background-color: white;
-}
-
-.step.active {
-  background-color: #0084ff;
-  color: white;
-}
-
-.line {
-  height: 4px;
-  width: 80px;
-  background-color: #0084ff;
-}
-
-              }
-                
-            `}</style>
       </div>
-      
     </>
   );
 }
 
 export default ConsumerBTN;
+
+{
+  /* Form progression indicators */
+}
+// <div className="progressbar">
+//   <ul>
+//     {progressSteps.map((step, index) => (
+//       <React.Fragment key={step.id}>
+//         <li>
+//           <div className="progress-step">
+//             <div
+//               className={`step-circle ${
+//                 step.completed ? "active" : ""
+//               }`}
+//             >
+//               {step.text}
+//             </div>
+//           </div>
+//         </li>
+//         {index < progressSteps.length - 1 && (
+//           <div
+//             className={`connector-line ${
+//               step.completed ? "active" : ""
+//             }`}
+//           />
+//         )}
+//       </React.Fragment>
+//     ))}
+//   </ul>
+// </div>
+// <div className="step-container" style={{ visibility: "hidden" }}>
+//   <div className="step active">1</div>
+//   <div className="line"></div>
+//   <div className="step">2</div>
+//   <div className="line"></div>
+//   <div className="step">3</div>
+// </div>

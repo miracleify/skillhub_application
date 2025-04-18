@@ -137,9 +137,12 @@ function Getstarted() {
               </a>
             </h3>
           </div>
+        </div>
 
-          {/* Account Type Switch */}
-          <div className="user-switch-buttons">
+        {/* Account Type Switch */}
+        <div className="account-switch-buttons-container">
+          <div className="account-switch-buttons">
+            {/* Consumer button */}
             <button
               className={`consumer-btn ${
                 selectedOption === "consumer" ? "active" : ""
@@ -149,6 +152,7 @@ function Getstarted() {
               Consumer
             </button>
 
+            {/* Skilled Person button */}
             <button
               id="ski-btn"
               className={`skill-btn ${
@@ -159,7 +163,6 @@ function Getstarted() {
               Skilled Person
             </button>
           </div>
-          
         </div>
 
         {/* Profile Image Uplaod */}
@@ -186,10 +189,9 @@ function Getstarted() {
           <div className="key-image-upload-guidlines">
             <p>Drag & drop or choose file to upload an image of yourself.</p>
             <p>
-              {" "}
               <strong>
                 (PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)
-              </strong>{" "}
+              </strong>
             </p>
           </div>
         </div>
