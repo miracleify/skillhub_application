@@ -61,7 +61,7 @@ function Getstarted() {
         new Promise((resolve, reject) => {
           const reader = new FileReader();
           reader.readAsDataURL(file);
-          reader.onload = () => resolve(reader.result.split(',')[1]);
+          reader.onload = () => resolve(reader.result.split(",")[1]);
           reader.onerror = (error) => reject(error);
         });
       const base64 = await toBase64(file);
@@ -125,16 +125,21 @@ function Getstarted() {
   };
 
   return (
-    <div className="getstarted">
-      <br />222
+    <div className="get-started">
       <div className="content-container">
         <div className="title-section">
-          <h2>Create Account</h2>
-          <br />
-          <h3>
-            Already have an account? <a href="#">sign in</a>
-          </h3>
-          <div className="button">
+          <div className="title-sign-in-container">
+            <h2>Create Account</h2>
+            <h3>
+              Already have an account?
+              <a href="#" className="sign-in-button">
+                Sign In
+              </a>
+            </h3>
+          </div>
+
+          {/* Account Type Switch */}
+          <div className="user-switch-buttons">
             <button
               className={`consumer-btn ${
                 selectedOption === "consumer" ? "active" : ""
@@ -143,6 +148,7 @@ function Getstarted() {
             >
               Consumer
             </button>
+
             <button
               id="ski-btn"
               className={`skill-btn ${
@@ -155,43 +161,49 @@ function Getstarted() {
           </div>
         </div>
 
-        <div
-          className="profilepice"
-          style={{ width: "1200px", maxWidth: "100%" }}
-        >
-          <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
-          <div className="dotted-border" style={{ flexDirection: "column" }}>
+        {/* Profile Image Uplaod */}
+        <div className="profile-pic-upload">
+          {/* <sup className="mandatory-asterik">*</sup> */}
+
+          <div className="dashed-border profile-image-icon-file-button-container">
             <img
+              className="profile-image-icon"
               src={formData.photoURL || "/images/camera.png"}
-              alt="Profile pic"
-            />
-            <input
-              type="file"
-              id="profile-photo"
-              accept="image/*"
-              style={{ display: "block", marginTop: 10 }}
-              onChange={handlePhotoChange}
+              alt="Profile Image Upload"
             />
           </div>
-          <div className="text">
-            <span>
-              Drag & drop or click to upload an image of your choice.
-            </span>
-            <span>
-              (PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)
-            </span>
+
+          {/* choose image file */}
+          <input
+            className="profile-image-upload-button"
+            type="file"
+            id="profile-photo"
+            accept="image/*"
+            onChange={handlePhotoChange}
+          />
+
+          <div className="key-image-upload-guidlines">
+            <p>Drag & drop or choose file to upload an image of yourself.</p>
+            <p>
+              {" "}
+              <strong>
+                (PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)
+              </strong>{" "}
+            </p>
           </div>
         </div>
       </div>
 
+      {/* Form */}
       <div className="form-container">
         <form className="signup-form" onSubmit={handleSubmit}>
-          {/* First row - 3 fields */}
-          <div className="form-row">
+          <div className="form-input-fields">
+            {/* Full Name */}
             <div className="form-group">
               <label htmlFor="fullname">
-                Full Name <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+                Full Name <sup className="mandatory-asterik">*</sup>
               </label>
+
               <input
                 type="text"
                 id="fullname"
@@ -202,10 +214,12 @@ function Getstarted() {
               />
             </div>
 
+            {/* Email */}
             <div className="form-group">
               <label htmlFor="email">
-                Email<sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+                Email <sup className="mandatory-asterik">*</sup>
               </label>
+
               <input
                 type="email"
                 id="email"
@@ -216,10 +230,12 @@ function Getstarted() {
               />
             </div>
 
+            {/* Password */}
             <div className="form-group">
               <label htmlFor="password">
-                Password<sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+                Password <sup className="mandatory-asterik">*</sup>
               </label>
+
               <input
                 type="password"
                 id="password"
@@ -229,39 +245,35 @@ function Getstarted() {
                 onChange={handleInputChange}
               />
             </div>
-          </div>
 
-          {/* Second row - 3 fields */}
-          <div className="form-row">
-            {/* Skill, not required for consumer, so leave out of formData */}
-            <div className="form-group">
-              <label
-                style={{ marginLeft: "-320px" }}
-                htmlFor="technical-skills"
-              >
-                Skill <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
-              </label>
-              <select id="technical-skills">
-                <option value="">Please select your skill</option>
-                <option value="Artist">Artist</option>
-                <option value="Builder">Builder</option>
-                <option value="Decorator">Decorator</option>
-                <option value="Electrician">Electrician</option>
-                <option value="Other">Other</option>
-              </select>
+            {/* Skills Dropdown */}
+            <div className="form-row">
+              {/* Skill, not required for consumer, so leave out of formData */}
+              <div className="form-group">
+                <label htmlFor="technical-skills">
+                  Skill <sup className="mandatory-asterik">*</sup>
+                </label>
+
+                <select id="technical-skills">
+                  <option value="">Please select your skill</option>
+                  <option value="Artist">Artist</option>
+                  <option value="Builder">Builder</option>
+                  <option value="Decorator">Decorator</option>
+                  <option value="Electrician">Electrician</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
             </div>
 
+            {/* Address */}
             <div className="form-group">
-              <label
-                style={{ marginLeft: "-150px" }}
-                htmlFor="address"
-              >
-                Address{" "}
+              <label htmlFor="address">
+                Address (only visible to you)
                 <span>
-                  (only visible to you)
-                  <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+                  <sup className="mandatory-asterik">*</sup>
                 </span>
               </label>
+
               <input
                 type="text"
                 id="address"
@@ -272,30 +284,32 @@ function Getstarted() {
               />
             </div>
 
+            {/* Service Area Dropdown */}
             <div className="form-group">
               <label htmlFor="service-area">
-                Service Area <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+                Service Area <sup className="mandatory-asterik">*</sup>
               </label>
+
               <select id="service-area">
                 <option value="">Select your area of coverage</option>
-                <option value="1km">1km</option>
-                <option value="5km">5km</option>
-                <option value="10km">10km</option>
-                <option value="20km">20km</option>
-                <option value="Custom distance">Custom distance</option>
+                <option value="1">1 mile</option>
+                <option value="5">5 miles</option>
+                <option value="10">10 miles</option>
+                <option value="20">20 miles</option>
+                <option value="custom-distance">Custom distance</option>
               </select>
             </div>
           </div>
 
-          {/* Fourth row - 2 fields */}
+          {/* Bio and video fields */}
+
+          {/* Bio input field */}
           <div className="form-row">
             <div className="form-group bio-group">
-              <label
-                style={{ marginLeft: "-510px" }}
-                htmlFor="bio"
-              >
-                Bio <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+              <label htmlFor="bio">
+                Bio <sup className="mandatory-asterik">*</sup>
               </label>
+
               <textarea
                 id="bio"
                 placeholder="Write a short bio about yourself"
@@ -306,19 +320,16 @@ function Getstarted() {
               />
             </div>
 
+            {/* Video upload field */}
             <div className="form-group video-group">
-              <label
-                style={{ marginLeft: "-335px" }}
-                htmlFor="intro-video"
-              >
-                Introductory Video{" "}
+              <label htmlFor="intro-video">
+                Introductory Video (Optional){" "}
                 <span>
-                  (optional)
-                  <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+                  <sup className="mandatory-asterik">*</sup>
                 </span>
               </label>
               <div className="video-upload">
-                <div className="dotted-border-video">
+                <div className="dashed-border-video">
                   <img src="/images/videocam.png" alt="video camera" />
                   {/* <input type="file" id="intro-video" accept="video/*" /> */}
                 </div>
@@ -326,6 +337,7 @@ function Getstarted() {
             </div>
           </div>
 
+          {/* Next step button */}
           <div className="form-buttons">
             <button type="submit" className="submit-btn" disabled={loading}>
               {loading ? "Creating..." : "Create Account"}
@@ -338,71 +350,76 @@ function Getstarted() {
       </div>
 
       {/* Congratulations Modal/Popover for consumers */}
-            {showModal && (
-              <div className="modal-overlay">
-                <div className="modal-content">
-                  <h2>CONGRATULATIONS</h2>
-                  <h3>Your account has been created successfully! You can now start exploring skilled professionals and services..</h3>
-                  <button className="continue-btn" onClick={handleContinue}>Continue</button>
-                </div>
-              </div>
-            )}
-      
-            {/* CSS for the modal and blur effect */}
-            <style jsx>{`
-              .blur-background {
-                filter: blur(5px);
-                pointer-events: none;
-              }
-              
-              .modal-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 1000;
-              }
-              
-              .modal-content {
-                background-color: white;
-                padding: 30px;
-                border-radius: 10px;
-                max-width: 500px;
-                text-align: center;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-              }
-              
-              .modal-content h2 {
-                color:  #007bff;
-                margin-bottom: 15px;
-              }
-              
-              .modal-content h3 {
-                font-weight: normal;
-                margin-bottom: 25px;
-                line-height: 1.5;
-              }
-              
-              .continue-btn {
-                background-color: #007bff;
-                color: white;
-                border: none;
-                padding: 10px 25px;
-                border-radius: 5px;
-                font-size: 16px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-              }
-              
-              .continue-btn:hover {
-                background-color:rgb(35, 112, 194);
-              }
-            `}</style>
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>CONGRATULATIONS</h2>
+            <h3>
+              Your account has been created successfully! You can now start
+              exploring skilled professionals and services..
+            </h3>
+            <button className="continue-btn" onClick={handleContinue}>
+              Continue
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* CSS for the modal and blur effect */}
+      <style jsx>{`
+        .blur-background {
+          filter: blur(5px);
+          pointer-events: none;
+        }
+
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        }
+
+        .modal-content {
+          background-color: white;
+          padding: 30px;
+          border-radius: 10px;
+          max-width: 500px;
+          text-align: center;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content h2 {
+          color: #007bff;
+          margin-bottom: 15px;
+        }
+
+        .modal-content h3 {
+          font-weight: normal;
+          margin-bottom: 25px;
+          line-height: 1.5;
+        }
+
+        .continue-btn {
+          background-color: #007bff;
+          color: white;
+          border: none;
+          padding: 10px 25px;
+          border-radius: 5px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+
+        .continue-btn:hover {
+          background-color: rgb(35, 112, 194);
+        }
+      `}</style>
     </div>
   );
 }

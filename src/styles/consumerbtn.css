@@ -1,3 +1,10 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --inactive-grey: #8f8f8f;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
+}
 
 body {
     display: flex;
@@ -6,7 +13,6 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 20px;
-    font-family: 'Lexend', sans-serif;
   }
   
   .page-container {
@@ -32,7 +38,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
   }
   
   .title-section {
@@ -62,27 +68,28 @@ body {
     text-decoration: underline;
   }
   
-  .button {
+  .user-switch-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 340px;
-    height: 66px;
-    gap: 30px;
-    background: #FFFFFF;
+    width: auto;
+    height: 75px;
+    padding: 0 20px;
+    gap: 20px;
+    background: var(--white);
     border-radius: 300px;
-    border: 2px solid #ddd;
+    border: none;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);  
     margin: 0 auto;
-    animation: pulseAnimation 2s infinite alternate;
+    /* animation: pulseAnimation 2s infinite alternate; */
   }
   
   .consumer-btn, .skill-btn {
-    width: 150px;
+    width: 200px;
     height: 45px;
-    font-family: 'Lexend', sans-serif;
     font-weight: 500;
     font-size: 18px;
-    color: black;
+    color: var(--black);
     border: none;
     border-radius: 300px;
     cursor: pointer;
@@ -92,8 +99,8 @@ body {
   
   .skill-btn.active,
   .skill-btn:hover {
-    background-color: #0575E6;
-    color: white;
+    border: 1px solid var(--skillhub-blue);
+    color: var(--white);
     transform: scale(1.05);
   }
   

@@ -11,8 +11,6 @@
   --inactive-grey: #8F8F8F;
   --skillhub-blue: #0575E6;
   --skillhub-hover-blue: #0518E6;
-
-  /* Font Sizes */
 }
 
 /* Navbar Container */
@@ -245,7 +243,7 @@
   pointer-events: all;
 }
 
-/* Responsive Design */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
   .nav-list {
     display: none;
@@ -272,6 +270,7 @@
   }
 }
 
+/* Tablet width */
 @media (min-width: 769px) {
   .sidebar {
     display: none;
@@ -297,7 +296,18 @@
   }
 }
 
-/* Extra large screens */
+/* Very large screen adjustments */
+@media (min-width: 1920px) and (max-width: 1400px) {
+  .navbar {
+    /* Limit content width on extremely large screens */
+    max-width: 1920px; 
+
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+}
+
+/* Large screens */
 @media (min-width: 1400px) {
   .nav-container {
     width: 100%;
@@ -324,14 +334,5 @@
   
   .get-started {
     flex: 0 0 auto;
-  }
-}
-
-/* Very large screen adjustments */
-@media (min-width: 1920px) {
-  .navbar {
-    max-width: 1920px; /* Limit content width on extremely large screens */
-    margin: 0 auto;
-    padding: 0 60px;
   }
 }

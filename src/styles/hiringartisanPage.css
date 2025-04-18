@@ -1,12 +1,22 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --inactive-grey: #8f8f8f;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
+}
+
 .form-container {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-label{
+
+/* label{
    
     margin-left: 30px !important;
-}
+} */
+
 #fullName, #email, #jobDescription, #notes, #startDate, #endDate, #startTime {
     padding: 12px 15px;
     border: 1px solid #ccc;
@@ -36,7 +46,7 @@ label{
 #startDate:focus, #endDate:focus, 
 #startTime:focus {
     outline: none;
-    border-color: #0575E6;
+    border-color: var(--skillhub-blue);
     box-shadow: 0 0 0 3px rgba(5, 117, 230, 0.2);
     transform: translateY(-2px);
 }
@@ -73,10 +83,10 @@ button:hover {
 }
 
 .quote-btn {
-    border: 2px solid #0575E6;
+    border: 2px solid var(--skillhub-blue);
     border-radius: 10px;
     background-color: #fff;
-    color: #0575E6;
+    color: var(--skillhub-blue);
 }
 
 .quote-btn:hover {
@@ -86,13 +96,14 @@ button:hover {
 .hiring-btn {
     border: none;
     border-radius: 10px;
-    background-color: #0575E6;
+    background-color: var(--skillhub-blue);
     color: #fff;
 }
 
 .hiring-btn:hover {
-    background-color: #0468c7;
+    background-color: var(--skillhub-blue);
 }
+
 #chexkbox-container{
     display: flex;
     flex-direction: row;
@@ -100,12 +111,12 @@ button:hover {
   margin-left: -200px;
 }
 #chexkbox{
-    background-color: #0468c7;
+    background-color: var(--skillhub-blue);
     height: 30px;
     margin-left: -53px;
 }
 a{
-    color: #0468c7; 
+    color: var(--skillhub-blue); 
 }
 
 /* Hide the default checkbox */
@@ -136,8 +147,8 @@ input[type="checkbox"] {
   
   /* Style for checked state */
   input[type="checkbox"]:checked + label:before {
-    background: #0468c7;
-    border-color: #0468c7;
+    background: var(--skillhub-blue);
+    border-color: var(--skillhub-blue);
   }
   
   /* Create checkmark (hidden when not checked) */
