@@ -97,9 +97,9 @@ header img {
   height: 45px;
   font-weight: 500;
   font-size: 18px;
-  color: black;
+  color: var(--black);
   border: none;
-  border-radius: 300px;
+  border-radius: 50%;
   cursor: pointer;
   background: transparent;
   transition: all 0.3s ease;
@@ -110,7 +110,7 @@ header img {
 .skill-btn:hover,
 .consumer-btn:hover {
   background-color: var(--skillhub-blue);
-  color: white;
+  color: var(--white);
   transform: scale(1.05);
 }
 
@@ -205,8 +205,6 @@ header img {
   gap: 10px;
   flex-direction: column;
   text-align: left;
-  justify-content: left;
-  align-items: left;
   /* animation: fadeIn 0.5s ease-out; */
 }
 

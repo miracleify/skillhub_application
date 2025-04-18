@@ -148,7 +148,6 @@ body {
     padding: 10px;
     box-sizing: border-box;
     color: #007bff;
-    font-family: 'Lexend';
     font-style: normal;
     font-weight: 700;
     line-height: 40px;
@@ -233,7 +232,6 @@ body {
   }
   
   .next-btn {
-    
     height: 40px;
     background-color: #0575E6;
     padding: 5px;

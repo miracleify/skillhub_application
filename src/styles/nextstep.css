@@ -1,8 +1,14 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --inactive-grey: #8f8f8f;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
+}
 
 .consumer-btn, .skill-btn {
     width: 150px;
     height: 45px;
-    font-family: 'Lexend', sans-serif;
     font-weight: 500;
     font-size: 18px;
     color: black;
@@ -15,8 +21,8 @@
   
   .skill-btn.active,
   .skill-btn:hover {
-    background-color: #0575E6;
-    color: white;
+    background-color: var(--skillhub-blue);
+    color: var(--white);
     transform: scale(1.05);
   }
   
@@ -52,19 +58,19 @@
     width: 200px;
     height: 50px;
     border-radius: 50px;
-    background-color: #fffdfd;
+    background-color: var(--white);
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    border: 1px solid #007bff;
+    border: 1px solid var(--skillhub-blue);
     margin-bottom: 5px;
     font-size: 15px;
     text-align: center;
     padding: 10px;
     box-sizing: border-box;
-    color: #007bff;
-    font-family: 'Lexend';
+    color: var(--skillhub-blue);
+    box-shadow:  0px 0px 0px 4px rgba(0, 0, 0, 0.5);
     font-style: normal;
     font-weight: 700;
     line-height: 40px;
@@ -73,8 +79,7 @@
   }
   
   .step-circle.active {
-    background-color:#007bff
-    ;
+    background-color:var(--skillhub-blue);
     color: white;
     width: 200px;
     border-radius: 50px;
@@ -92,12 +97,12 @@
   .connector-line {
     height: 5px;
     width: 320px;
-    background-color: #007bff;
+    background-color: var(--skillhub-blue);
     transition: all 0.5s ease;
   }
   
   .connector-line.active {
-    background-color: #007bff;
+    background-color: var(--skillhub-blue);
     width: 270px;
     animation: expandLine 1s ease-out;
   }
@@ -106,16 +111,12 @@
     .form-container{
       flex-direction: column;
     }
-    #fullname,#password,#technical-skills,#address,#service-area,#bio,.video-upload,.submit-btn .profilepice{
-      width: 390px;
-      border: 1px solid #007bff;
-    
-      margin: auto;
+
+    #fullname,#password,#technical-skills,#address,#service-area,#bio,.video-upload,.submit-btn .profile-pic-upload{
+      width: auto;
+      box-shadow: ;
     }
-    label{
-      
-      
-    }
+
     .email{
       width: 400px;
       margin: auto;
