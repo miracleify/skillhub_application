@@ -114,7 +114,6 @@
 
     #fullname,#password,#technical-skills,#address,#service-area,#bio,.video-upload,.submit-btn .profile-pic-upload{
       width: auto;
-      box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.5);
     }
 
     .email{
