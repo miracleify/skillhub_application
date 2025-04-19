@@ -22,7 +22,7 @@
 }
 
 #fullName, #email {
-    /* width: 490px; */
+    width: 490px;
 }
 
 #jobDescription, #notes {
@@ -32,7 +32,7 @@
 }
 
 #startDate, #endDate, #startTime {
-    /* width: 320px; */
+    width: 320px;
 }
 
 /* Input focus animations */
