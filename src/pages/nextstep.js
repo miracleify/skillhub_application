@@ -246,11 +246,11 @@ function Nextstep() {
               </select>
             </div>
             <div className="form-group">
-              <label style={{ marginLeft: "-150px" }} htmlFor="address">
+              <label htmlFor="address">
                 Address{" "}
                 <span>
-                  (only visible to you){" "}
-                  <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+                  (only visible to you)
+                  <sup className="mandatory-asterik">*</sup>
                 </span>
               </label>
               <input
@@ -272,7 +272,7 @@ function Nextstep() {
                 value={formData.service_area}
                 onChange={handleInputChange}
               >
-                <option value="">Select your area of coverage </option>
+                <option value="">Select area of coverage </option>
                 <option value="1km">1km</option>
                 <option value="5km">5km</option>
                 <option value="10km">10km</option>

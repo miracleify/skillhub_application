@@ -67,36 +67,38 @@ function ConsumerBTN() {
         </h3>
       </div>
 
-      {/* Switch buttons */}
-      <div className="switch-buttons-container">
-        <div className="account-switch-buttons">
-        <div className="button">
-          {/* Consumer button */}
-          <button
-            className={`consumer-btn ${
-              selectedOption === "consumer" ? "active" : ""
-            }`}
-            onClick={() => handleOptionChange1("consumer")}
-          >
-            Consumer
-          </button>
+      {/* Form Container */}
+      <div className="form-and-switch-buttons-container">
+        {/* Switch buttons */}
+        <div className="switch-buttons-container">
+          <div className="switch-buttons">
+            <div className="button">
+              {/* Consumer button */}
+              <button
+                className={`consumer-btn ${
+                  selectedOption === "consumer" ? "active" : ""
+                }`}
+                onClick={() => handleOptionChange1("consumer")}
+              >
+                Consumer
+              </button>
 
-          {/* skilled person button */}
-          <button
-            id="ski-btn"
-            className={`skill-btn ${
-              selectedOption === "skilled" ? "active" : ""
-            }`}
-            onClick={() => handleOptionChange2("skilled")}
-          >
-            Skilled Person
-          </button>
+              {/* skilled person button */}
+              <button
+                id="ski-btn"
+                className={`skill-btn ${
+                  selectedOption === "skilled" ? "active" : ""
+                }`}
+                onClick={() => handleOptionChange2("skilled")}
+              >
+                Skilled Person
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
 
-      {/* Progression indicators workout*/}
-      <div className="progressbar">
+        {/* Progression indicators workout*/}
+        <div className="progressbar">
         <ul>
           {progressSteps.map((step, index) => (
             <React.Fragment key={step.id}>
@@ -118,6 +120,8 @@ function ConsumerBTN() {
           ))}
         </ul>
       </div>
+
+      {/* Mobile Steps */}
       <div className="step-container">
         <div className="step active">1</div>
         <div className="line"></div>
@@ -126,73 +130,74 @@ function ConsumerBTN() {
         <div className="step">3</div>
       </div>
 
-      <div className="container">
-        {/* image form container */}
-        <div className="image-form-container">
-          <img
-            className="login-pic"
-            src="./images/image.png"
-            alt="Login Image"
-          />
+        <div className="container">
+          {/* image form container */}
+          <div className="image-form-container">
+            <img
+              className="login-pic"
+              src="./images/image.png"
+              alt="Login Image"
+            />
 
-          {/* New Form */}
-          <form className="new-form" onSubmit={handleSubmit}>
-            {/* Email */}
-            <div className="input-field-container">
-              <label className="label-text">
-                Email<sup className="mandatory-asterik">*</sup>{" "}
-              </label>
+            {/* New Form */}
+            <form className="new-form" onSubmit={handleSubmit}>
+              {/* Email */}
+              <div className="input-field-container">
+                <label className="label-text">
+                  Email<sup className="mandatory-asterik">*</sup>{" "}
+                </label>
 
-              <input
-                className="input-field"
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="Enter a valid email address"
-                required
-              />
-            </div>
+                <input
+                  className="input-field"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Enter a valid email address"
+                  required
+                />
+              </div>
 
-            {/* Password */}
-            <div className="input-field-container">
-              <label className="label-text">
-                Password
-                <sup className="mandatory-asterik">*</sup>
-              </label>
+              {/* Password */}
+              <div className="input-field-container">
+                <label className="label-text">
+                  Password
+                  <sup className="mandatory-asterik">*</sup>
+                </label>
 
-              <input
-                className="input-field"
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                placeholder="Enter your password"
-                required
-              />
-            </div>
+                <input
+                  className="input-field"
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
 
-            {/* Password confirmation */}
-            <div className="input-field-container">
-              <label className="label-text">
-                Confirm password <sup className="mandatory-asterik">*</sup>
-              </label>
+              {/* Password confirmation */}
+              <div className="input-field-container">
+                <label className="label-text">
+                  Confirm password <sup className="mandatory-asterik">*</sup>
+                </label>
 
-              <input
-                className="input-field"
-                type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-                placeholder="Re-enter your password"
-                required
-              />
-            </div>
+                <input
+                  className="input-field"
+                  type="password"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange}
+                  placeholder="Re-enter your password"
+                  required
+                />
+              </div>
 
-            <button onClick={changepage} className="next-btn" type="submit">
-              Next Step
-            </button>
-          </form>
+              <button onClick={changepage} className="next-btn" type="submit">
+                Next Step
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </>
@@ -200,40 +205,3 @@ function ConsumerBTN() {
 }
 
 export default ConsumerBTN;
-
-{
-  /* Form progression indicators */
-}
-// <div className="progressbar">
-//   <ul>
-//     {progressSteps.map((step, index) => (
-//       <React.Fragment key={step.id}>
-//         <li>
-//           <div className="progress-step">
-//             <div
-//               className={`step-circle ${
-//                 step.completed ? "active" : ""
-//               }`}
-//             >
-//               {step.text}
-//             </div>
-//           </div>
-//         </li>
-//         {index < progressSteps.length - 1 && (
-//           <div
-//             className={`connector-line ${
-//               step.completed ? "active" : ""
-//             }`}
-//           />
-//         )}
-//       </React.Fragment>
-//     ))}
-//   </ul>
-// </div>
-// <div className="step-container" style={{ visibility: "hidden" }}>
-//   <div className="step active">1</div>
-//   <div className="line"></div>
-//   <div className="step">2</div>
-//   <div className="line"></div>
-//   <div className="step">3</div>
-// </div>

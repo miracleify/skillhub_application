@@ -218,7 +218,7 @@ function Getstarted() {
             </div>
 
             {/* Email */}
-            <div className="form-group">
+            {/* <div className="form-group">
               <label htmlFor="email">
                 Email <sup className="mandatory-asterik">*</sup>
               </label>
@@ -231,10 +231,10 @@ function Getstarted() {
                 value={formData.email}
                 onChange={handleInputChange}
               />
-            </div>
+            </div> */}
 
             {/* Password */}
-            <div className="form-group">
+            {/* <div className="form-group">
               <label htmlFor="password">
                 Password <sup className="mandatory-asterik">*</sup>
               </label>
@@ -247,7 +247,7 @@ function Getstarted() {
                 value={formData.password}
                 onChange={handleInputChange}
               />
-            </div>
+            </div> */}
 
             {/* Skills Dropdown */}
             <div className="form-row">

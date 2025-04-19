@@ -18,12 +18,11 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  margin: 0;
-  padding: 20px;
+  /* margin-top: 20px; */
 }
 
 .page-container {
-  max-width: 1000px;
+  /* max-width: 1000px; */
   width: 100%;
 }
 
@@ -48,7 +47,7 @@ header img {
 
 .title-section {
   width: 100%;
-  margin-top: 50px;
+  margin-top: 80px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -78,14 +77,21 @@ header img {
   text-decoration: underline;
 }
 
-.account-switch-buttons-container {
+/* Form And Switch buttons container */
+.form-and-switch-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.switch-buttons-container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
 
-.user-switch-buttons {
+.switch-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,14 +102,13 @@ header img {
   background: var(--white);
   border-radius: 300px;
   border: none;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   /* animation: pulseAnimation 2s infinite alternate; */
 }
 
 .consumer-btn,
 .skill-btn {
-  width: 200px;
-  height: 45px;
+  /* width: 200px; */
+  /* height: 45px; */
   font-weight: 500;
   font-size: 18px;
   color: var(--black);
@@ -116,7 +121,7 @@ header img {
 
 .skill-btn.active,
 .skill-btn:hover {
-  border: 1px solid var(--skillhub-blue);
+  background-color: var(--skillhub-hover-blue);
   color: var(--white);
   transform: scale(1.05);
 }
@@ -132,8 +137,6 @@ header img {
 .progressbar ul {
   display: flex;
   list-style: none;
-  padding: 0;
-  margin: 0;
   align-items: center;
 }
 
@@ -212,13 +215,15 @@ header img {
   display: flex;
   align-items: center;
   gap: 30px;
+  width: 100%;
+  padding: 20px;
   /* animation: slideUp 1s ease-out; */
 }
 
 .login-pic {
   height: 450px;
-  width: auto;
-  animation: fadeIn 1.5s ease-in;
+  /* width: 100px; */
+  /* animation: fadeIn 1.5s ease-in; */
   border-radius: 10px;
 }
 
@@ -352,12 +357,44 @@ header img {
   .login-pic {
     display: none;
   }
+
   .step-container {
-    /* margin-top: -80px !important; */
+    display: flex;
+    align-items: center;
+    margin-top: -80px !important;
     visibility: visible !important;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
   }
+
+  .step {
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--skillhub-blue);
+    color: var(--skillhub-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .line {
+    width: 100px;
+    height: 5px;
+    background-color: var(--skillhub-blue);
+    transition: all 0.5s ease;
+  }
+
+  .step.active {
+    background-color: var(--skillhub-blue);
+    color: var(--white);
+  }
+
   .progressbar {
     visibility: hidden;
+    width: 0;
   }
 
   .image-form-container {

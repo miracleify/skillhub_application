@@ -105,16 +105,16 @@
   #bio,
   .video-upload,
   .submit-btn .profile-pic-upload {
-    width: auto;
+    width: 100%;
   }
 
-  .email {
+  /* .email {
     width: 400px;
     margin: auto;
     background-color: red;
-  }
+  } */
 
   .profile-pic-upload {
-    width: 390px;
+    width: 350px;
   }
 }

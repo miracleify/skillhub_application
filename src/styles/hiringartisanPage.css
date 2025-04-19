@@ -22,17 +22,17 @@
 }
 
 #fullName, #email {
-    width: 490px;
+    /* width: 490px; */
 }
 
 #jobDescription, #notes {
-    width: 1000px;
+    /* width: 1000px; */
     min-height: 120px;
     resize: vertical;
 }
 
 #startDate, #endDate, #startTime {
-    width: 320px;
+    /* width: 320px; */
 }
 
 /* Input focus animations */
