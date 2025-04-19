@@ -12,11 +12,6 @@
     gap: 15px;
 }
 
-/* label{
-   
-    margin-left: 30px !important;
-} */
-
 #fullName, #email, #jobDescription, #notes, #startDate, #endDate, #startTime {
     padding: 12px 15px;
     border: 1px solid #ccc;
@@ -31,7 +26,7 @@
 }
 
 #jobDescription, #notes {
-    width: 1000px;
+    /* width: 1000px; */
     min-height: 120px;
     resize: vertical;
 }

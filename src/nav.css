@@ -100,7 +100,7 @@
 }
 
 .signin a {
-  color: #007bff;
+  color: var(--skillhub-blue);
 }
 
 .signin a:hover {
@@ -110,8 +110,8 @@
 
 /* Get Started Button */
 .get-started a {
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--skillhub-blue);
+  color: var(--white);
   padding: 8px 15px;
   border-radius: 5px;
   transition: all 0.3s ease;
@@ -132,7 +132,7 @@
 }
 
 .nav-toggle:hover {
-  color: #007bff;
+  color: var(--skillhub-hover-blue);
 }
 
 /* Sidebar Styles */
@@ -142,7 +142,8 @@
   right: -50%;
   width: 50%;
   height: 100vh;
-  background-color: #fff;
+  /* backdrop-filter: blur(30px); */
+  background-color: var(--white);
   transition: right 0.3s ease-in-out;
   z-index: 1000;
   padding-top: 60px;
@@ -168,7 +169,7 @@
 
 .close-icon:hover {
   transform: rotate(90deg);
-  color: #007bff;
+  color: var(--skillhub-hover-blue);
 }
 
 /* Sidebar Links */
@@ -205,13 +206,13 @@
 }
 
 .sidebar-list a:hover {
-  color: #007bff;
+  color: var(--skillhub-blue);
   transform: translateX(5px);
 }
 
 .sidebar-list .get-started a {
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--skillhub-blue);
+  color: var(--white);
   padding: 8px 15px;
   border-radius: 5px;
   margin-top: 10px;
@@ -220,7 +221,7 @@
 }
 
 .sidebar-list .get-started a:hover {
-  background-color: #0056b3;
+  background-color: var(--skillhub-hover-blue);
   transform: translateY(-2px);
 }
 

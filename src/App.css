@@ -26,11 +26,10 @@ body, html {
   height: auto;
   margin: 45px auto 0;
   padding: 0 20px;
-  font-family: 'Lexend';
   font-style: normal;
   font-weight: 600;
   line-height: 72px; 
-  color: #FFFFFF;
+  color: var(--white);
   text-align: center;
   z-index: 1;
 }
@@ -44,7 +43,6 @@ body, html {
   background-repeat: no-repeat;
   overflow: hidden;
   width: 100vw; /* Use viewport width to ensure full screen width */
-  margin: 0 ; /* Remove all margins */
   left: 50%; /* Center the container */
   right: 50%; /* Center the container */
   margin-left: -50vw; /* Offset to ensure full width */
@@ -59,12 +57,11 @@ body, html {
   height: auto;
   margin: -50px auto 0;
   padding: 0 20px;
-  font-family: 'Lexend';
   font-style: normal;
   font-weight: 600;
   font-size: 50px;
   line-height: 62px;
-  color: #FFFFFF;
+  color: var(--white);
   z-index: 1; /* Ensure text appears above background */
 }
 
@@ -84,18 +81,17 @@ body, html {
   height: 64px;
   left: -219px;
   top: 6px;
-  background: #FFFFFF;
+  background: var(--white);
   border-radius: 10px 0px 0px 10px;
 }
 
 input::placeholder {
   text-align: center;
-  font-family: 'Lexend';
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 25px;
-  color: #8F8F8F;
+  color: var(--inactive-grey);
 }
 
 /* Icon styles */
@@ -103,7 +99,7 @@ input::placeholder {
   position: relative;
   left: -30px;
   top: 260px;
-  color: #0575E6;
+  color: var(--skillhub-blue);
 }
 
 .icon img {
@@ -137,7 +133,7 @@ input::placeholder {
 }
 
 .icon {
-  color: white;
+  color: var(--white);
   font-size: 20px;
 }
 

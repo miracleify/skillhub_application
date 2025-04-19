@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --white: #ffffff;
   --black: #000000;
@@ -8,10 +14,10 @@
 
 /* Base styles */
 .get-started {
-  margin-top: 0;
-  width: 100%;
-  padding-top: 20px;
-  animation: fadeIn 1s ease-out;
+  /* Changing width from auto messes up the navbar */
+  width: auto;
+  max-width: 100%;
+  /* animation: fadeIn 1s ease-out; */
 }
 
 /* Header styles */
@@ -34,13 +40,16 @@ header img {
   flex-direction: column;
   align-items: center;
   margin-bottom: 30px;
-  /* animation: fadeIn 1.2s ease-out; */
   box-sizing: border-box;
+  /* animation: fadeIn 1.2s ease-out; */
 }
 
 /* Title section */
 .title-section {
-  text-align: center;
+  /* display: flex; */
+  /* flex-direction: column;
+  justify-content: center;
+  align-items: center; */
   /* animation: fadeIn 1.4s ease-out; */
   padding: 0 15px;
 }
@@ -73,18 +82,39 @@ header img {
 }
 
 /* Button styles */
+.account-switch-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 66px;
+  gap: 20px;
+  background: var(--white);
+  border-radius: 300px;
+  border: none;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.switch-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;;
+}
+
 .button {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 350px;
   height: 66px;
-  gap: 30px;
+  gap: 20px;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.04);
   background: var(--white);
   border-radius: 300px;
-  border: 2px solid #ddd;
-  margin: 0 auto;
-  /* animation: scaleIn 0.5s ease-out; */
+  border: 1px solid var(--white);
   transition: all 0.3s ease;
+  /* animation: scaleIn 0.5s ease-out; */
 }
 
 .button:hover {
@@ -129,14 +159,16 @@ header img {
   gap: 20px;
   background: var(--white);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--white);
   border-radius: 10px;
-  box-sizing: border-box;
   padding: 50px;
+  margin-top: 50px;
+  transition: all 0.3s ease;
   /* animation: fadeUp 0.8s ease-out; */
 }
 
 .profile-pic-upload:hover {
-  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--skillhub-blue);
   cursor: pointer;
 }
 
@@ -149,8 +181,8 @@ header img {
   width: 150px;
   border-radius: 100%;
   cursor: pointer;
-  transition: all 0.3s ease;
-  animation: bounce 1s ease-out;
+  /* transition: all 0.3s ease; */
+  /* animation: bounce 1s ease-out; */
 }
 
 .dotted-border img {
@@ -218,6 +250,16 @@ header img {
   color: #666;
 }
 
+.form-group input::placeholder {
+  font-size: 16px;
+  text-align: left;
+}
+
+.form-group select {
+  font-size: 16px;
+  text-align: left;
+}
+
 .form-group input,
 .form-group select {
   height: 50px;
@@ -227,7 +269,6 @@ header img {
   border-radius: 10px;
   border: none;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
-  font-size: 16px;
   /* transition: all 0.3s ease; */
 }
 
@@ -320,7 +361,7 @@ header img {
 }
 
 .next-btn {
-  max-width: 200px;
+  max-width: 900px;
 }
 
 .submit-btn:hover,
@@ -331,7 +372,7 @@ header img {
 }
 
 /* Mobile Responsiveness */
-@media (min-width: 340px) and (max-width: 500px) {
+@media (min-width: 340px) and (max-width: 767px) {
   .title-sign-in-container {
     margin-top: 50px;
     display: flex;

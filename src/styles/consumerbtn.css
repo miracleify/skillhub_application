@@ -1,9 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --white: #ffffff;
   --black: #000000;
   --inactive-grey: #8f8f8f;
   --skillhub-blue: #0575e6;
   --skillhub-hover-blue: #0518e6;
+  --red: red;
 }
 
 body {
@@ -11,14 +18,12 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  margin: 0;
-  padding: 20px;
+  /* margin-top: 20px; */
 }
 
 .page-container {
-  max-width: 1000px;
+  /* max-width: 1000px; */
   width: 100%;
-  margin: 0 auto;
 }
 
 header {
@@ -38,12 +43,16 @@ header img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-bottom: 30px; */
 }
 
 .title-section {
+  width: 100%;
+  margin-top: 80px;
   text-align: center;
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   animation: fadeIn 1.2s ease-in;
 }
 
@@ -58,17 +67,31 @@ header img {
 }
 
 .title-section a {
-  color: #0575e6;
+  color: var(--skillhub-blue);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .title-section a:hover {
-  color: #045cb8;
+  color: var(--skillhub-hover-blue);
   text-decoration: underline;
 }
 
-.user-switch-buttons {
+/* Form And Switch buttons container */
+.form-and-switch-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.switch-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.switch-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,15 +102,13 @@ header img {
   background: var(--white);
   border-radius: 300px;
   border: none;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  margin: 0 auto;
   /* animation: pulseAnimation 2s infinite alternate; */
 }
 
 .consumer-btn,
 .skill-btn {
-  width: 200px;
-  height: 45px;
+  /* width: 200px; */
+  /* height: 45px; */
   font-weight: 500;
   font-size: 18px;
   color: var(--black);
@@ -100,24 +121,22 @@ header img {
 
 .skill-btn.active,
 .skill-btn:hover {
-  border: 1px solid var(--skillhub-blue);
+  background-color: var(--skillhub-hover-blue);
   color: var(--white);
   transform: scale(1.05);
 }
 
+/* Form progression indicators */
 .progressbar {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 30px 0;
-  animation: fadeIn 1.4s ease-in;
+  /* animation: fadeIn 1.4s ease-in; */
 }
 
 .progressbar ul {
   display: flex;
   list-style: none;
-  padding: 0;
-  margin: 0;
   align-items: center;
 }
 
@@ -132,39 +151,39 @@ header img {
   align-items: center;
 }
 
+.step-container {
+  visibility: hidden;
+  display: flex;
+}
+
 .step-circle {
   width: 200px;
   height: 50px;
+  border: none;
   border-radius: 50px;
-  background-color: #fffdfd;
+  background-color: var(--white);
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  border: 1px solid #007bff;
+  border: 1px solid var(--skillhub-blue);
   margin-bottom: 5px;
   font-size: 15px;
   text-align: center;
-  padding: 10px;
-  box-sizing: border-box;
-  color: #007bff;
-  font-family: "Lexend";
-  font-style: normal;
+  color: var(--skillhub-blue);
   font-weight: 700;
-  line-height: 40px;
   text-align: center;
   transition: all 0.3s ease;
 }
 
 .step-circle.active {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--skillhub-blue);
+  color: var(--white);
   width: 200px;
   border-radius: 50px;
   text-align: center;
   padding: 10px;
   box-sizing: border-box;
-  font-family: "Lexend";
   font-style: normal;
   font-weight: 700;
   line-height: 40px;
@@ -175,87 +194,103 @@ header img {
 .connector-line {
   height: 5px;
   width: 170px;
-  background-color: #007bff;
+  background-color: var(--skillhub-blue);
   transition: all 0.5s ease;
 }
 
 .connector-line.active {
-  background-color: #007bff;
+  background-color: var(--skillhub-blue);
   width: 200px;
   animation: expandLine 1s ease-out;
 }
 
-.form-container {
+/* Form Begins */
+.mandatory-asterik {
+  color: var(--red);
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.image-form-container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
-  margin: 40px 0;
-  animation: slideUp 1s ease-out;
+  gap: 30px;
+  width: 100%;
+  padding: 20px;
+  /* animation: slideUp 1s ease-out; */
 }
 
 .login-pic {
-  height: 380px;
-  width: 700px;
-  position: absolute;
-  margin-left: -450px;
-  animation: fadeIn 1.5s ease-in;
+  height: 450px;
+  /* width: 100px; */
+  /* animation: fadeIn 1.5s ease-in; */
+  border-radius: 10px;
 }
 
-.newform {
-  position: relative;
+.new-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin-top: -20px;
   align-items: center;
-  margin-left: 780px;
+  justify-content: center;
+  z-index: 1000;
+  width: 100%;
+  gap: 30px;
 }
 
-.bar {
+.input-field-container {
   display: flex;
-  justify-content: space-around;
-  position: relative;
-  width: 400px;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  /* animation: slideUp 1s ease-out; */
+}
+
+.input-field {
+  display: flex;
+  width: 100%;
   height: 64px;
-  background: #ffffff;
+  background: var(--white);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border: none;
   border-radius: 10px;
   padding: 10px;
   transition: all 0.3s ease;
-  margin-top: -20px;
 }
 
-.bar:focus-within {
-  box-shadow: 0px 0px 8px rgba(5, 117, 230, 0.5);
-  transform: translateY(-2px);
+.input-field::placeholder {
+  text-align: left;
+  padding: 0 10px;
+  font-size: 16px;
+}
+
+.input-field:focus {
+  outline: 1px solid var(--skillhub-blue);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
 }
 
 .next-btn {
-  height: 40px;
-  background-color: #0575e6;
-  padding: 5px;
-  margin-right: 0px;
+  height: 60px;
+  width: 100%;
+  background-color: var(--skillhub-blue);
   border-radius: 10px;
-  color: #ffffff;
+  color: var(--white);
   border: none;
-  cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 500;
 }
 
 .next-btn:hover {
-  background-color: #045cb8;
-  transform: translateY(-2px);
+  background-color: var(--skillhub-hover-blue);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .input-labels {
   margin-top: 0px;
 }
+
 .label-text {
-  margin-left: 30px;
   font-weight: 500;
-  margin-left: -190px;
+  text-align: left;
 }
 
 /* Animation Keyframes */
@@ -318,21 +353,102 @@ header img {
 }
 
 /* Mobile repsonsiveness */
-@media (max-width: 480px) {
+@media (min-width: 300px) and (max-width: 767px) {
   .login-pic {
     display: none;
   }
+
   .step-container {
+    display: flex;
+    align-items: center;
     margin-top: -80px !important;
     visibility: visible !important;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
   }
+
+  .step {
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--skillhub-blue);
+    color: var(--skillhub-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .line {
+    width: 100px;
+    height: 5px;
+    background-color: var(--skillhub-blue);
+    transition: all 0.5s ease;
+  }
+
+  .step.active {
+    background-color: var(--skillhub-blue);
+    color: var(--white);
+  }
+
   .progressbar {
     visibility: hidden;
+    width: 0;
+  }
+
+  .image-form-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .input-field-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    /* animation: slideUp 1s ease-out; */
+  }
+
+  .input-field {
+    display: flex;
+    width: 100%;
+
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .input-field::placeholder {
+    text-align: left;
+    padding: 0 10px;
+    font-size: 16px;
+  }
+
+  .input-field:focus {
+    outline: 1px solid var(--skillhub-blue);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .next-btn {
+    height: 60px;
+    width: 100%;
+    background-color: var(--skillhub-blue);
+    border-radius: 10px;
+    color: var(--white);
+    border: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
   }
 }
 
-/* Responsivness */
-@media (max-width: 768px) {
+/* Tablet Responsivness */
+@media (min-width: 768px) and (max-width: 1024px) {
   .form-container {
     flex-direction: column;
   }
@@ -344,7 +460,7 @@ header img {
     height: auto;
   }
 
-  .newform {
+  .new-form {
     margin-left: 0;
     margin-top: 20px;
   }

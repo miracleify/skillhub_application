@@ -1,220 +1,231 @@
-body {
-    margin: auto;
-    font-family: 'Lexend', sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --inactive-grey: #8f8f8f;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
+  --completion-green: #008000;
+}
+
+/* body {
+  margin: auto;
+} */
+
 /* Button Styles */
-.consumer-btn, .skill-btn {
-    width: 150px;
-    height: 45px;
-    font-family: 'Lexend', sans-serif;
-    font-weight: 500;
-    font-size: 18px;
-    color: black;
-    border: none;
-    border-radius: 300px;
-    cursor: pointer;
-    background: transparent;
-    transition: all 0.3s ease;
+.consumer-btn,
+.skill-btn {
+  width: 150px;
+  height: 45px;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--black);
+  border: none;
+  border-radius: 300px;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.3s ease;
 }
 
 .skill-btn.active,
 .skill-btn:hover {
-    background-color: #0575E6;
-    color: white;
-    transform: scale(1.05);
+  background-color: var(--skillhub-blue);
+  color: var(--white);
+  transform: scale(1.05);
 }
 
 /* Progress Bar Styles */
 .progressbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 30px 0;
-    animation: fadeIn 1.4s ease-in;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  animation: fadeIn 1.4s ease-in;
 }
 
 .progressbar ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    align-items: center;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
 }
 
 .progressbar li {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .progress-step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .step-circle {
-    width: 200px;
-    height: 50px;
-    border-radius: 50px;
-    background-color: green;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    border: 1px solid #007bff;
-    margin-bottom: 5px;
-    font-size: 15px;
-    text-align: center;
-    padding: 10px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    font-family: 'Lexend';
-    font-style: normal;
-    font-weight: 700;
-    line-height: 40px;
-    text-align: center;
-    transition: all 0.3s ease;
+  width: 200px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: var(--completion-green);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 15px;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  color: var(--white);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
 .step-circle.active {
-    background-color: #007bff;
-    color: white;
-    width: 200px;
-    border-radius: 50px;
-    text-align: center;
-    padding: 10px;
-    box-sizing: border-box;
-    font-family: 'Lexend';
-    font-style: normal;
-    font-weight: 700;
-    line-height: 40px;
-    text-align: center;
-    animation: pulseLight 1.5s infinite alternate;
+  background-color: var(--skillhub-blue);
+  color: var(--white);
+  width: 200px;
+  border-radius: 50px;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+  text-align: center;
+  animation: pulseLight 1.5s infinite alternate;
 }
 
 .connector-line {
-    height: 5px;
-    width: 300px;
-    background-color: green;
-    transition: all 0.5s ease;
+  height: 5px;
+  width: 300px;
+  background-color: var(--completion-green);
+  transition: all 0.5s ease;
 }
 
 .connector-line.active {
-    background-color: #007bff;
-    width: 300px;
-    animation: expandLine 1s ease-out;
+  background-color: var(--skillhub-blue);
+  width: 300px;
+  animation: expandLine 1s ease-out;
 }
 
 /* Profile Pieces Styles */
 .profilepices {
-    width: 600px !important;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    margin: 20px auto;
-    width: 1200px;
-    max-width: 100%;
-    box-sizing: border-box;
-    padding: 30px;
+  width: 600px !important;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: var(--white);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  margin: 20px auto;
+  width: 1200px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
 }
 
 .lastdiv {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
 }
 
 .captions {
-    display: flex;
-    flex-direction: row;
-    gap: 100px;
-    position: absolute;
-    margin-top: 280px;
-    margin-left: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  position: absolute;
+  margin-top: 280px;
+  margin-left: 50px;
 }
 
 .form-input {
-    position: absolute;
-    margin-top: 330px;
-    margin-left: 10px;
+  position: absolute;
+  margin-top: 330px;
+  margin-left: 10px;
 }
 
 .input-bar {
-    width: 590px !important;
-    height: 50px;
-    border-radius: 10px;
-    border: 1px solid grey;
+  width: 590px !important;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid grey;
 }
 
 .last-btn {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    margin-top: 350px;
-    margin-left: 690px;
-    gap: 100px;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  margin-top: 350px;
+  margin-left: 690px;
+  gap: 100px;
 }
 
 .btns {
-    height: 50px;
-    border-radius: 10px;
-    width: 270px;
-    margin-left: -50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  height: 50px;
+  border-radius: 10px;
+  width: 270px;
+  margin-left: -50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 #save-btn {
-    background-color: #FFFFFF;
-    font-size: 17px;
-    color: #007bff;
-    border: 2px solid #007bff;
+  background-color: #ffffff;
+  font-size: 17px;
+  color: #007bff;
+  border: 2px solid #007bff;
 }
 
 #save-btn:hover {
-    background-color: #007bff;
-    color: #FFFFFF;
+  background-color: #007bff;
+  color: #ffffff;
 }
 
 #create-btn {
-    background-color: #007bff;
-    font-size: 17px;
-    border: none;
-    color: #FFFFFF;
+  background-color: #007bff;
+  font-size: 17px;
+  border: none;
+  color: #ffffff;
 }
 
 #create-btn:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 /* Animations */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes pulseLight {
-    from {
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    }
-    to {
-        box-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
-    }
+  from {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  to {
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
+  }
 }
 
 @keyframes expandLine {
-    from {
-        width: 0;
-    }
-    to {
-        width: 300px;
-    }
+  from {
+    width: 0;
+  }
+  to {
+    width: 300px;
+  }
 }
