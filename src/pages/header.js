@@ -130,7 +130,7 @@ function Header() {
       <Routes>
         {/* Routes now don't need props */}
         <Route path="/" element={<Home />} />
-       
+        <Route path="/Artisan" element={< Artisan/>} />
         <Route path="/consumer" element={<Consumer />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/signin" element={< Signin/>} />

@@ -347,6 +347,8 @@ function Getstarted() {
           {error && (
             <div style={{ color: "red", marginTop: "10px" }}>{error}</div>
           )}
+
+          
         </form>
       </div>
 
