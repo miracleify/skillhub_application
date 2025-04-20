@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Artisan.css";
 
 function Artisan() {
   const [users, setUsers] = useState([]);
@@ -73,78 +74,100 @@ function Artisan() {
   }, [searchTerm, users]);
 
   if (loading)
-    return <div className="loading-container">Loading artisans...</div>;
+    return <div className="loading-container">Loading Artisans...</div>;
   if (error) return <div className="error-container">Error: {error}</div>;
 
   return (
     <div className="artisan-container">
-      <br></br> <br></br>
-      <h1 className="artisan-heading">Artisans List</h1>
+      {/* <h1 className="artisan-heading">Artisans List</h1> */}
+
+      {/* Search Bar */}
       <div className="search-container">
-        <div className="input-search-container">
+        <div className="search-bar">
           <input
+            className="input-field"
             type="text"
             onChange={searchOnChange}
             value={searchTerm}
             placeholder="What skill are you looking for"
           />
-          <i class="fa-solid fa-magnifying-glass"></i>
+
+          {/* Search Button */}
+          <button className="search-button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
-        <button>
-          {" "}
-          <svg
-            width="24"
-            height="16"
-            viewBox="0 0 24 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M9.33997 15.5V13H14.34V15.5H9.33997ZM4.33997 9.25V6.75H19.34V9.25H4.33997ZM0.589966 3V0.5H23.09V3H0.589966Z"
-              fill="#0575E6"
-            />
-          </svg>
+
+        {/* Filter Button */}
+        <button className="filter-button">
+          <div className="filter-icon-container">
+            <svg
+              className="filter-icon"
+              width="24"
+              height="16"
+              viewBox="0 0 24 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.33997 15.5V13H14.34V15.5H9.33997ZM4.33997 9.25V6.75H19.34V9.25H4.33997ZM0.589966 3V0.5H23.09V3H0.589966Z"
+                fill="#0575E6"
+              />
+            </svg>
+          </div>
           FILTER
         </button>
       </div>
+
+      {/* Lazy loading */}
       {isSearching ? (
         <div className="loading-container">Searching...</div>
       ) : filteredUsers.length === 0 ? (
         <p className="no-artisans">No artisans found</p>
       ) : (
-        <div className="artisan-grid">
-          {filteredUsers.map((user) => (
-            <div
-              key={user.id || user._id || Math.random()}
-              className="trade-card"
-            >
-              <div className="trade-image">
-                <img
-                  className="img"
-                  src={user.photoURL || defaultImageUrl}
-                  alt={user.full_name || "Artisan"}
-                />
-                {user.verified && (
-                  <span className="verified-badge">
-                    <i className="fa-solid fa-circle-check verification-icon"></i>
-                  </span>
-                )}
+        // Artisan scrollable grid
+        <>
+          <div className="scroll-section">
+            <h1>Artists</h1>
+
+          {/* Profile Cards */}
+          <div className="artisan-scroll">
+            {filteredUsers.map((user) => (
+              <div
+                key={user.id || user._id || Math.random()}
+                className="trade-card"
+              >
+                <div className="trade-image">
+                  <img
+                    className="img"
+                    src={user.photoURL || defaultImageUrl}
+                    alt={user.full_name || "Artisan"}
+                  />
+                  {user.verified && (
+                    <span className="verified-badge">
+                      <i className="fa-solid fa-circle-check verification-icon"></i>
+                    </span>
+                  )}
+                </div>
+                <div className="trade-info">
+                  <h3 className="trade-name">{user.full_name}</h3>
+                  <p className="ratings">{user.ratings || "No ratings yet"}</p>
+                  <p className="personP">
+                    {user.profession || "Not specified"}
+                  </p>
+                  <a
+                    href={`/profile/${user.id || user._id}`}
+                    className="view-profile-btn"
+                    onClick={(e) => handleViewProfile(e, user)}
+                  >
+                    View Profile
+                  </a>
+                </div>
               </div>
-              <div className="trade-info">
-                <h3 className="trade-name">{user.full_name}</h3>
-                <p className="ratings">{user.ratings || "No ratings yet"}</p>
-                <p className="personP">{user.profession || "Not specified"}</p>
-                <a
-                  href={`/profile/${user.id || user._id}`}
-                  className="view-profile-btn"
-                  onClick={(e) => handleViewProfile(e, user)}
-                >
-                  View Profile
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+          </div>
+        </>
       )}
     </div>
   );

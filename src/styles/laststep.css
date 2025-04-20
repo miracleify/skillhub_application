@@ -10,14 +10,26 @@
   --inactive-grey: #8f8f8f;
   --skillhub-blue: #0575e6;
   --skillhub-hover-blue: #0518e6;
+  --red: red;
   --completion-green: #008000;
 }
 
-/* body {
+body {
   margin: auto;
-} */
+}
+
+.mandatroy-asterik {
+  color: var(--red);
+}
 
 /* Button Styles */
+.switch-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
 .consumer-btn,
 .skill-btn {
   width: 150px;
@@ -133,73 +145,94 @@
   padding: 30px;
 }
 
-.lastdiv {
+.image-upload-container {
   display: flex;
-  flex-direction: row;
   gap: 30px;
+}
+
+.upload-image-icon {
+height: 30px;
+width:35px;
+}
+
+.take-photo-icon {
+  height: 30px;
+  width: 25px;
 }
 
 .captions {
   display: flex;
   flex-direction: row;
   gap: 100px;
-  position: absolute;
+  /* position: absolute;
   margin-top: 280px;
-  margin-left: 50px;
+  margin-left: 50px; */
 }
 
-.form-input {
-  position: absolute;
-  margin-top: 330px;
-  margin-left: 10px;
+.find-out-link {
+  color: var(--skillhub-blue);
 }
 
-.input-bar {
+.bvn-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  text-align: left;
+  gap: 10px;
+}
+
+.bvn-form-input-container {
+  margin-top: 30px;
+}
+
+.input-field {
   width: 590px !important;
   height: 50px;
   border-radius: 10px;
   border: 1px solid grey;
 }
 
-.last-btn {
+.buttons-container {
   display: flex;
   flex-direction: row;
+  gap: 10px;
   position: absolute;
-  margin-top: 350px;
-  margin-left: 690px;
-  gap: 100px;
+  right: 0;
+  margin: 30px 20px 0 30px;
 }
 
-.btns {
+.buttons {
   height: 50px;
   border-radius: 10px;
   width: 270px;
-  margin-left: -50px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 #save-btn {
-  background-color: #ffffff;
   font-size: 17px;
-  color: #007bff;
-  border: 2px solid #007bff;
+  color: var(--skillhub-blue);
+  background-color: var(--white);
+  border: 2px solid var(--skillhub-blue);
 }
 
 #save-btn:hover {
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: var(--skillhub-hover-blue);
+  color: var(--white);
+  border: 2px solid var(--skillhub-hover-blue);
 }
 
 #create-btn {
-  background-color: #007bff;
+  background-color: var(--skillhub-blue);
   font-size: 17px;
   border: none;
-  color: #ffffff;
+  color: var(--white);
 }
 
 #create-btn:hover {
-  transform: scale(1.05);
+  background-color: var(--skillhub-hover-blue);
+  /* transform: scale(1.05); */
 }
 
 /* Animations */

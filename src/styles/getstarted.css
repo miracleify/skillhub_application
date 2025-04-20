@@ -46,11 +46,11 @@ header img {
 
 /* Title section */
 .title-section {
-  /* display: flex; */
-  /* flex-direction: column;
+  display: flex;
+  flex-direction: column; 
   justify-content: center;
-  align-items: center; */
-  /* animation: fadeIn 1.4s ease-out; */
+  align-items: center; 
+  animation: fadeIn 1.4s ease-out;
   padding: 0 15px;
 }
 
@@ -151,7 +151,7 @@ header img {
 }
 
 .profile-pic-upload {
-  width: 100%;
+  width: 1110px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,14 +185,16 @@ header img {
   /* animation: bounce 1s ease-out; */
 }
 
-.dotted-border img {
+.img {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
 }
 
-.dotted-border:hover img {
-  opacity: 0.8;
+.dashed-border {
+  width: 80px;
+  height: 80px;
+  border: 2px dashed var(--skillhub-blue);
+  border-radius: 50%;
 }
 
 .profile-image-icon {
