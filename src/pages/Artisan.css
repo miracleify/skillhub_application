@@ -106,7 +106,7 @@
   gap: 20px;
   overflow: scroll;
   padding: 20px;
-  /* background-color: var(--inactive-grey); */
+  background-color: var(--inactive-grey);
 }
 
 .trade-card {
