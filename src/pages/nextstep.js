@@ -8,9 +8,9 @@ function Nextstep() {
   const [formData, setFormData] = useState({
     role: "skilled",
     full_name: "",
-    email: "",
-    password: "",
-    skill: "",
+    AreaofExpertise: "",
+    skill: "", // This will now hold the dropdown selection
+    customSkill: "", // New field for the text input
     address: "",
     service_area: "",
     bio: "",
@@ -33,13 +33,17 @@ function Nextstep() {
     },
     { id: 2, text: "Verification", longText: "Verification", completed: false },
   ]);
-
+  function changeStep(){
+    Navigate("/laststep")
+  }
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     let key = id;
     if (id === "fullname") key = "full_name";
     if (id === "technical-skills") key = "skill";
+    if (id === "custom-skill") key = "customSkill";
     if (id === "service-area") key = "service_area";
+    if (id === "areaof-expertise") key = "AreaofExpertise";
     setFormData({ ...formData, [key]: value });
   };
 
@@ -150,35 +154,37 @@ function Nextstep() {
           ))}
         </ul>
       </div>
-      <div className="profilepice">
-        <div className="dotted-border" style={{ flexDirection: "column" }}>
-          <label htmlFor="profile-photo" style={{ cursor: "pointer" }}>
+        <div className="profile-pic-upload">
+          {/* <sup className="mandatory-asterik">*</sup> */}
+
+          <div className="dashed-border profile-image-icon-file-button-container">
             <img
-              src={formData.photoURL || "/images/cam.png"}
-              alt="Profile pic"
-              style={{
-                width: 100,
-                height: 100,
-                borderRadius: "50%",
-                objectFit: "cover",
-              }}
+              className="profile-image-icon"
+              src={formData.photoURL || "/images/camera.png"}
+              alt="Profile Image Upload"
             />
-          </label>
+          </div>
+
+          {/* choose image file */}
           <input
+            className="profile-image-upload-button"
             type="file"
             id="profile-photo"
             accept="image/*"
-            style={{ display: "none" }}
             onChange={handlePhotoChange}
           />
+
+          <div className="key-image-upload-guidlines">
+            <p>Drag & drop or choose file to upload an image of yourself.</p>
+            <p>
+              <strong>
+                (PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)
+              </strong>
+            </p>
+          </div>
         </div>
-      </div>{" "}
-      <div>
-        <div className="text">
-          <span>Drag & drop or click to upload an image of your choice.</span>
-          <span>(PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)</span>
-        </div>
-      </div>
+      <br></br> <br></br>
+
       <div className="form-container">
         <form className="signup-form" onSubmit={handleNextStep}>
           {/* First row */}
@@ -198,38 +204,8 @@ function Nextstep() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="email">
-                Email<sup style={{ color: "red", fontSize: "10px" }}>*</sup>
-              </label>
-              <input
-                type="email"
-                id="email"
-                required
-                value={formData.email}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">
-                Password <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
-              </label>
-              <input
-                type="password"
-                id="password"
-                required
-                value={formData.password}
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-          {/* Second row */}
-          <div className="form-row">
-            <div className="form-group">
-              <label
-                style={{ marginLeft: "-310px" }}
-                htmlFor="technical-skills"
-              >
-                Skill <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+              <label htmlFor="technical-skills">
+                Please select your skill<sup style={{ color: "red", fontSize: "10px" }}>*</sup>
               </label>
               <select
                 id="technical-skills"
@@ -244,6 +220,36 @@ function Nextstep() {
                 <option value="Electrician">Electrician</option>
                 <option value="Other">Other</option>
               </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="areaof-expertise">
+              Areas of expertise?<sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+              </label>
+              <input
+                type="text"
+                id="areaof-expertise"
+                required
+                value={formData.AreaofExpertise}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+          {/* Second row */}
+          <div className="form-row">
+            <div className="form-group">
+              <label
+                style={{ marginLeft: "0px" }}
+                htmlFor="custom-skill"
+              >
+                Your Skill <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+              </label>
+              <input
+                type="text"
+                id="custom-skill"
+                required
+                value={formData.customSkill}
+                onChange={handleInputChange}
+              />
             </div>
             <div className="form-group">
               <label htmlFor="address">
@@ -311,7 +317,7 @@ function Nextstep() {
             </div>
           </div>
           <div className="form-buttons">
-            <button type="submit" className="submit-btn">
+            <button type="submit" onClick={changeStep} className="submit-btn">
               Next Step
             </button>
           </div>

@@ -213,7 +213,8 @@ header img {
 .form-container {
   gap: 20px;
   /* animation: fadeIn 1.6s ease-out; */
-  box-sizing: border-box;
+ border: none;
+  
 }
 
 .form-input-fields {

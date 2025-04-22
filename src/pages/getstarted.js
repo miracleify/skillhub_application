@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Getstarted() {
-  const Navigate = useNavigate();
+  const navigate = useNavigate(); // Corrected variable name to start with lowercase
   const [selectedOption, setSelectedOption] = useState("consumer");
   const [formData, setFormData] = useState({
     role: "consumer",
@@ -14,6 +14,9 @@ function Getstarted() {
     bio: "",
     address: "",
     photoURL: "",
+    skill: "", // Added missing fields
+    expertise: "",
+    service_area: ""
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -21,12 +24,14 @@ function Getstarted() {
 
   const handleOptionChange1 = (option) => {
     setSelectedOption(option);
-    Navigate("/consumerpages");
+    setFormData({...formData, role: option});
+    navigate("/consumerpages");
   };
 
   const handleOptionChange2 = (option) => {
     setSelectedOption(option);
-    Navigate("/consumerbtn");
+    setFormData({...formData, role: option});
+    navigate("/consumerbtn");
   };
 
   // Handle input changes
@@ -35,9 +40,34 @@ function Getstarted() {
     // Map form field ids to API field names
     let key = id;
     if (id === "fullname") key = "full_name";
+    
     setFormData({
       ...formData,
       [key]: value,
+    });
+  };
+
+  // Handle skill change
+  const handleSkillChange = (e) => {
+    setFormData({
+      ...formData,
+      skill: e.target.value,
+    });
+  };
+
+  // Handle expertise change
+  const handleExpertiseChange = (e) => {
+    setFormData({
+      ...formData,
+      expertise: e.target.value,
+    });
+  };
+
+  // Handle service area change
+  const handleServiceAreaChange = (e) => {
+    setFormData({
+      ...formData,
+      service_area: e.target.value,
     });
   };
 
@@ -96,10 +126,14 @@ function Getstarted() {
     e.preventDefault();
     setLoading(true);
     setError("");
+    
+    // Create a copy of formData to submit
+    const dataToSubmit = {...formData};
+    
     try {
       const response = await axios.post(
         "https://skillhub-api-y3gi.onrender.com/api/auth/signup",
-        formData,
+        dataToSubmit,
         { headers: { "Content-Type": "application/json" } }
       );
       if (response.status === 200 || response.status === 201) {
@@ -121,7 +155,12 @@ function Getstarted() {
 
   const handleContinue = () => {
     setShowModal(false);
-    Navigate("/signin");
+    navigate("/signin");
+  };
+
+  const handleSignInClick = (e) => {
+    e.preventDefault();
+    navigate("/signin");
   };
 
   return (
@@ -131,8 +170,8 @@ function Getstarted() {
           <div className="title-sign-in-container">
             <h2>Create Account</h2>
             <h3>
-              Already have an account?
-              <a href="#" className="sign-in-button">
+              Already have an account?{" "}
+              <a href="#" className="sign-in-button" onClick={handleSignInClick}>
                 Sign In
               </a>
             </h3>
@@ -165,10 +204,8 @@ function Getstarted() {
           </div>
         </div>
 
-        {/* Profile Image Uplaod */}
+        {/* Profile Image Upload */}
         <div className="profile-pic-upload">
-          {/* <sup className="mandatory-asterik">*</sup> */}
-
           <div className="dashed-border profile-image-icon-file-button-container">
             <img
               className="profile-image-icon"
@@ -206,7 +243,6 @@ function Getstarted() {
               <label htmlFor="fullname">
                 Full Name <sup className="mandatory-asterik">*</sup>
               </label>
-
               <input
                 type="text"
                 id="fullname"
@@ -218,11 +254,10 @@ function Getstarted() {
             </div>
 
             {/* Email */}
-            {/* <div className="form-group">
+            <div className="form-group">
               <label htmlFor="email">
                 Email <sup className="mandatory-asterik">*</sup>
               </label>
-
               <input
                 type="email"
                 id="email"
@@ -231,14 +266,13 @@ function Getstarted() {
                 value={formData.email}
                 onChange={handleInputChange}
               />
-            </div> */}
+            </div>
 
             {/* Password */}
-            {/* <div className="form-group">
+            <div className="form-group">
               <label htmlFor="password">
                 Password <sup className="mandatory-asterik">*</sup>
               </label>
-
               <input
                 type="password"
                 id="password"
@@ -247,36 +281,14 @@ function Getstarted() {
                 value={formData.password}
                 onChange={handleInputChange}
               />
-            </div> */}
-
-            {/* Skills Dropdown */}
-            <div className="form-row">
-              {/* Skill, not required for consumer, so leave out of formData */}
-              <div className="form-group">
-                <label htmlFor="technical-skills">
-                  Skill <sup className="mandatory-asterik">*</sup>
-                </label>
-
-                <select id="technical-skills">
-                  <option value="">Please select your skill</option>
-                  <option value="Artist">Artist</option>
-                  <option value="Builder">Builder</option>
-                  <option value="Decorator">Decorator</option>
-                  <option value="Electrician">Electrician</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
             </div>
 
             {/* Address */}
             <div className="form-group">
               <label htmlFor="address">
                 Address (only visible to you)
-                <span>
-                  <sup className="mandatory-asterik">*</sup>
-                </span>
+                <sup className="mandatory-asterik">*</sup>
               </label>
-
               <input
                 type="text"
                 id="address"
@@ -287,32 +299,71 @@ function Getstarted() {
               />
             </div>
 
-            {/* Service Area Dropdown */}
-            <div className="form-group">
-              <label htmlFor="service-area">
-                Service Area <sup className="mandatory-asterik">*</sup>
-              </label>
+            {/* Skills Dropdown - Only show for skilled person */}
+            {selectedOption === "skilled" && (
+              <>
+                <div className="form-group">
+                  <label htmlFor="skill">
+                    Skill <sup className="mandatory-asterik">*</sup>
+                  </label>
+                  <select 
+                    id="skill" 
+                    value={formData.skill}
+                    onChange={handleSkillChange}
+                    required={selectedOption === "skilled"}
+                  >
+                    <option value="">Please select your skill</option>
+                    <option value="Artist">Artist</option>
+                    <option value="Builder">Builder</option>
+                    <option value="Decorator">Decorator</option>
+                    <option value="Electrician">Electrician</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
 
-              <select id="service-area">
-                <option value="">Select your area of coverage</option>
-                <option value="1">1 mile</option>
-                <option value="5">5 miles</option>
-                <option value="10">10 miles</option>
-                <option value="20">20 miles</option>
-                <option value="custom-distance">Custom distance</option>
-              </select>
-            </div>
+                <div className="form-group">
+                  <label htmlFor="expertise">
+                    Area of Expertise <sup className="mandatory-asterik">*</sup>
+                  </label>
+                  <input
+                    type="text"
+                    id="expertise"
+                    placeholder="Enter your area of expertise"
+                    required={selectedOption === "skilled"}
+                    value={formData.expertise}
+                    onChange={handleExpertiseChange}
+                  />
+                </div>
+
+                {/* Service Area Dropdown */}
+                <div className="form-group">
+                  <label htmlFor="service_area">
+                    Service Area <sup className="mandatory-asterik">*</sup>
+                  </label>
+                  <select 
+                    id="service_area"
+                    value={formData.service_area}
+                    onChange={handleServiceAreaChange}
+                    required={selectedOption === "skilled"}
+                  >
+                    <option value="">Select your area of coverage</option>
+                    <option value="1">1 mile</option>
+                    <option value="5">5 miles</option>
+                    <option value="10">10 miles</option>
+                    <option value="20">20 miles</option>
+                    <option value="custom-distance">Custom distance</option>
+                  </select>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Bio and video fields */}
-
-          {/* Bio input field */}
           <div className="form-row">
             <div className="form-group bio-group">
               <label htmlFor="bio">
                 Bio <sup className="mandatory-asterik">*</sup>
               </label>
-
               <textarea
                 id="bio"
                 placeholder="Write a short bio about yourself"
@@ -323,21 +374,20 @@ function Getstarted() {
               />
             </div>
 
-            {/* Video upload field */}
-            <div className="form-group video-group">
-              <label htmlFor="intro-video">
-                Introductory Video (Optional){" "}
-                <span>
-                  <sup className="mandatory-asterik">*</sup>
-                </span>
-              </label>
-              <div className="video-upload">
-                <div className="dashed-border-video">
-                  <img src="/images/videocam.png" alt="video camera" />
-                  {/* <input type="file" id="intro-video" accept="video/*" /> */}
+            {/* Video upload field - Only for skilled persons */}
+            {selectedOption === "skilled" && (
+              <div className="form-group video-group">
+                <label htmlFor="intro-video">
+                  Introductory Video (Optional)
+                </label>
+                <div className="video-upload">
+                  <div className="dashed-border-video">
+                    <img src="/images/videocam.png" alt="video camera" />
+                    <input type="file" id="intro-video" accept="video/*" />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Next step button */}
@@ -346,11 +396,10 @@ function Getstarted() {
               {loading ? "Creating..." : "Create Account"}
             </button>
           </div>
+          
           {error && (
             <div style={{ color: "red", marginTop: "10px" }}>{error}</div>
           )}
-
-          
         </form>
       </div>
 
@@ -361,7 +410,7 @@ function Getstarted() {
             <h2>CONGRATULATIONS</h2>
             <h3>
               Your account has been created successfully! You can now start
-              exploring skilled professionals and services..
+              exploring skilled professionals and services.
             </h3>
             <button className="continue-btn" onClick={handleContinue}>
               Continue

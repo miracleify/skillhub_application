@@ -17,9 +17,11 @@ import ChatBox from './chatBox';
 import ConsumerBTN from './consumerbtn';
 import Nextstep from './nextstep';
 import Laststep from './laststep';
-import Consumerpages from '../consumerpages';
+import Consumerpages from './consumerpages';
 import Hire from './hirepage';
 import HiringartisanPage from './hiringartisanpage';
+import ConsumerNextPage from './consumerNextpage';
+import ConsumerVerificationPage from './consumerVericationPage';
 function Header() {
   const { tradespeople } = useTrades();
   const tradesperson = tradespeople[2]; // Using the first tradesperson as default
@@ -79,7 +81,7 @@ function Header() {
               <Link to="/signin">Sign In</Link>
             </li>
             <li className="get-started">
-              <Link to="/getstarted">Get Started</Link>
+              <Link to="/consumerpages">Get Started</Link>
             </li>
           </ul>
         </nav>
@@ -143,6 +145,9 @@ function Header() {
          <Route path="/consumerpages" element={< Consumerpages  />} />
          <Route path="/hirepage" element={< Hire  />} /> 
          <Route path="/hiringartisanPage/:id" element={< HiringartisanPage   />} /> 
+         <Route path="/consumerNextpage" element={ <ConsumerNextPage/>} />
+        <Route path="/consumerVericationPage" element={<ConsumerVerificationPage />} />
+
         <Route path="*" element={<NotFound />} />
       
       </Routes>

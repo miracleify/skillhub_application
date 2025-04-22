@@ -1,7 +1,5 @@
-import React from "react";
-
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 function ConsumerBTN() {
   const navigate = useNavigate();
@@ -9,7 +7,7 @@ function ConsumerBTN() {
   
   // Add state for form inputs
   const [formData, setFormData] = useState({
-    name: "",
+    email: "",
     password: "",
     confirmPassword: ""
   });
@@ -23,9 +21,10 @@ function ConsumerBTN() {
     setSelectedOption(option);
     navigate('/consumerbtn');
   };
-  const changepage = ()=>{
-    navigate("/nextstep")
-  }
+
+  const changepage = () => {
+    navigate("/consumerNextpage");
+  };
   
   // Add onChange handler for form inputs
   const handleInputChange = (e) => {
@@ -39,17 +38,16 @@ function ConsumerBTN() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    
+    changepage();
   };
   
   const [progressSteps] = useState([
     { id: 0, text: "Basic Details", longText: "Basic Details", completed: true },
     { id: 1, text: "Profile Information", longText: "Profile Information", completed: false },
-  
   ]);
   
   return (
-    <>
+    <div className="consumer-signup-container">
       <div className="title-section">
         <br/>  <br/>  <br/> 
         <h2>Create Account</h2>
@@ -90,57 +88,77 @@ function ConsumerBTN() {
           </ul>
         </div>
         
-        <div className="form-container">
-         
-            <img className="login-pic" src="./images/image.png" alt="Login" />
-        
-          <form className="newform" onSubmit={handleSubmit}> 
-            <br/>
-          <div className="input-labels">
-          <label>
-    
-    <h3 style={{marginLeft:"-340px"}}className="label-text">Email<sup style={{color:"red",fontSize:"10px"}}>*</sup> </h3>
-    <input className="bar"
-      type="text"
-      name="name"
-      value={formData.name}
-      onChange={handleInputChange}
-      placeholder="enter your name"
-      required
-    />
-  </label>
-  <br/>
-  <label>
-    <h3 style={{marginLeft:"-310px"}}className="label-text">Password<sup style={{color:"red",fontSize:"10px"}}>*</sup> </h3>
-    <input className="bar"
-      type="password"
-      name="password"
-      value={formData.password}
-      onChange={handleInputChange}
-      placeholder="enter your password"
-      required
-    />
-  </label> <br/>
-  
-  <label>
-    <h3  style={{marginLeft:"-250px"}}className="label-text">Confirm password <sup style={{color:"red",fontSize:"10px"}}>*</sup> </h3>
-    <input className="bar"
-      type="password"
-      name="confirmPassword"
-      value={formData.confirmPassword}
-      onChange={handleInputChange}
-      placeholder="confirm your password"
-      required
-    />
-  </label>
+        <div className="container">
+          {/* image form container */}
+          <div className="image-form-container">
+            <img
+              className="login-pic"
+              src="./images/image.png"
+              alt="Login Image"
+            />
+
+            {/* New Form */}
+            <form className="new-form" onSubmit={handleSubmit}>
+              {/* Email */}
+              <div className="input-field-container">
+                <label className="label-text">
+                  Email<sup className="mandatory-asterik">*</sup>{" "}
+                </label>
+
+                <input
+                  className="input-field"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Enter a valid email address"
+                  required
+                />
+              </div>
+
+              {/* Password */}
+              <div className="input-field-container">
+                <label className="label-text">
+                  Password
+                  <sup className="mandatory-asterik">*</sup>
+                </label>
+
+                <input
+                  className="input-field"
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
+
+              {/* Password confirmation */}
+              <div className="input-field-container">
+                <label className="label-text">
+                  Confirm password <sup className="mandatory-asterik">*</sup>
+                </label>
+
+                <input
+                  className="input-field"
+                  type="password"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange}
+                  placeholder="Re-enter your password"
+                  required
+                />
+              </div>
+
+              <button className="next-btn" onClick={changepage} type="submit">
+                Next Step
+              </button>
+            </form>
           </div>
-            <br/><br/>
-            
-            <button  onClick={changepage} className="next-btn" type="submit">Next Step</button>
-          </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
