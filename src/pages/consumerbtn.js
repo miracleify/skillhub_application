@@ -99,36 +99,40 @@ function ConsumerBTN() {
 
         {/* Progression indicators workout*/}
         <div className="progressbar">
-        <ul>
-          {progressSteps.map((step, index) => (
-            <React.Fragment key={step.id}>
-              <li>
-                <div className="progress-step">
-                  <div
-                    className={`step-circle ${step.completed ? "active" : ""}`}
-                  >
-                    {step.text}
+          <ul>
+            {progressSteps.map((step, index) => (
+              <React.Fragment key={step.id}>
+                <li>
+                  <div className="progress-step">
+                    <div
+                      className={`step-circle ${
+                        step.completed ? "active" : ""
+                      }`}
+                    >
+                      {step.text}
+                    </div>
                   </div>
-                </div>
-              </li>
-              {index < progressSteps.length - 1 && (
-                <div
-                  className={`connector-line ${step.completed ? "active" : ""}`}
-                />
-              )}
-            </React.Fragment>
-          ))}
-        </ul>
-      </div>
+                </li>
+                {index < progressSteps.length - 1 && (
+                  <div
+                    className={`connector-line ${
+                      step.completed ? "active" : ""
+                    }`}
+                  />
+                )}
+              </React.Fragment>
+            ))}
+          </ul>
+        </div>
 
-      {/* Mobile Steps */}
-      <div className="step-container">
-        <div className="step active">1</div>
-        <div className="line"></div>
-        <div className="step">2</div>
-        <div className="line"></div>
-        <div className="step">3</div>
-      </div>
+        {/* Mobile Steps */}
+        <div className="step-container">
+          <div className="step active">1</div>
+          <div className="line"></div>
+          <div className="step">2</div>
+          <div className="line"></div>
+          <div className="step">3</div>
+        </div>
 
         <div className="container">
           {/* image form container */}
