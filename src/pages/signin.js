@@ -1,31 +1,22 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { signInUser } from "../services/authService";
+import { applyAnimationDelay } from "../utils/animationUtils";
 import '../styles/signin.css';
 
 export default function SignIn() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Add animation sequence with delays
   useEffect(() => {
-    const inputContainers = document.querySelectorAll('.input-field-container');
-    inputContainers.forEach((container, index) => {
-      container.style.animationDelay = `${0.2 * (index + 1)}s`;
-    });
+    applyAnimationDelay('.input-field-container', 0.2);
   }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -33,22 +24,11 @@ export default function SignIn() {
     setLoading(true);
     setError("");
     try {
-      const response = await axios.post(
-        "https://skillhub-api-y3gi.onrender.com/api/auth/signin",
-        formData,
-        { headers: { "Content-Type": "application/json" } }
-      );
-      if (response.status === 200) {
-        console.log("Login successful:", response.data);
-        // Redirect to dashboard or home page
-        navigate("/dashboard");
-      } else {
-        setError(response.data.message || "Login failed.");
-      }
+      const response = await signInUser(formData);
+      console.log("Login successful:", response.data);
+      navigate("/dashboard");
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Network error. Please try again."
-      );
+      setError(err.message || "Network error. Please try again.");
       console.error("Login error:", err);
     } finally {
       setLoading(false);

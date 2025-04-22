@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/nextstep.css";
+import { uploadImageToImgbb } from "../utils/imageUpload";
 
 function Nextstep() {
   const Navigate = useNavigate();
@@ -68,34 +69,11 @@ function Nextstep() {
     setLoading(true);
     setError("");
     try {
-      // Convert file to base64
-      const toBase64 = (file) =>
-        new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => resolve(reader.result.split(",")[1]);
-          reader.onerror = (error) => reject(error);
-        });
-      const base64 = await toBase64(file);
-
-      // Upload to imgbb
-      const form = new FormData();
-      form.append("key", "f2acfbbcda824f11f3a15bdd6ffd9414");
-      form.append("image", base64);
-
-      const res = await fetch("https://api.imgbb.com/1/upload", {
-        method: "POST",
-        body: form,
-      });
-      const data = await res.json();
-      if (data.success) {
-        setFormData((prev) => ({
-          ...prev,
-          photoURL: data.data.url,
-        }));
-      } else {
-        setError("Image upload failed.");
-      }
+      const photoURL = await uploadImageToImgbb(file);
+      setFormData((prev) => ({
+        ...prev,
+        photoURL,
+      }));
     } catch (err) {
       setError("Image upload failed. " + err.message);
     } finally {

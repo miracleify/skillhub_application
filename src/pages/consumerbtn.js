@@ -16,7 +16,7 @@ function ConsumerBTN() {
 
   const handleOptionChange1 = (option) => {
     setSelectedOption(option);
-    navigate("/consumerpage");
+    navigate("/consumerpages");
   };
 
   const handleOptionChange2 = (option) => {
