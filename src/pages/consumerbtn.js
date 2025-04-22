@@ -5,13 +5,12 @@ import { useState } from "react";
 
 function ConsumerBTN() {
   const navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState("consumer");
+  const [selectedOption, setSelectedOption] = useState("skilled");
 
   // Add state for form inputs
   const [formData, setFormData] = useState({
     name: "",
-    password: "",
-    confirmPassword: "",
+    password: ""
   });
 
   const handleOptionChange1 = (option) => {
@@ -159,6 +158,7 @@ function ConsumerBTN() {
                   onChange={handleInputChange}
                   placeholder="Enter a valid email address"
                   required
+                  minLength={3}
                 />
               </div>
 
@@ -177,23 +177,7 @@ function ConsumerBTN() {
                   onChange={handleInputChange}
                   placeholder="Enter your password"
                   required
-                />
-              </div>
-
-              {/* Password confirmation */}
-              <div className="input-field-container">
-                <label className="label-text">
-                  Confirm password <sup className="mandatory-asterik">*</sup>
-                </label>
-
-                <input
-                  className="input-field"
-                  type="password"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleInputChange}
-                  placeholder="Re-enter your password"
-                  required
+                  minLength={3}
                 />
               </div>
 
