@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import '../styles/signin.css';
 
 export default function SignIn() {
@@ -7,6 +8,9 @@ export default function SignIn() {
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   // Add animation sequence with delays
   useEffect(() => {
@@ -24,10 +28,31 @@ export default function SignIn() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
+    setLoading(true);
+    setError("");
+    try {
+      const response = await axios.post(
+        "https://skillhub-api-y3gi.onrender.com/api/auth/signin",
+        formData,
+        { headers: { "Content-Type": "application/json" } }
+      );
+      if (response.status === 200) {
+        console.log("Login successful:", response.data);
+        // Redirect to dashboard or home page
+        navigate("/dashboard");
+      } else {
+        setError(response.data.message || "Login failed.");
+      }
+    } catch (err) {
+      setError(
+        err.response?.data?.message || "Network error. Please try again."
+      );
+      console.error("Login error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,6 +90,7 @@ export default function SignIn() {
                 
               </div>
               
+
               <div className="input-field-container">
                 <label className="input-label">
                   Password<sup className="required-asterisk">*</sup> <br>
@@ -80,11 +106,12 @@ export default function SignIn() {
                 />
                 </label>
                
+
               </div>
-              
+              {error && <div className="error-message">{error}</div>}
               <div className="form-actions">
-                <button className="login-button" type="submit">
-                  Log In
+                <button className="login-button" type="submit" disabled={loading}>
+                  {loading ? "Logging in..." : "Log In"}
                 </button>
                 <button className="google-signin-button" type="button">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
