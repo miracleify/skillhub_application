@@ -128,44 +128,47 @@ function Artisan() {
         // Artisan scrollable grid
         <>
           <div className="scroll-section">
-            <h1>Artists</h1>
+            {/* Scroll Section Title */}
+            {/* <h1>Artisans</h1> */}
 
-          {/* Profile Cards */}
-          <div className="artisan-scroll">
-            {filteredUsers.map((user) => (
-              <div
-                key={user.id || user._id || Math.random()}
-                className="trade-card"
-              >
-                <div className="trade-image">
-                  <img
-                    className="img"
-                    src={user.photoURL || defaultImageUrl}
-                    alt={user.full_name || "Artisan"}
-                  />
-                  {user.verified && (
-                    <span className="verified-badge">
-                      <i className="fa-solid fa-circle-check verification-icon"></i>
-                    </span>
-                  )}
+            {/* Profile Cards */}
+            <div className="artisan-scroll artisan-grid">
+              {filteredUsers.map((user) => (
+                <div
+                  key={user.id || user._id || Math.random()}
+                  className="trade-card"
+                >
+                  <div className="trade-image">
+                    <img
+                      className="img"
+                      src={user.photoURL || defaultImageUrl}
+                      alt={user.full_name || "Artisan"}
+                    />
+                    {user.verified && (
+                      <span className="verified-badge">
+                        <i className="fa-solid fa-circle-check verification-icon"></i>
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Trade info */}
+                  <div className="trade-info">
+                    <h3 className="trade-name">{user.full_name}</h3>
+                    <p className="ratings">{user.ratings || "No ratings yet"}</p>
+                    <p className="personP">
+                      {user.profession || "Not specified"}
+                    </p>
+                    <a
+                      href={`/profile/${user.id || user._id}`}
+                      className="view-profile-btn"
+                      onClick={(e) => handleViewProfile(e, user)}
+                    >
+                      View Profile
+                    </a>
+                  </div>
                 </div>
-                <div className="trade-info">
-                  <h3 className="trade-name">{user.full_name}</h3>
-                  <p className="ratings">{user.ratings || "No ratings yet"}</p>
-                  <p className="personP">
-                    {user.profession || "Not specified"}
-                  </p>
-                  <a
-                    href={`/profile/${user.id || user._id}`}
-                    className="view-profile-btn"
-                    onClick={(e) => handleViewProfile(e, user)}
-                  >
-                    View Profile
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
           </div>
         </>
       )}
