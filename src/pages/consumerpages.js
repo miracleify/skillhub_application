@@ -8,10 +8,13 @@ function ConsumerBTN() {
   // Add state for form inputs
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
-    confirmPassword: ""
+    password: ""
   });
   
+ // Add error state
+  const [error, setError] = useState("");
+
+
   const handleOptionChange1 = (option) => {
     setSelectedOption(option);
     navigate('/consumerpage');
@@ -23,7 +26,13 @@ function ConsumerBTN() {
   };
 
   const changepage = () => {
-    navigate("/consumerNextpage");
+     // Only navigate if both fields are filled
+    if (!formData.email || !formData.password) {
+      setError("Email and password are required.");
+      return;
+    }
+    setError("");
+    navigate("/consumerNextpage", { state: { formData } }); // Pass formData to the next page
   };
   
   // Add onChange handler for form inputs
@@ -35,8 +44,14 @@ function ConsumerBTN() {
     });
   };
   
-  const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
     e.preventDefault();
+    // Only submit if both fields are filled
+    if (!formData.email || !formData.password) {
+      setError("Email and password are required.");
+      return;
+    }
+    setError("");
     console.log("Form submitted:", formData);
     changepage();
   };
@@ -104,7 +119,6 @@ function ConsumerBTN() {
                 <label className="label-text">
                   Email<sup className="mandatory-asterik">*</sup>{" "}
                 </label>
-
                 <input
                   className="input-field"
                   type="email"
@@ -122,7 +136,6 @@ function ConsumerBTN() {
                   Password
                   <sup className="mandatory-asterik">*</sup>
                 </label>
-
                 <input
                   className="input-field"
                   type="password"
@@ -133,23 +146,12 @@ function ConsumerBTN() {
                   required
                 />
               </div>
-
-              {/* Password confirmation */}
-              <div className="input-field-container">
-                <label className="label-text">
-                  Confirm password <sup className="mandatory-asterik">*</sup>
-                </label>
-
-                <input
-                  className="input-field"
-                  type="password"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleInputChange}
-                  placeholder="Re-enter your password"
-                  required
-                />
-              </div>
+     {/* Show error if fields are empty */}
+              {error && (
+                <div className="error-message" style={{ color: "red", marginBottom: "10px" }}>
+                  {error}
+                </div>
+              )}
 
               <button className="next-btn" onClick={changepage} type="submit">
                 Next Step
