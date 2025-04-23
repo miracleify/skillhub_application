@@ -88,6 +88,7 @@ function ConsumerNextPage() {
   const handleCreateAccount = async (e) => {
     e.preventDefault();
     setLoading(true);
+    console.log("Final form data:", formData); // Log the form data here
     setError("");
     try {
       const response = await axios.post(
@@ -191,6 +192,7 @@ function ConsumerNextPage() {
               </strong>
             </p>
           </div>
+          
         </div>
 
         <div className="form-row">

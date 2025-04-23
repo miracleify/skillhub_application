@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "../styles/laststep.css";
+import { uploadImageToImgbb } from "../utils/imageUpload";
 
 function Laststep() {
   const Navigate = useNavigate();
@@ -30,11 +31,11 @@ function Laststep() {
   const prevFormData = location.state?.formData || {};
   const [formData, setFormData] = useState({
     ...prevFormData,
-    bvn: "",
+    bvn: "", bvn_URL : "",
   });
 
   const handleInputChange = (e) => {
-    setFormData({ ...formData, bvn: e.target.value });
+    setFormData({ ...formData, bvn: e.target.value});
   };
 
   const handleOptionChange1 = (option) => {
@@ -51,10 +52,11 @@ function Laststep() {
     e.preventDefault();
     setLoading(true);
     setError("");
+    console.log("Final form data:", formData); // Log the form data here
     try {
       const response = await axios.post(
         "https://skillhub-api-y3gi.onrender.com/api/auth/signup",
-        formData,
+        { ...formData, role: "skilled" },
         { headers: { "Content-Type": "application/json" } }
       );
       if (response.status === 200 || response.status === 201) {
@@ -77,6 +79,24 @@ function Laststep() {
     setShowModal(false);
     Navigate("/signin");
   };
+
+    const handlePhotoChange = async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      setLoading(true);
+      setError("");
+      try {
+        const bvn_URL  = await uploadImageToImgbb(file);
+        setFormData((prev) => ({
+          ...prev,
+          bvn_URL,
+        }));
+      } catch (err) {
+        setError("Image upload failed. " + err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
   return (
     <>
@@ -137,26 +157,38 @@ function Laststep() {
           </ul>
         </div>
 
-        <div className="image-upload-container">
-          {/* Image Request */}
-          <div className="image-request-container">
-            <div className="profilepices">
-              <div className="dashed-border">
-                <img src="/images/cam.png" alt="video camera" className="upload-image-icon" />
-              </div>
-              <div className="text">
-                <span>
-                  Drag & drop or click to upload an image of your choice.
-                </span>
-                <strong>(PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)</strong>
-              </div>
-            </div>
+        
+        <form onSubmit={handleCreateAccount}>
+          <div className="image-upload-container">
+            <div className="image-request-container">
+              <div className="profile-pic-upload">
+                <div className="dashed-border profile-image-icon-file-button-container">
+                  <img
+                    className="profile-image-icon"
+                    src={formData.bvn_URL || "/images/camera.png"}
+                    alt="Profile Image Upload"
+                  />
+                </div>
 
-            {/* Text */}
-            <strong>Acceptable forms of ID - Passport, Drivers License, etc..</strong>
-          </div>
+                <input
+                  className="profile-image-upload-button"
+                  type="file"
+                  id="profile-photo"
+                  accept="image/*"
+                  onChange={handlePhotoChange}
+                />
 
-          {/* Take Photo Button */}
+                <div className="key-image-upload-guidlines">
+                  <p>Drag & drop or choose file to upload an image of yourself.</p>
+                  <p>
+                    <strong>
+                      (PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)
+                    </strong>
+                  </p>
+                </div>
+              </div>
+             
+             {/* Take Photo Button */}
           <div className="take-photo-request-container">
             <div className="profilepices">
               <div className="dashed-border">
@@ -177,18 +209,17 @@ function Laststep() {
               </a>
             </strong>
           </div>
-        </div>
+            
+            </div>
 
-        {/* BVN Input */}
-        <div className="bvn-form-input-container">
-          <form className="bvn-form" onSubmit={handleCreateAccount}>
-            {/* Label */}
+            
+          </div>
+
+          <div className="bvn-form-input-container">
             <label htmlFor="bvn">
               Bank Verification Number (BVN)
               <sup className="mandatory-asterik">*</sup>
             </label>
-
-            {/* Input field */}
             <input
               className="input-field"
               type="number"
@@ -198,16 +229,12 @@ function Laststep() {
               value={formData.bvn}
               onChange={handleInputChange}
             />
-          </form>
+          </div>
 
-          {/* Save info buttton container */}
           <div className="buttons-container">
-            {/* save info button */}
             <button id="save-btn" className="buttons" type="button">
               Save information
             </button>
-
-            {/* create acocunt button */}
             <button
               id="create-btn"
               className="buttons"
@@ -217,11 +244,12 @@ function Laststep() {
               {loading ? "Creating..." : "Create Account"}
             </button>
           </div>
+
           {error && (
             <div style={{ color: "red", marginTop: "10px" }}>{error}</div>
           )}
+        </form>
         </div>
-      </div>
 
       {/* Congratulations Modal/Popover */}
       {showModal && (

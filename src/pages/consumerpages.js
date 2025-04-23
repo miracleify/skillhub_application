@@ -11,6 +11,10 @@ function ConsumerBTN() {
     password: ""
   });
   
+ // Add error state
+  const [error, setError] = useState("");
+
+
   const handleOptionChange1 = (option) => {
     setSelectedOption(option);
     navigate('/consumerpage');
@@ -22,6 +26,12 @@ function ConsumerBTN() {
   };
 
   const changepage = () => {
+     // Only navigate if both fields are filled
+    if (!formData.email || !formData.password) {
+      setError("Email and password are required.");
+      return;
+    }
+    setError("");
     navigate("/consumerNextpage", { state: { formData } }); // Pass formData to the next page
   };
   
@@ -34,12 +44,14 @@ function ConsumerBTN() {
     });
   };
   
-  const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
     e.preventDefault();
+    // Only submit if both fields are filled
     if (!formData.email || !formData.password) {
-        alert("Please fill in both email and password.");
-        return;
+      setError("Email and password are required.");
+      return;
     }
+    setError("");
     console.log("Form submitted:", formData);
     changepage();
   };
@@ -115,7 +127,6 @@ function ConsumerBTN() {
                   onChange={handleInputChange}
                   placeholder="Enter a valid email address"
                   required
-                  minLength={3}
                 />
               </div>
 
@@ -133,15 +144,16 @@ function ConsumerBTN() {
                   onChange={handleInputChange}
                   placeholder="Enter your password"
                   required
-                  minLength={3}
                 />
               </div>
+     {/* Show error if fields are empty */}
+              {error && (
+                <div className="error-message" style={{ color: "red", marginBottom: "10px" }}>
+                  {error}
+                </div>
+              )}
 
-              <button
-                className="next-btn"
-                type="submit"
-                disabled={!formData.email || !formData.password}
-              >
+              <button className="next-btn" onClick={changepage} type="submit">
                 Next Step
               </button>
             </form>
