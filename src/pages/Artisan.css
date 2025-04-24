@@ -116,7 +116,7 @@
 .artisan-page-trade-card {
   border: 1px solid var(--inactive-grey);
   border-radius: 10px;
-  height: 304px;
+  height: 305px;
   width: auto;
   transition: 0.3s ease;
 }
