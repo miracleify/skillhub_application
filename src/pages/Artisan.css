@@ -8,6 +8,7 @@
   --white: #ffffff;
   --black: #000000;
   --inactive-grey: #8f8f8f;
+  --grey: #e8e8e8;
   --skillhub-blue: #0575e6;
   --skillhub-hover-blue: #0518e6;
   --red: red;
@@ -162,6 +163,12 @@
   background-color: var(--skillhub-hover-blue);
 }
 
+.artisan-page-personP {
+  background-color: var(--grey);
+  padding: 5px;
+  border-radius: 5px;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 767px) {
   .artisan-page-search-container {
@@ -290,7 +297,7 @@
     font-size: 12px;
   }
 
-  .personP {
+  .artisan-page-personP {
     font-size: 12px;
   }
 }
