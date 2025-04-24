@@ -72,9 +72,6 @@ function Header() {
               <Link to="/artisan">Artisans</Link>
             </li>
             <li>
-              <Link to="/consumer">Consumer</Link>
-            </li>
-            <li>
               <Link to="/contact">Contact Us</Link>
             </li>
             <li className="signin">

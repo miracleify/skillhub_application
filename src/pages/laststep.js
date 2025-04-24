@@ -83,7 +83,7 @@ function Laststep() {
       <div className={`last-page ${showModal ? "blur-background" : ""}`}>
         <h2>Create Account</h2>
         <h3>
-          Already have an account? <a href="#">sign in</a>
+          Already have an account? <a href="#">Sign In</a>
         </h3>
 
         {/* Switch buttons */}
@@ -142,25 +142,37 @@ function Laststep() {
           <div className="image-request-container">
             <div className="profilepices">
               <div className="dashed-border">
-                <img src="/images/cam.png" alt="video camera" className="upload-image-icon" />
+                <img
+                  src="/images/cam.png"
+                  alt="video camera"
+                  className="upload-image-icon"
+                />
               </div>
               <div className="text">
                 <span>
                   Drag & drop or click to upload an image of your choice.
                 </span>
-                <strong>(PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)</strong>
+                <strong>
+                  (PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)
+                </strong>
               </div>
             </div>
 
             {/* Text */}
-            <strong>Acceptable forms of ID - Passport, Drivers License, etc..</strong>
+            <strong>
+              Acceptable forms of ID - Passport, Drivers License, etc..
+            </strong>
           </div>
 
           {/* Take Photo Button */}
           <div className="take-photo-request-container">
             <div className="profilepices">
               <div className="dashed-border">
-                <img src="/images/mobile.png" alt="video camera" className="take-photo-icon"/>
+                <img
+                  src="/images/mobile.png"
+                  alt="video camera"
+                  className="take-photo-icon"
+                />
               </div>
               <div className="text">
                 <span>Click to take a photo of your face</span>

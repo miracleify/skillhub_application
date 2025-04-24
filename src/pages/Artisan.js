@@ -82,10 +82,10 @@ function Artisan() {
       {/* <h1 className="artisan-heading">Artisans List</h1> */}
 
       {/* Search Bar */}
-      <div className="search-container">
-        <div className="search-bar">
+      <div className="artisan-page-search-container">
+        <div className="artisan-page-search-bar">
           <input
-            className="input-field"
+            className="artisan-search-input-field"
             type="text"
             onChange={searchOnChange}
             value={searchTerm}
@@ -93,13 +93,13 @@ function Artisan() {
           />
 
           {/* Search Button */}
-          <button className="search-button">
+          <button className="artisan-page-search-button">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
 
         {/* Filter Button */}
-        <button className="filter-button">
+        <button className="artisan-page-filter-button">
           <div className="filter-icon-container">
             <svg
               className="filter-icon"
@@ -132,13 +132,13 @@ function Artisan() {
             {/* <h1>Artisans</h1> */}
 
             {/* Profile Cards */}
-            <div className="artisan-scroll artisan-grid">
+            <div className="artisan-grid">
               {filteredUsers.map((user) => (
                 <div
                   key={user.id || user._id || Math.random()}
-                  className="trade-card"
+                  className="artisan-page-trade-card"
                 >
-                  <div className="trade-image">
+                  <div className="artisan-page-trade-image">
                     <img
                       className="img"
                       src={user.photoURL || defaultImageUrl}
@@ -152,15 +152,17 @@ function Artisan() {
                   </div>
 
                   {/* Trade info */}
-                  <div className="trade-info">
-                    <h3 className="trade-name">{user.full_name}</h3>
-                    <p className="ratings">{user.ratings || "No ratings yet"}</p>
+                  <div className="artisan-page-trade-info">
+                    <h3 className="artisan-trade-name">{user.full_name}</h3>
+                    <p className="artisan-page-ratings">{user.ratings || "No ratings yet"}</p>
                     <p className="personP">
-                      {user.profession || "Not specified"}
+                      {user.profession || "Unknown Skill"}
                     </p>
+
+                    {/* View profile button */}
                     <a
                       href={`/profile/${user.id || user._id}`}
-                      className="view-profile-btn"
+                      className="artisan-page-view-profile-btn"
                       onClick={(e) => handleViewProfile(e, user)}
                     >
                       View Profile

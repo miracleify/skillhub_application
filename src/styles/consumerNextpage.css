@@ -1,0 +1,27 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --inactive-grey: #8f8f8f;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
+  --red: red;
+  --completion-green: #008000;
+  --debug-colour: #add8e6;
+}
+
+.mandatory-asterik {
+  color: var(--red);
+}
+
+/* Form */
+.switch-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.consumer-profile-info-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
