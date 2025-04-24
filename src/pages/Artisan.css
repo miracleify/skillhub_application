@@ -234,15 +234,15 @@
     text-align: center;
   }
 
-  .trade-name {
+  .artisan-page-trade-name {
     font-size: 14px;
   }
 
-  .ratings {
+  .artisan-page-ratings {
     font-size: 12px;
   }
 
-  .personP {
+  .artisan-page-personP {
     font-size: 12px;
   }
 }
@@ -282,7 +282,7 @@
     text-align: center;
   }
 
-  .artisan-trade-name {
+  .artisan-page-trade-name {
     font-size: 14px;
   }
 

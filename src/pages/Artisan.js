@@ -128,9 +128,6 @@ function Artisan() {
         // Artisan scrollable grid
         <>
           <div className="scroll-section">
-            {/* Scroll Section Title */}
-            {/* <h1>Artisans</h1> */}
-
             {/* Profile Cards */}
             <div className="artisan-grid">
               {filteredUsers.map((user) => (
@@ -153,9 +150,13 @@ function Artisan() {
 
                   {/* Trade info */}
                   <div className="artisan-page-trade-info">
-                    <h3 className="artisan-trade-name">{user.full_name}</h3>
-                    <p className="artisan-page-ratings">{user.ratings || "No ratings yet"}</p>
-                    <p className="personP">
+                    <h3 className="artisan-page-trade-name">
+                      {user.full_name}
+                    </h3>
+                    <p className="artisan-page-ratings">
+                      {user.ratings || "No ratings yet"}
+                    </p>
+                    <p className="artisan-page-personP">
                       {user.profession || "Unknown Skill"}
                     </p>
 
