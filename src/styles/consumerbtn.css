@@ -1,3 +1,5 @@
+/* Your existing CSS with tab responsiveness improvements */
+
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +26,8 @@ body {
 .page-container {
   /* max-width: 1000px; */
   width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
 header {
@@ -82,6 +86,7 @@ header img {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 }
 
 .switch-buttons-container {
@@ -107,8 +112,6 @@ header img {
 
 .consumer-btn,
 .skill-btn {
-  /* width: 200px; */
-  /* height: 45px; */
   font-weight: 500;
   font-size: 18px;
   color: var(--black);
@@ -117,6 +120,7 @@ header img {
   cursor: pointer;
   background: transparent;
   transition: all 0.3s ease;
+  padding: 8px 16px;
 }
 
 .skill-btn.active,
@@ -131,13 +135,23 @@ header img {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* animation: fadeIn 1.4s ease-in; */
+  width: 100%;
+  margin: 30px 0;
+  overflow-x: auto; /* Allow horizontal scrolling on small screens */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.progressbar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome/Safari */
 }
 
 .progressbar ul {
   display: flex;
   list-style: none;
   align-items: center;
+  padding: 10px 0;
+  min-width: min-content; /* Ensure content doesn't shrink too much */
 }
 
 .progressbar li {
@@ -154,6 +168,10 @@ header img {
 .step-container {
   visibility: hidden;
   display: flex;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: center;
+  gap: 10px;
 }
 
 .step-circle {
@@ -225,6 +243,7 @@ header img {
   /* width: 100px; */
   /* animation: fadeIn 1.5s ease-in; */
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .new-form {
@@ -352,8 +371,75 @@ header img {
   }
 }
 
-/* Mobile repsonsiveness */
-@media (min-width: 300px) and (max-width: 767px) {
+/* Tab Responsiveness - New Media Query */
+@media (min-width: 480px) and (max-width: 767px) {
+  .page-container {
+    padding: 0 15px;
+  }
+
+  .title-section {
+    margin-top: 40px;
+  }
+
+  .title-section h2 {
+    font-size: 24px;
+  }
+
+  .step-container {
+    visibility: visible;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+
+  .step {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .line {
+    width: 60px;
+  }
+
+  .progressbar {
+    display: none;
+  }
+
+  .login-pic {
+    height: 300px;
+    display: block;
+  }
+
+  .image-form-container {
+    flex-direction: column;
+    padding: 10px;
+    gap: 20px;
+  }
+
+  .switch-buttons {
+    height: 60px;
+    padding: 0 15px;
+    gap: 15px;
+  }
+
+  .consumer-btn,
+  .skill-btn {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+
+  .input-field {
+    height: 56px;
+  }
+
+  .next-btn {
+    height: 54px;
+  }
+}
+
+/* Mobile responsiveness */
+@media (min-width: 300px) and (max-width: 479px) {
   .login-pic {
     display: none;
   }
@@ -416,7 +502,6 @@ header img {
   .input-field {
     display: flex;
     width: 100%;
-
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
     border: none;
     border-radius: 10px;
@@ -445,9 +530,33 @@ header img {
     transition: all 0.3s ease;
     font-weight: 500;
   }
+
+  .title-section {
+    margin-top: 30px;
+  }
+
+  .title-section h2 {
+    font-size: 22px;
+  }
+
+  .title-section h3 {
+    font-size: 14px;
+  }
+
+  .switch-buttons {
+    height: 60px;
+    padding: 0 10px;
+    gap: 10px;
+  }
+
+  .consumer-btn,
+  .skill-btn {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
 }
 
-/* Tablet Responsivness */
+/* Tablet Responsiveness */
 @media (min-width: 768px) and (max-width: 1024px) {
   .form-container {
     flex-direction: column;
@@ -484,5 +593,45 @@ header img {
 
   .step-circle.active {
     width: 150px;
+  }
+
+  .progressbar ul {
+    padding: 0 20px;
+  }
+
+  .page-container {
+    padding: 0 30px;
+  }
+
+  .image-form-container {
+    gap: 20px;
+  }
+}
+
+/* Portrait orientation adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .image-form-container {
+    flex-direction: column;
+  }
+
+  .login-pic {
+    height: 350px;
+    max-width: 100%;
+  }
+}
+
+/* Landscape orientation adjustments for tablets */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .image-form-container {
+    flex-direction: row;
+  }
+
+  .login-pic {
+    height: 350px;
+    max-width: 45%;
+  }
+
+  .new-form {
+    width: 55%;
   }
 }
