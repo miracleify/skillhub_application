@@ -89,7 +89,7 @@ function Artisan() {
             type="text"
             onChange={searchOnChange}
             value={searchTerm}
-            placeholder="What skill are you looking for"
+            placeholder="What skill are you looking for?"
           />
 
           {/* Search Button */}
