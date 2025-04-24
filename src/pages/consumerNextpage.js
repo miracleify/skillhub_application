@@ -182,6 +182,7 @@ function ConsumerNextPage() {
             id="profile-photo"
             accept="image/*"
             onChange={handlePhotoChange}
+            required
           />
 
           <div className="key-image-upload-guidlines">
