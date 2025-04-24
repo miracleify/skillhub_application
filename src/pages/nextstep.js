@@ -53,7 +53,7 @@ function Nextstep() {
 
   const handleOptionChange1 = (option) => {
     setSelectedOption(option);
-    Navigate("/getstarted");
+    Navigate("/consumerpages");
   };
 
   const handleOptionChange2 = (option) => {

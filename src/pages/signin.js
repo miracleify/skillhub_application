@@ -101,7 +101,7 @@ export default function SignIn() {
               </div>
               
               <div className="new-user-prompt">
-                New to <span className="skillhub">Skill<span  className="hub">Hub</span></span>? <Link to="/getstarted" className="signup-link">Sign Up</Link>
+                New to <span className="skillhub">Skill<span  className="hub">Hub</span></span>? <Link to="/consumerpages" className="signup-link">Sign Up</Link>
               </div>
             </form>
           </div>

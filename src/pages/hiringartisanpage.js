@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTrades } from "../TradesContext";
 import { useParams, useNavigate } from "react-router-dom";
-import "../styles/hiringartisanPage.css"; // This will load our external CSS
+import "../styles/hiringartisanPage.css"; 
 
 function HiringartisanPage() {
   const { tradespeople } = useTrades();
   const { id } = useParams();
   const navigate = useNavigate();
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [person, setPerson] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  
   // Form state to track input values
   const [formData, setFormData] = useState({
     fullName: "",
@@ -19,26 +21,50 @@ function HiringartisanPage() {
     notes: "",
     checkbox: "",
   });
+
+  // Load user data from multiple sources
+  useEffect(() => {
+    console.log("Looking for tradesperson with ID:", id);
+    
+    // First try to find the person in tradespeople context
+    let foundPerson = tradespeople && tradespeople.length > 0
+      ? tradespeople.find(p => p.id === parseInt(id) || p.id === id || p._id === id)
+      : null;
+      
+    // If not found in context, try sessionStorage
+    if (!foundPerson) {
+      try {
+        const storedPerson = sessionStorage.getItem('selectedTradesPerson');
+        if (storedPerson) {
+          const parsedPerson = JSON.parse(storedPerson);
+          console.log("Found person in sessionStorage:", parsedPerson);
+          
+          // Check if this is the person we're looking for
+          if (parsedPerson.id === id || parsedPerson.id === parseInt(id) || parsedPerson._id === id) {
+            foundPerson = parsedPerson;
+          }
+        }
+      } catch (error) {
+        console.error("Error parsing sessionStorage data:", error);
+      }
+    }
+    
+    setPerson(foundPerson);
+    setIsLoading(false);
+  }, [id, tradespeople]);
+  
   function hireArtisan(){
     navigate("/hirepage")
   }
 
   // Handle input changes
   const handleChange = (e) => {
-    const { id, value } = e.target;
+    const { id, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [id]: value,
+      [id]: type === 'checkbox' ? checked : value,
     });
   };
-
-//   const checkbox = document.getElementById("checkbox")
-// document.getElementById("hire").disable = true
-
-//   if(!checkbox.checkbox){
-//     hire.disable = true
-
-//   }
 
   // Handle form submission
   const handleSubmit = (e, action) => {
@@ -52,18 +78,12 @@ function HiringartisanPage() {
     );
   };
 
-  // Try to find the person using both string and number comparison
-  const person =
-    tradespeople && tradespeople.length > 0
-      ? tradespeople.find((p) => p.id === parseInt(id) || p.id === id)
-      : null;
-
-  // Check if tradespeople data is loading
-  if (!tradespeople || tradespeople.length === 0) {
+  // Check if data is still loading
+  if (isLoading) {
     return (
       <div className="div-container">
         <h1>Loading...</h1>
-        <p>Waiting for tradespeople data to load...</p>
+        <p>Fetching tradesperson data...</p>
       </div>
     );
   }
@@ -74,6 +94,7 @@ function HiringartisanPage() {
       <div className="div-container">
         <h1>Person Not Found</h1>
         <p>Could not find tradesperson with ID: {id}</p>
+        <p>Debug info: {sessionStorage.getItem('selectedTradesPerson') ? "User exists in session storage" : "No user in session storage"}</p>
         <button onClick={() => navigate("/")} className="hire-button">
           Return to Home
         </button>
@@ -230,7 +251,7 @@ function HiringartisanPage() {
          
         </div>
         <div className="form-row field-appear">
-            <div className="form-group full-width"  id="chexkbox-container">
+            <div className="form-group full-width" id="chexkbox-container">
               <input
                 id="checkbox"
                 value={formData.checkbox}
@@ -240,7 +261,7 @@ function HiringartisanPage() {
               />
 
               <label htmlFor="checkbox">
-                By checking this box you agree to skillhub’s <a href="">terms & condtions</a>
+                By checking this box you agree to skillhub's <a href="">terms & condtions</a>
               </label>
             </div>
           </div>
