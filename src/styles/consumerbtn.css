@@ -1,4 +1,4 @@
-/* Your existing CSS with tab responsiveness improvements */
+
 
 * {
   margin: 0;
@@ -23,397 +23,110 @@ body {
   /* margin-top: 20px; */
 }
 
+/* Keep your existing CSS and update/add these tablet and large screen responsiveness sections */
+
+/* Base responsive elements with better viewport units and clamp */
 .page-container {
-  /* max-width: 1000px; */
   width: 100%;
   max-width: 1200px;
-  padding: 0 20px;
-}
-
-header {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 30px;
-  animation: fadeIn 1s ease-in;
+  padding: 0 clamp(10px, 4vw, 20px);
+  margin: 0 auto;
 }
 
 header img {
-  height: 50px;
-  animation: slideDown 0.8s ease-out;
-}
-
-.content-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.title-section {
-  width: 100%;
-  margin-top: 80px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 1.2s ease-in;
+  height: clamp(30px, 6vw, 50px);
+  max-width: 100%;
 }
 
 .title-section h2 {
-  font-size: 28px;
-  margin-bottom: 10px;
+  font-size: clamp(22px, 4vw, 28px);
+  margin-bottom: clamp(8px, 2vw, 10px);
 }
 
 .title-section h3 {
-  font-size: 16px;
-  margin-bottom: 20px;
+  font-size: clamp(14px, 2.5vw, 16px);
+  margin-bottom: clamp(15px, 3vw, 20px);
 }
 
-.title-section a {
-  color: var(--skillhub-blue);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.title-section a:hover {
-  color: var(--skillhub-hover-blue);
-  text-decoration: underline;
-}
-
-/* Form And Switch buttons container */
-.form-and-switch-buttons-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-}
-
-.switch-buttons-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
+/* Switch buttons responsiveness */
 .switch-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  height: 75px;
-  padding: 0 20px;
-  gap: 20px;
-  background: var(--white);
-  border-radius: 300px;
-  border: none;
-  /* animation: pulseAnimation 2s infinite alternate; */
+  height: clamp(55px, 12vw, 75px);
+  padding: 0 clamp(10px, 3vw, 20px);
+  gap: clamp(10px, 2vw, 20px);
+  flex-wrap: wrap;
 }
 
 .consumer-btn,
 .skill-btn {
-  font-weight: 500;
-  font-size: 18px;
-  color: var(--black);
-  border: none;
-  border-radius: 300px;
-  cursor: pointer;
-  background: transparent;
-  transition: all 0.3s ease;
-  padding: 8px 16px;
+  width: clamp(140px, 25vw, 200px);
+  height: clamp(35px, 8vw, 45px);
+  font-size: clamp(14px, 2.5vw, 18px);
 }
 
-.skill-btn.active,
-.skill-btn:hover {
-  background-color: var(--skillhub-hover-blue);
-  color: var(--white);
-  transform: scale(1.05);
-}
-
-/* Form progression indicators */
+/* Form progress indicators responsiveness */
 .progressbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 30px 0;
-  overflow-x: auto; /* Allow horizontal scrolling on small screens */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  overflow-x: auto; /* Allow horizontal scrolling on smaller screens */
+  scrollbar-width: thin; /* For Firefox */
+  padding: 5px 0;
 }
 
 .progressbar::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome/Safari */
+  height: 4px; /* For Chrome, Safari, and Opera */
 }
 
-.progressbar ul {
-  display: flex;
-  list-style: none;
-  align-items: center;
-  padding: 10px 0;
-  min-width: min-content; /* Ensure content doesn't shrink too much */
-}
-
-.progressbar li {
-  display: flex;
-  align-items: center;
-}
-
-.progress-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.step-container {
-  visibility: hidden;
-  display: flex;
-  margin-bottom: 20px;
-  width: 100%;
-  justify-content: center;
-  gap: 10px;
-}
-
-.step-circle {
-  width: 200px;
-  height: 50px;
-  border: none;
-  border-radius: 50px;
-  background-color: var(--white);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  border: 1px solid var(--skillhub-blue);
-  margin-bottom: 5px;
-  font-size: 15px;
-  text-align: center;
-  color: var(--skillhub-blue);
-  font-weight: 700;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.step-circle.active {
+.progressbar::-webkit-scrollbar-thumb {
   background-color: var(--skillhub-blue);
-  color: var(--white);
-  width: 200px;
-  border-radius: 50px;
-  text-align: center;
-  padding: 10px;
-  box-sizing: border-box;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 40px;
-  text-align: center;
-  animation: pulseLight 1.5s infinite alternate;
+  border-radius: 4px;
 }
 
 .connector-line {
-  height: 5px;
-  width: 170px;
-  background-color: var(--skillhub-blue);
-  transition: all 0.5s ease;
+  width: clamp(50px, 10vw, 170px);
+  flex-shrink: 0;
 }
 
 .connector-line.active {
-  background-color: var(--skillhub-blue);
-  width: 200px;
-  animation: expandLine 1s ease-out;
+  width: clamp(50px, 12vw, 200px);
 }
 
-/* Form Begins */
-.mandatory-asterik {
-  color: var(--red);
-  font-weight: 900;
-  font-size: 16px;
+.step-circle {
+  width: clamp(120px, 20vw, 200px);
+  height: clamp(40px, 6vh, 50px);
+  font-size: clamp(12px, 2vw, 15px);
+  flex-shrink: 0;
 }
 
-.image-form-container {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  width: 100%;
-  padding: 20px;
-  /* animation: slideUp 1s ease-out; */
+.step-circle.active {
+  width: clamp(120px, 20vw, 200px);
 }
 
-.login-pic {
-  height: 450px;
-  /* width: 100px; */
-  /* animation: fadeIn 1.5s ease-in; */
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-.new-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  width: 100%;
-  gap: 30px;
-}
-
-.input-field-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 10px;
-  /* animation: slideUp 1s ease-out; */
-}
-
+/* Form elements responsiveness */
 .input-field {
-  display: flex;
-  width: 100%;
-  height: 64px;
-  background: var(--white);
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  transition: all 0.3s ease;
+  height: clamp(50px, 8vh, 64px);
+  font-size: clamp(14px, 2vw, 16px);
 }
 
 .input-field::placeholder {
-  text-align: left;
-  padding: 0 10px;
-  font-size: 16px;
-}
-
-.input-field:focus {
-  outline: 1px solid var(--skillhub-blue);
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+  font-size: clamp(14px, 2vw, 16px);
 }
 
 .next-btn {
-  height: 60px;
-  width: 100%;
-  background-color: var(--skillhub-blue);
-  border-radius: 10px;
-  color: var(--white);
-  border: none;
-  transition: all 0.3s ease;
-  font-weight: 500;
+  height: clamp(45px, 7vh, 60px);
+  font-size: clamp(14px, 2vw, 16px);
 }
 
-.next-btn:hover {
-  background-color: var(--skillhub-hover-blue);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.input-labels {
-  margin-top: 0px;
-}
-
-.label-text {
-  font-weight: 500;
-  text-align: left;
-}
-
-/* Animation Keyframes */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes pulseAnimation {
-  from {
-    box-shadow: 0 0 0 rgba(5, 117, 230, 0);
-  }
-  to {
-    box-shadow: 0 0 10px rgba(5, 117, 230, 0.5);
-  }
-}
-
-@keyframes pulseLight {
-  from {
-    box-shadow: 0 0 0 rgba(0, 123, 255, 0);
-  }
-  to {
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
-  }
-}
-
-@keyframes expandLine {
-  from {
-    width: 0;
-  }
-  to {
-    width: 120px;
-  }
-}
-
-/* Tab Responsiveness - New Media Query */
-@media (min-width: 480px) and (max-width: 767px) {
-  .page-container {
-    padding: 0 15px;
+/* Enhanced Tablet Responsiveness */
+@media (min-width: 600px) and (max-width: 1024px) {
+  .form-container {
+    flex-direction: column;
   }
 
   .title-section {
-    margin-top: 40px;
-  }
-
-  .title-section h2 {
-    font-size: 24px;
-  }
-
-  .step-container {
-    visibility: visible;
-    display: flex;
-    justify-content: center;
-    margin: 0 auto 20px;
-  }
-
-  .step {
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-  }
-
-  .line {
-    width: 60px;
-  }
-
-  .progressbar {
-    display: none;
-  }
-
-  .login-pic {
-    height: 300px;
-    display: block;
+    margin-top: 60px;
   }
 
   .image-form-container {
-    flex-direction: column;
-    padding: 10px;
+    flex-direction: row;
+    align-items: flex-start;
     gap: 20px;
   }
 
@@ -441,197 +154,118 @@ header img {
 /* Mobile responsiveness */
 @media (min-width: 300px) and (max-width: 479px) {
   .login-pic {
-    display: none;
-  }
-
-  .step-container {
-    display: flex;
-    align-items: center;
-    margin-top: -80px !important;
-    visibility: visible !important;
-    display: flex;
-    justify-content: space-evenly;
-    margin: 0 auto;
-  }
-
-  .step {
-    padding: 10px;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    border: 2px solid var(--skillhub-blue);
-    color: var(--skillhub-blue);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .line {
-    width: 100px;
-    height: 5px;
-    background-color: var(--skillhub-blue);
-    transition: all 0.5s ease;
-  }
-
-  .step.active {
-    background-color: var(--skillhub-blue);
-    color: var(--white);
-  }
-
-  .progressbar {
-    visibility: hidden;
-    width: 0;
-  }
-
-  .image-form-container {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .input-field-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
-    /* animation: slideUp 1s ease-out; */
-  }
-
-  .input-field {
-    display: flex;
-    width: 100%;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    transition: all 0.3s ease;
-  }
-
-  .input-field::placeholder {
-    text-align: left;
-    padding: 0 10px;
-    font-size: 16px;
-  }
-
-  .input-field:focus {
-    outline: 1px solid var(--skillhub-blue);
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-  }
-
-  .next-btn {
-    height: 60px;
-    width: 100%;
-    background-color: var(--skillhub-blue);
-    border-radius: 10px;
-    color: var(--white);
-    border: none;
-    transition: all 0.3s ease;
-    font-weight: 500;
-  }
-
-  .title-section {
-    margin-top: 30px;
-  }
-
-  .title-section h2 {
-    font-size: 22px;
-  }
-
-  .title-section h3 {
-    font-size: 14px;
-  }
-
-  .switch-buttons {
-    height: 60px;
-    padding: 0 10px;
-    gap: 10px;
-  }
-
-  .consumer-btn,
-  .skill-btn {
-    font-size: 14px;
-    padding: 5px 10px;
-  }
-}
-
-/* Tablet Responsiveness */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .form-container {
-    flex-direction: column;
-  }
-
-  .login-pic {
     margin-left: 0;
-    width: 100%;
-    max-width: 300px;
-    height: auto;
+    width: 80px;
+    max-height: 400px;
+    object-fit: cover;
   }
 
   .new-form {
     margin-left: 0;
-    margin-top: 20px;
-  }
-
-  .next-btn {
-    margin-right: 0;
-  }
-
-  .connector-line {
-    width: 80px;
-  }
-
-  .connector-line.active {
-    width: 80px;
+    gap: 20px;
   }
 
   .step-circle {
     width: 150px;
     font-size: 13px;
+    padding: 0 5px;
   }
 
   .step-circle.active {
     width: 150px;
   }
 
-  .progressbar ul {
-    padding: 0 20px;
+  .connector-line, 
+  .connector-line.active {
+    width: 80px;
   }
-
-  .page-container {
-    padding: 0 30px;
-  }
-
-  .image-form-container {
-    gap: 20px;
+  
+  /* Adjust for tablet landscape */
+  @media (orientation: landscape) {
+    .image-form-container {
+      gap: 30px;
+    }
+    
+    .login-pic {
+      width: 120px;
+      max-height: 350px;
+    }
   }
 }
 
-/* Portrait orientation adjustments for tablets */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  .image-form-container {
+/* iPad Pro and larger tablets */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .login-pic {
+    height: 400px;
+    width: 90px;
+  }
+  
+  .connector-line {
+    width: 120px;
+  }
+  
+  .connector-line.active {
+    width: 150px;
+  }
+}
+
+/* Mobile responsiveness enhancements */
+@media (max-width: 599px) {
+  .switch-buttons {
     flex-direction: column;
+    height: auto;
+    padding: 10px;
   }
-
+  
+  .consumer-btn,
+  .skill-btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+  
   .login-pic {
-    height: 350px;
-    max-width: 100%;
+    display: none;
+  }
+  
+  .title-section {
+    margin-top: 40px;
+  }
+  
+  .step-container {
+    margin-top: 0 !important;
+    gap: 5px;
+  }
+  
+  .step {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+  
+  .line {
+    width: 60px;
+  }
+  
+  /* For very small screens */
+  @media (max-width: 350px) {
+    .step {
+      width: 30px;
+      height: 30px;
+      font-size: 12px;
+    }
+    
+    .line {
+      width: 40px;
+    }
   }
 }
 
-/* Landscape orientation adjustments for tablets */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  .image-form-container {
-    flex-direction: row;
+/* Fix animation for expandLine to match responsive values */
+@keyframes expandLine {
+  from {
+    width: 0;
   }
-
-  .login-pic {
-    height: 350px;
-    max-width: 45%;
-  }
-
-  .new-form {
-    width: 55%;
+  to {
+    width: clamp(50px, 10vw, 120px);
   }
 }
