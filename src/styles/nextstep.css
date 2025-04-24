@@ -1,129 +1,246 @@
 
+/* Improved Responsive Styles for Buttons */
 .consumer-btn, .skill-btn {
-    width: 150px;
-    height: 45px;
-    font-family: 'Lexend', sans-serif;
-    font-weight: 500;
-    font-size: 18px;
-    color: black;
-    border: none;
-    border-radius: 300px;
-    cursor: pointer;
-    background: transparent;
-    transition: all 0.3s ease;
+  width: clamp(120px, 20vw, 150px);
+  height: clamp(40px, 6vh, 45px);
+  font-family: 'Lexend', sans-serif;
+  font-weight: 500;
+  font-size: clamp(14px, 2.5vw, 18px);
+  color: black;
+  border: none;
+  border-radius: 300px;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+}
+
+.skill-btn.active,
+.skill-btn:hover {
+  background-color: #0575E6;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Improved Progress Bar Responsiveness */
+.progressbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: clamp(15px, 4vh, 30px) 0;
+  animation: fadeIn 1.4s ease-in;
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px 0;
+  scrollbar-width: thin;
+}
+
+.progressbar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.progressbar::-webkit-scrollbar-thumb {
+  background-color: #007bff;
+  border-radius: 4px;
+}
+
+.progressbar ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  min-width: min-content;
+}
+
+.progressbar li {
+  display: flex;
+  align-items: center;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step-circle {
+  width: clamp(120px, 25vw, 200px);
+  height: clamp(40px, 6vh, 50px);
+  border-radius: 50px;
+  background-color: #fffdfd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border: 1px solid #007bff;
+  margin-bottom: 5px;
+  font-size: clamp(12px, 2vw, 15px);
+  text-align: center;
+  padding: clamp(5px, 1vw, 10px);
+  box-sizing: border-box;
+  color: #007bff;
+  font-family: 'Lexend', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: clamp(20px, 4vh, 40px);
+  text-align: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.step-circle.active {
+  background-color: #007bff;
+  color: white;
+  width: clamp(120px, 25vw, 200px);
+  border-radius: 50px;
+  text-align: center;
+  padding: clamp(5px, 1vw, 10px);
+  box-sizing: border-box;
+  font-family: 'Lexend', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: clamp(20px, 4vh, 40px);
+  text-align: center;
+  animation: pulseLight 1.5s infinite alternate;
+}
+
+.connector-line {
+  height: 5px;
+  width: clamp(100px, 15vw, 320px);
+  background-color: #007bff;
+  transition: all 0.5s ease;
+  flex-shrink: 1;
+}
+
+.connector-line.active {
+  background-color: #007bff;
+  width: clamp(80px, 15vw, 270px);
+  animation: expandLine 1s ease-out;
+}
+
+/* Tablet Responsiveness */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .form-container {
+    width: 100%;
+    padding: 0 clamp(10px, 3vw, 20px);
   }
   
-  .skill-btn.active,
-  .skill-btn:hover {
-    background-color: #0575E6;
-    color: white;
-    transform: scale(1.05);
+  #fullname, #password, #technical-skills, #address, #service-area, #bio, 
+  .video-upload, .submit-btn, .profilepice, .email {
+    width: 100%;
+    max-width: 600px;
+    margin: 10px auto;
   }
   
-  .progressbar {
- 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 30px 0;
-    animation: fadeIn 1.4s ease-in;
+  .email {
+    background-color: transparent; /* Removing the red background */
   }
   
-  .progressbar ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    align-items: center;
+  /* For tablets in portrait mode */
+  @media (orientation: portrait) {
+    .connector-line {
+      width: clamp(80px, 10vw, 150px);
+    }
+    
+    .connector-line.active {
+      width: clamp(80px, 10vw, 150px);
+    }
+    
+    .step-circle, .step-circle.active {
+      width: clamp(100px, 20vw, 150px);
+      font-size: clamp(11px, 1.8vw, 14px);
+    }
   }
   
-  .progressbar li {
-    display: flex;
-    align-items: center;
+  /* For tablets in landscape mode */
+  @media (orientation: landscape) {
+    .connector-line, .connector-line.active {
+      width: clamp(100px, 12vw, 200px);
+    }
+    
+    .step-circle, .step-circle.active {
+      width: clamp(120px, 15vw, 180px);
+    }
   }
-  
-  .progress-step {
-    display: flex;
+}
+
+/* Enhanced Mobile responsiveness (keeping your existing code but improved) */
+@media (max-width: 480px) {
+  .form-container {
     flex-direction: column;
-    align-items: center;
+    width: 100%;
+    padding: 0 10px;
   }
   
-  .step-circle {
-    width: 200px;
-    height: 50px;
-    border-radius: 50px;
-    background-color: #fffdfd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
+  #fullname, #password, #technical-skills, #address, #service-area, #bio,
+  .video-upload, .submit-btn, .profilepice {
+    width: 100%;
+    max-width: 390px;
     border: 1px solid #007bff;
-    margin-bottom: 5px;
-    font-size: 15px;
-    text-align: center;
-    padding: 10px;
-    box-sizing: border-box;
-    color: #007bff;
-    font-family: 'Lexend';
-    font-style: normal;
-    font-weight: 700;
-    line-height: 40px;
-    text-align: center;
-    transition: all 0.3s ease;
+    margin: 10px auto;
   }
   
-  .step-circle.active {
-    background-color:#007bff
-    ;
-    color: white;
-    width: 200px;
-    border-radius: 50px;
-    text-align: center;
-    padding: 10px;
-    box-sizing: border-box;
-    font-family: 'Lexend';
-    font-style: normal;
-    font-weight: 700;
-    line-height: 40px;
-    text-align: center;
-    animation: pulseLight 1.5s infinite alternate;
+  .email {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    background-color: transparent; /* Removed red background */
   }
   
+  .profilepice {
+    width: 100%;
+    max-width: 390px;
+  }
+  
+  /* Adjust progress indicators for mobile */
+  .step-circle, .step-circle.active {
+    width: clamp(90px, 28vw, 120px);
+    height: clamp(35px, 6vh, 40px);
+    font-size: clamp(10px, 3vw, 12px);
+    line-height: normal;
+    padding: 5px;
+  }
+  
+  .connector-line, .connector-line.active {
+    width: clamp(40px, 10vw, 60px);
+  }
+}
+
+/* Animation keyframes for expandLine adjusted for responsive design */
+@keyframes expandLine {
+  from {
+    width: 0;
+  }
+  to {
+    width: clamp(80px, 15vw, 270px);
+  }
+}
+
+/* Animation for pulse light effect */
+@keyframes pulseLight {
+  from {
+    box-shadow: 0 0 0 rgba(0, 123, 255, 0);
+  }
+  to {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+  }
+}
+
+/* iPad Pro and larger tablets specific adjustments */
+@media (min-width: 1025px) and (max-width: 1366px) {
   .connector-line {
-    height: 5px;
-    width: 320px;
-    background-color: #007bff;
-    transition: all 0.5s ease;
+    width: 250px;
   }
   
   .connector-line.active {
-    background-color: #007bff;
-    width: 270px;
-    animation: expandLine 1s ease-out;
+    width: 220px;
   }
   
-  @media (max-width:480px) {
-    .form-container{
-      flex-direction: column;
-    }
-    #fullname,#password,#technical-skills,#address,#service-area,#bio,.video-upload,.submit-btn .profilepice{
-      width: 390px;
-      border: 1px solid #007bff;
-    
-      margin: auto;
-    }
-    label{
-      
-      
-    }
-    .email{
-      width: 400px;
-      margin: auto;
-      background-color: red;
-    }g
-    .profilepice{
-    
-      width: 390px;
-    }
-    
+  #fullname, #password, #technical-skills, #address, #service-area, #bio,
+  .video-upload, .submit-btn, .profilepice, .email {
+    width: 100%;
+    max-width: 800px;
+    margin: 15px auto;
   }
+}

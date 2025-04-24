@@ -1,19 +1,24 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/nextstep.css";
+import { uploadImageToImgbb } from "../utils/imageUpload";
 
 function Nextstep() {
   const Navigate = useNavigate();
+  const location = useLocation();
+
   const [selectedOption, setSelectedOption] = useState("skilled");
-  const [formData, setFormData] = useState({
+  const prevFormData = location.state?.formData || {};
+   const [formData, setFormData] = useState({
+     ...prevFormData,
     role: "skilled",
     full_name: "",
-    AreaofExpertise: "",
+    areas_of_expertise: "",
     skill: "", // This will now hold the dropdown selection
-    customSkill: "", // New field for the text input
     address: "",
     service_area: "",
     bio: "",
+    photoURL: ""
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -33,17 +38,17 @@ function Nextstep() {
     },
     { id: 2, text: "Verification", longText: "Verification", completed: false },
   ]);
-  function changeStep(){
-    Navigate("/laststep")
-  }
+function changeStep(){
+    Navigate("/laststep", { state: { formData } }); // Pass formData to the next page
+  };
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     let key = id;
     if (id === "fullname") key = "full_name";
     if (id === "technical-skills") key = "skill";
-    if (id === "custom-skill") key = "customSkill";
     if (id === "service-area") key = "service_area";
-    if (id === "areaof-expertise") key = "AreaofExpertise";
+    if (id === "areas_of_expertise") key = "areas_of_expertise";
     setFormData({ ...formData, [key]: value });
   };
 
@@ -63,7 +68,8 @@ function Nextstep() {
 
   const handleNextStep = (e) => {
     e.preventDefault();
-    Navigate("/laststep", { state: { formData } });
+    console.log("Form submitted:", formData);
+    changeStep();
   };
 
   const handlePhotoChange = async (e) => {
@@ -72,34 +78,11 @@ function Nextstep() {
     setLoading(true);
     setError("");
     try {
-      // Convert file to base64
-      const toBase64 = (file) =>
-        new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => resolve(reader.result.split(",")[1]);
-          reader.onerror = (error) => reject(error);
-        });
-      const base64 = await toBase64(file);
-
-      // Upload to imgbb
-      const form = new FormData();
-      form.append("key", "f2acfbbcda824f11f3a15bdd6ffd9414");
-      form.append("image", base64);
-
-      const res = await fetch("https://api.imgbb.com/1/upload", {
-        method: "POST",
-        body: form,
-      });
-      const data = await res.json();
-      if (data.success) {
-        setFormData((prev) => ({
-          ...prev,
-          photoURL: data.data.url,
-        }));
-      } else {
-        setError("Image upload failed.");
-      }
+      const photoURL = await uploadImageToImgbb(file);
+      setFormData((prev) => ({
+        ...prev,
+        photoURL,
+      }));
     } catch (err) {
       setError("Image upload failed. " + err.message);
     } finally {
@@ -222,35 +205,20 @@ function Nextstep() {
               </select>
             </div>
             <div className="form-group">
-              <label htmlFor="areaof-expertise">
+              <label htmlFor="areas_of_expertise">
               Areas of expertise?<sup style={{ color: "red", fontSize: "10px" }}>*</sup>
               </label>
               <input
                 type="text"
-                id="areaof-expertise"
+                id="areas_of_expertise"
                 required
-                value={formData.AreaofExpertise}
+                value={formData.areas_of_expertise}
                 onChange={handleInputChange}
               />
             </div>
           </div>
           {/* Second row */}
           <div className="form-row">
-            <div className="form-group">
-              <label
-                style={{ marginLeft: "0px" }}
-                htmlFor="custom-skill"
-              >
-                Your Skill <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
-              </label>
-              <input
-                type="text"
-                id="custom-skill"
-                required
-                value={formData.customSkill}
-                onChange={handleInputChange}
-              />
-            </div>
             <div className="form-group">
               <label htmlFor="address">
                 Address{" "}

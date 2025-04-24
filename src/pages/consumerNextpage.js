@@ -1,18 +1,25 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-// import "../styles/getstarted.css";
+import "../styles/getstarted.css"
+import { uploadImageToImgbb } from "../utils/imageUpload";
 
 function ConsumerNextPage() {
   const navigate = useNavigate();
+   const location = useLocation();
   const [selectedOption, setSelectedOption] = useState("skilled");
+  
+  const prevFormData = location.state?.formData || {};
   const [formData, setFormData] = useState({
+    ...prevFormData, 
     role: "consumer",
     full_name: "",
     address: "",
     bio: "",
     photoURL: "",
   });
+
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -59,10 +66,6 @@ function ConsumerNextPage() {
     navigate("/consumerbtn");
   };
 
-  const handleNextStep = (e) => {
-    e.preventDefault();
-    navigate("/laststep", { state: { formData } });
-  };
 
   const handlePhotoChange = async (e) => {
     const file = e.target.files[0];
@@ -70,34 +73,11 @@ function ConsumerNextPage() {
     setLoading(true);
     setError("");
     try {
-      // Convert file to base64
-      const toBase64 = (file) =>
-        new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => resolve(reader.result.split(",")[1]);
-          reader.onerror = (error) => reject(error);
-        });
-      const base64 = await toBase64(file);
-
-      // Upload to imgbb
-      const form = new FormData();
-      form.append("key", "f2acfbbcda824f11f3a15bdd6ffd9414");
-      form.append("image", base64);
-
-      const res = await fetch("https://api.imgbb.com/1/upload", {
-        method: "POST",
-        body: form,
-      });
-      const data = await res.json();
-      if (data.success) {
-        setFormData((prev) => ({
-          ...prev,
-          photoURL: data.data.url,
-        }));
-      } else {
-        setError("Image upload failed.");
-      }
+      const photoURL = await uploadImageToImgbb(file);
+      setFormData((prev) => ({
+        ...prev,
+        photoURL,
+      }));
     } catch (err) {
       setError("Image upload failed. " + err.message);
     } finally {
@@ -108,11 +88,12 @@ function ConsumerNextPage() {
   const handleCreateAccount = async (e) => {
     e.preventDefault();
     setLoading(true);
+    console.log("Final form data:", formData); // Log the form data here
     setError("");
     try {
       const response = await axios.post(
         "https://skillhub-api-y3gi.onrender.com/api/auth/signup",
-        formData,
+        { ...formData, role: "consumer" }, 
         { headers: { "Content-Type": "application/json" } }
       );
       if (response.status === 200 || response.status === 201) {
@@ -218,6 +199,7 @@ function ConsumerNextPage() {
               </strong>
             </p>
           </div>
+          
         </div>
 
         <div className="consumer-profile-info-form-container">

@@ -1,33 +1,38 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signInUser } from "../services/authService";
+import { applyAnimationDelay } from "../utils/animationUtils";
 import '../styles/signin.css';
 
 export default function SignIn() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  // Add animation sequence with delays
   useEffect(() => {
-    const inputContainers = document.querySelectorAll('.input-field-container');
-    inputContainers.forEach((container, index) => {
-      container.style.animationDelay = `${0.2 * (index + 1)}s`;
-    });
+    applyAnimationDelay('.input-field-container', 0.2);
   }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
+    setLoading(true);
+    setError("");
+    try {
+      const response = await signInUser(formData);
+      console.log("Login successful:", response.data);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message || "Network error. Please try again.");
+      console.error("Login error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,6 +70,7 @@ export default function SignIn() {
                 
               </div>
               
+
               <div className="input-field-container">
                 <label className="input-label">
                   Password<sup className="required-asterisk">*</sup> <br>
@@ -80,11 +86,12 @@ export default function SignIn() {
                 />
                 </label>
                
+
               </div>
-              
+              {error && <div className="error-message">{error}</div>}
               <div className="form-actions">
-                <button className="login-button" type="submit">
-                  Log In
+                <button className="login-button" type="submit" disabled={loading}>
+                  {loading ? "Logging in..." : "Log In"}
                 </button>
                 <button className="google-signin-button" type="button">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
