@@ -165,11 +165,11 @@
 /* Mobile Responsiveness */
 @media (max-width: 767px) {
   .artisan-page-search-container {
-    gap: 10px;
     margin-top: 0;
     backdrop-filter: blur(10px);
-    padding: 10px 0;
     height: 100px;
+    display: flex;
+    flex-direction: column;
   }
 
   .search-bar {
@@ -178,7 +178,7 @@
   }
 
   .artisan-search-input-field {
-    width: 280px;
+    width: 270px;
     height: 50px;
     border: 1px solid var(--inactive-grey);
     border-radius: 10px;
