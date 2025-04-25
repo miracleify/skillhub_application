@@ -1,19 +1,18 @@
-body{
-  margin: 0;
-  padding: 0;
-}
 :root {
-  --white: #FFFFFF;
+  --white: #ffffff;
   --black: #000000;
-  --inactive-grey: #8F8F8F;
-  --skillhub-blue: #0575E6;
-  --skillhub-hover-blue: #0518E6;
+  --inactive-grey: #8f8f8f;
+  --grey: #e8e8e8;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
+  --red: red;
+  --completion-green: #008000;
+  --debug-colour: #add8e6;
 }
 
 /* Container for the entire section */
-.top-trades {
-  padding: 60px 0;
-  background-color: #f9f9f9;
+.top-trades-section {
+  background-color: var(--white);
 }
 
 .container {
@@ -32,7 +31,7 @@ body{
 /* Grid layout for the cards */
 .trades-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
   margin-top: 40px;
 }
@@ -40,8 +39,8 @@ body{
 /* Card styling */
 .trade-card {
   display: flex;
-  flex-direction: column;
-  background-color: white;
+  /* flex-direction: column; */
+  background-color: var(--white);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -61,7 +60,7 @@ body{
   width: 200px;
   height: 150px;
   overflow: hidden;
-  background-color: #f0f0f0; /* Placeholder background */
+  background-color: var(--white); /* Placeholder background */
   margin-bottom: 20px;
   border-radius: 50%;
 }
@@ -81,8 +80,8 @@ body{
   position: absolute;
   top: 5px;
   right: 5px;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #4caf50;
+  color: var(--white);
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -136,16 +135,17 @@ body{
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 25px;
   }
-  
+
   .trade-card h3 {
     font-size: 1.4rem;
   }
-  
+
   .trade-card p {
     font-size: 1rem;
   }
-  
-  .trade-image, .trade-image img {
+
+  .trade-image,
+  .trade-image img {
     width: 130px;
     height: 130px;
   }
@@ -158,8 +158,9 @@ body{
     margin-left: auto;
     margin-right: auto;
   }
-  
-  .trade-image, .trade-image img {
+
+  .trade-image,
+  .trade-image img {
     width: 120px;
     height: 120px;
   }

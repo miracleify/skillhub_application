@@ -1,23 +1,18 @@
-import React from 'react'
-import Header from './pages/header';
-import ErrorBoundary from './ErrorBoundary';
-import './App.css';
-import { TradesProvider } from './TradesContext';
+import React from "react";
+import Header from "./pages/header";
+import ErrorBoundary from "./ErrorBoundary";
+import "./App.css";
+import { TradesProvider } from "./TradesContext";
 
 function App() {
   return (
-   <div className="container">
-  
+    <div className="container">
       <ErrorBoundary>
         <TradesProvider>
-          <Header/>
+          <Header />
         </TradesProvider>
       </ErrorBoundary>
-     
-
-      
-</div>
-  
+    </div>
   );
 }
 
