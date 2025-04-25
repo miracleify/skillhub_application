@@ -15,7 +15,7 @@
   color: var(--black);
 }
 
-.star-rating {
+.ratings {
   color: var(--star-colour);
 }
 
@@ -218,7 +218,7 @@
   margin-top: 10px;
 }
 
-.view-profile-btn:hover {
+.view-profile-button:hover {
   background-color: var(--skillhub-hover-blue);
 }
 

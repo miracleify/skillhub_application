@@ -204,12 +204,15 @@ const TopTrades = () => {
 
                         {/* trade info */}
                         <div className="trade-info-container">
-                          <h3>{person.name} </h3>
-                          {person.verified && (
-                            <span className="verified-badge">
-                              <i className="fa-solid fa-circle-check verification-icon"></i>
-                            </span>
-                          )}
+                          <h3>
+                            {person.name}{" "}
+                            {person.verified && (
+                              <span className="verified-badge">
+                                <i className="fa-solid fa-circle-check verification-icon"></i>
+                              </span>
+                            )}{" "}
+                          </h3>
+
                           <p className="ratings">{person.ratings}</p>
                           <p className="personP">{person.profession}</p>
                         </div>
