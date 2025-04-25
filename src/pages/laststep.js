@@ -129,7 +129,7 @@ function Laststep() {
           </div>
         </div>
 
-        {/* from progression bar */}
+        {/* form progression bar */}
         <div className="progressbar">
           <ul>
             {progressSteps.map((step, index) => (
