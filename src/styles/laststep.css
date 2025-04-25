@@ -136,7 +136,6 @@ body {
   align-items: center;
   flex-direction: column;
   background: var(--white);
-  
 
   margin: 20px auto;
   width: 1200px;
@@ -151,8 +150,8 @@ body {
 }
 
 .upload-image-icon {
-height: 30px;
-width:35px;
+  height: 30px;
+  width: 35px;
 }
 
 .take-photo-icon {
@@ -186,7 +185,7 @@ width:35px;
   margin-top: 30px;
 }
 
-.input-field {
+.basic-info-input-field {
   width: 590px !important;
   height: 50px;
   border-radius: 10px;
@@ -260,5 +259,143 @@ width:35px;
   }
   to {
     width: 300px;
+  }
+}
+
+/* Tab Responsiveness */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .profilepices {
+    width: 90% !important;
+    padding: 20px;
+    margin: 15px auto;
+  }
+  
+  .input-field {
+    width: 100% !important;
+    max-width: 500px;
+  }
+  
+  .connector-line {
+    width: 150px;
+  }
+  
+  .connector-line.active {
+    width: 150px;
+  }
+  
+  .step-circle, .step-circle.active {
+    width: 160px;
+    font-size: 14px;
+    height: 45px;
+    line-height: 25px;
+    padding: 8px;
+  }
+  
+  .buttons-container {
+    position: relative;
+    justify-content: flex-end;
+    margin: 30px 0 0 0;
+    width: 100%;
+  }
+  
+  .buttons {
+    width: 200px;
+    height: 45px;
+    font-size: 16px;
+  }
+  
+  .captions {
+    gap: 50px;
+    flex-wrap: wrap;
+  }
+  
+  .bvn-form {
+    width: 100%;
+  }
+  
+  .image-upload-container {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @keyframes expandLine {
+    from {
+      width: 0;
+    }
+    to {
+      width: 150px;
+    }
+  }
+  
+  /* Fix for tab/tablet overflow issues */
+  .progressbar {
+    padding: 0 10px;
+    margin: 20px 0;
+  }
+  
+  .progressbar ul {
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+}
+
+/* Add specific styling for different tablet orientations */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .buttons-container {
+    justify-content: flex-end;
+    flex-direction: row;
+    gap: 15px;
+  }
+  
+  .connector-line, .connector-line.active {
+    width: 180px;
+  }
+  
+  .step-circle, .step-circle.active {
+    width: 170px;
+  }
+  
+  .profilepices {
+    width: 85% !important;
+    padding: 25px;
+  }
+
+  @keyframes expandLine {
+    from {
+      width: 0;
+    }
+    to {
+      width: 180px;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .step-circle, .step-circle.active {
+    width: 140px;
+    font-size: 13px;
+    padding: 5px;
+  }
+  
+  .connector-line, .connector-line.active {
+    width: 120px;
+  }
+  
+  .buttons-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .buttons {
+    width: 180px;
+  }
+
+  @keyframes expandLine {
+    from {
+      width: 0;
+    }
+    to {
+      width: 120px;
+    }
   }
 }

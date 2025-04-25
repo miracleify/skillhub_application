@@ -103,7 +103,7 @@ function Laststep() {
       <div className={`last-page ${showModal ? "blur-background" : ""}`}>
         <h2>Create Account</h2>
         <h3>
-          Already have an account? <a href="#">sign in</a>
+          Already have an account? <a href="#">Sign In</a>
         </h3>
 
         {/* Switch buttons */}
@@ -129,7 +129,7 @@ function Laststep() {
           </div>
         </div>
 
-        {/* from progression bar */}
+        {/* form progression bar */}
         <div className="progressbar">
           <ul>
             {progressSteps.map((step, index) => (
@@ -192,7 +192,11 @@ function Laststep() {
           <div className="take-photo-request-container">
             <div className="profilepices">
               <div className="dashed-border">
-                <img src="/images/mobile.png" alt="video camera" className="take-photo-icon"/>
+                <img
+                  src="/images/mobile.png"
+                  alt="video camera"
+                  className="take-photo-icon"
+                />
               </div>
               <div className="text">
                 <span>Click to take a photo of your face</span>

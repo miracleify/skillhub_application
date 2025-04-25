@@ -49,7 +49,7 @@ function ConsumerNextPage() {
     let key = id;
     if (id === "fullname") key = "full_name";
     if (id === "technical-skills") key = "consumer";
-   
+
     setFormData({ ...formData, [key]: value });
   };
 
@@ -124,26 +124,32 @@ function ConsumerNextPage() {
       <h3>
         Already have an account? <a href="/signin">sign in</a>
       </h3>
-      <div className="button">
-        <button
-          className={`consumer-btn ${
-            selectedOption === "consumer" ? "active" : ""
-          }`}
-          onClick={() => handleOptionChange1("consumer")}
-        >
-          Consumer
-        </button>
-        <button
-          id="ski-btn"
-          className={`skill-btn ${
-            selectedOption === "skilled" ? "active" : ""
-          }`}
-          onClick={() => handleOptionChange2("skilled")}
-        >
-          Skilled Person
-        </button>
+
+      {/* switch button */}
+      <div className="switch-button-container">
+        <div className="button">
+          <button
+            className={`consumer-btn ${
+              selectedOption === "consumer" ? "active" : ""
+            }`}
+            onClick={() => handleOptionChange1("consumer")}
+          >
+            Consumer
+          </button>
+          <button
+            id="ski-btn"
+            className={`skill-btn ${
+              selectedOption === "skilled" ? "active" : ""
+            }`}
+            onClick={() => handleOptionChange2("skilled")}
+          >
+            Skilled Person
+          </button>
+        </div>
       </div>
-      
+
+      {/* Progress bar
+       */}
       <div className="progressbar">
         <ul>
           {progressSteps.map((step, index) => (
@@ -167,7 +173,8 @@ function ConsumerNextPage() {
         </ul>
       </div>
 
-      <form onSubmit={handleCreateAccount}>
+      {/* Form */}
+      <form onSubmit={handleCreateAccount} className="form-container">
         <div className="profile-pic-upload">
           <div className="dashed-border profile-image-icon-file-button-container">
             <img
@@ -196,42 +203,48 @@ function ConsumerNextPage() {
           
         </div>
 
-        <div className="form-row">
-          <div className="form-group">
-            <label htmlFor="fullname">
-              Full Name{" "}
-              <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
-            </label>
-            <input
-              type="text"
-              id="fullname"
-              required
-              value={formData.full_name}
-              onChange={handleInputChange}
-              className="fullname"
-            />
+        <div className="consumer-profile-info-form-container">
+          <div className="form-row">
+            {/* Full name */}
+            <div className="form-group">
+              <label htmlFor="fullname">
+                Full Name <sup className="mandatory-asterik">*</sup>
+              </label>
+              <input
+                type="text"
+                id="fullname"
+                required
+                value={formData.full_name}
+                onChange={handleInputChange}
+                className="full-name"
+                placeholder="Enter your full name"
+              />
+            </div>
+
+            {/* Address */}
+            <div className="form-group">
+              <label htmlFor="address">
+                Address{" "}
+                <span>
+                  (only visible to you)
+                  <sup className="mandatory-asterik">*</sup>
+                </span>
+              </label>
+              <input
+                type="text"
+                id="address"
+                required
+                value={formData.address}
+                onChange={handleInputChange}
+                placeholder="Enter your address"
+              />
+            </div>
           </div>
-          
-          <div className="form-group">
-            <label htmlFor="address">
-              Address{" "}
-              <span>
-                (only visible to you)
-                <sup className="mandatory-asterik">*</sup>
-              </span>
-            </label>
-            <input
-              type="text"
-              id="address"
-              required
-              value={formData.address}
-              onChange={handleInputChange}
-            />
-          </div>
-          
+
+          {/* Bio */}
           <div className="form-group">
             <label htmlFor="bio">
-              Bio<sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+              Bio<sup className="mandatory-asterik">*</sup>
             </label>
             <textarea
               id="bio"
@@ -239,9 +252,11 @@ function ConsumerNextPage() {
               maxLength={200}
               value={formData.bio}
               onChange={handleTextAreaChange}
+              placeholder="Write a short bio about yourself"
             />
           </div>
-          
+
+          {/* Create account button */}
           <button
             id="create-btn"
             className="buttons"
@@ -251,7 +266,8 @@ function ConsumerNextPage() {
             {loading ? "Creating..." : "Create Account"}
           </button>
         </div>
-        
+
+        {/* Error Boundary */}
         {error && (
           <div style={{ color: "red", marginTop: "10px" }}>{error}</div>
         )}
