@@ -166,7 +166,7 @@
 /* Mobile Responsiveness */
 @media (max-width: 767px) {
   .artisan-page-search-container {
-    margin-top: 0;
+    margin-top: 10px;
     backdrop-filter: blur(10px);
     height: 100px;
     display: flex;
