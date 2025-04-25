@@ -6,11 +6,11 @@
 
 :root {
   /* Colours */
-  --white: #FFFFFF;
+  --white: #ffffff;
   --black: #000000;
-  --inactive-grey: #8F8F8F;
-  --skillhub-blue: #0575E6;
-  --skillhub-hover-blue: #0518E6;
+  --inactive-grey: #8f8f8f;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
 }
 
 /* Navbar Container */
@@ -18,7 +18,7 @@
   width: 100%;
   height: 70px;
   background-color: #fff;
-  padding: 10px 0; 
+  padding: 10px 0;
   position: fixed;
   top: 0;
   z-index: 5000;
@@ -33,7 +33,7 @@
 .nav-container.scrolled {
   background-color: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
-  padding: 10px 0; 
+  padding: 10px 0;
 }
 
 /* Navbar */
@@ -51,7 +51,7 @@
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .nav-logo img {
@@ -111,6 +111,7 @@
 /* Get Started Button */
 .get-started a {
   background-color: var(--skillhub-blue);
+  width: auto;
   color: var(--white);
   padding: 8px 15px;
   border-radius: 5px;
@@ -142,8 +143,9 @@
   right: -50%;
   width: 50%;
   height: 100vh;
-  /* backdrop-filter: blur(30px); */
-  background-color: var(--white);
+  display: flex;
+  backdrop-filter: blur(50px);
+  background-color: rgba(255, 255, 255, 0.5);
   transition: right 0.3s ease-in-out;
   z-index: 1000;
   padding-top: 60px;
@@ -188,13 +190,6 @@
 
 .sidebar.open .sidebar-list li {
   animation-delay: calc(0.1s * var(--i));
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
 .sidebar-list a {
@@ -255,7 +250,7 @@
     position: relative;
     margin-left: 10px;
   }
-  
+
   .nav-container {
     padding: 10px 0;
     width: 100%;
@@ -263,16 +258,17 @@
 
   .sidebar {
     right: -100%;
-    width: 80%; 
+    width: 70%;
   }
 
   .sidebar.open {
     right: 0;
+    z-index: 5000;
   }
 }
 
-/* Tablet width */
-@media (min-width: 769px) {
+/* Tablet responsiveness */
+@media (min-width: 769px) and (max-width: 1400px) {
   .sidebar {
     display: none;
   }
@@ -280,17 +276,17 @@
   .overlay {
     display: none;
   }
-  
+
   .nav-container {
     padding: 10px 0;
     width: 100%;
   }
-  
+
   .navbar {
     width: 100%;
     justify-content: space-between;
   }
-  
+
   .nav-list {
     justify-content: flex-end;
     margin-right: 0;
@@ -298,10 +294,10 @@
 }
 
 /* Very large screen adjustments */
-@media (min-width: 1920px) and (max-width: 1400px) {
+@media (min-width: 1920px) {
   .navbar {
     /* Limit content width on extremely large screens */
-    max-width: 1920px; 
+    max-width: 1920px;
 
     margin: 0 auto;
     padding: 0 60px;
@@ -314,7 +310,7 @@
     width: 100%;
     padding: 10px 0;
   }
-  
+
   .navbar {
     width: 100%;
     max-width: 100%; /* Full width */
@@ -322,18 +318,26 @@
     padding: 0 40px; /* Add some side padding for content breathing room */
     gap: 90px;
   }
-  
+
   .nav-logo {
     flex: 0 0 auto;
   }
-  
+
   .nav-list {
     flex: 1;
     justify-content: center;
     margin-right: 0;
   }
-  
+
   .get-started {
     flex: 0 0 auto;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
