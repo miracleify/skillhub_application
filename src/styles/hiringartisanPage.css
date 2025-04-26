@@ -103,7 +103,7 @@ button:hover {
     display: flex;
     flex-direction: row;
   justify-content: space-between;
-  margin-left: -200px;
+ 
 }
 #chexkbox{
     background-color: var(--skillhub-blue);

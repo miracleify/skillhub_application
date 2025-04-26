@@ -22,6 +22,7 @@ import Hire from './hirepage';
 import HiringartisanPage from './hiringartisanpage';
 import ConsumerNextPage from './consumerNextpage';
 import ConsumerVerificationPage from './consumerVericationPage';
+import Dashboard from '../loginSection/dashboard';
 function Header() {
   const { tradespeople } = useTrades();
   const tradesperson = tradespeople[2]; // Using the first tradesperson as default
@@ -115,7 +116,7 @@ function Header() {
               </Link>
             </li>
             <li className="get-started">
-              <Link to="/getstarted" onClick={() => setSidebarOpen(false)}>
+              <Link to="/consumerNextpage" onClick={() => setSidebarOpen(false)}>
                 Get Started
               </Link>
             </li>
@@ -144,6 +145,7 @@ function Header() {
          <Route path="/hiringartisanPage/:id" element={< HiringartisanPage   />} /> 
          <Route path="/consumerNextpage" element={ <ConsumerNextPage/>} />
         <Route path="/consumerVericationPage" element={<ConsumerVerificationPage />} />
+        <Route path="/dashboard" element={<Dashboard/>} />
 
         <Route path="*" element={<NotFound />} />
       
