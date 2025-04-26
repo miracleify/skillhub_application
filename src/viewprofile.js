@@ -53,8 +53,8 @@ const ViewProfile = () => {
             fname: foundUser.full_name ? foundUser.full_name.split(' ')[0] : '',
             lname: foundUser.full_name ? foundUser.full_name.split(' ').slice(1).join(' ') : '',
             image: foundUser.photoURL || defaultImageUrl,
-            expertise: foundUser.profession || "Not specified",
-            location: foundUser.location || "Not specified",
+            expertise: foundUser.areas_of_expertise || "Not specified",
+            location: foundUser.address || "Not specified",
             ratings: foundUser.ratings || "No ratings yet",
             verified: foundUser.verified || false
           };
@@ -115,11 +115,11 @@ const ViewProfile = () => {
           </h2>
           
           <p className="viewprofile-expertise">
-            <strong>Expertise:</strong> {user.profession || "Not specified"}
+            <strong>Expertise:</strong> {user.skill || "Not specified"}
           </p>
           
           <p className="viewprofile-location">
-            <strong>Service Area:</strong> {user.location || "Not specified"}
+            <strong>Service Area:</strong> {user.address || "Not specified"}
           </p>
           
           <div className="ratings">

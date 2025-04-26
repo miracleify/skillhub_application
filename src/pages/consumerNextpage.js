@@ -16,7 +16,8 @@ function ConsumerNextPage() {
     full_name: "",
     address: "",
     bio: "",
-    photoURL: ""
+    photoURL: "",
+    videoURL: ""
   });
 
 
