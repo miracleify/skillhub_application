@@ -58,7 +58,9 @@ function Dashboard() {
             <li><i className="fa-regular fa-user"></i></li>
             <li>
               <select onChange={handleSelectChange} defaultValue="">
-              <option value="" disabled hidden></option>
+              <option value="" disabled hidden>
+                
+              </option>
                 <option className="profile" value="profile">My Profile</option>
                 <option value="setting">Settings</option>
                 <option className="logout" value="log out">Log Out</option>
