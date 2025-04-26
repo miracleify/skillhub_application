@@ -1,88 +1,91 @@
 :root {
-    --white: #ffffff;
-    --black: #000000;
-    --inactive-grey: #8f8f8f;
-    --skillhub-blue: #0575e6;
-    --skillhub-hover-blue: #0518e6;
-    --red: red;
-    --completion-green: #008000;
-    --debug-colour: #add8e6;
-  }
+  --white: #ffffff;
+  --black: #171717;
+  --inactive-grey: #8f8f8f;
+  --grey: #e8e8e8;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
+  --star-colour: #ff9988;
+  --red: red;
+  --completion-green: #008000;
+  --debug-colour: #add8e6;
+}
+
 .navbar {
-    display: none;
-  }
-  
-  /* Navigation container - fixed position */
-  .nav-container {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* The navbar itself - using navbars class as in your CSS */
-  .navbars {
-    display: flex;
-    justify-content: space-between; /* This puts logo on left, icons on right */
-    align-items: center;
-    padding: 0.5rem 2rem;
-    height: 70px;
-    width: 100%;
-  }
-  
-  /* Logo styling */
-  .nav-logo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .nav-logo img {
-    height: 40px;
-  }
-  
-  /* Profile icons container */
-  .profile-icons {
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Profile icons list */
-  .profile-icons ul {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 30px;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .profile-icons li {
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Scrolled effect */
-  .scrolled {
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-  
-  /* Select dropdown styling */
-  select {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    padding: 5px;
-  }
-  .logout{
-     color: var(--red);
-  }
-  .profile{
-background-color: var(--skillhub-blue);
-color: var(--white);
-  }
+  display: none;
+}
+
+/* Navigation container - fixed position */
+.nav-container {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: var(--white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* The navbar itself - using navbars class as in your CSS */
+.navbars {
+  display: flex;
+  justify-content: space-between; /* This puts logo on left, icons on right */
+  align-items: center;
+  padding: 0.5rem 2rem;
+  height: 70px;
+  width: 100%;
+}
+
+/* Logo styling */
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo img {
+  width: 120px;
+}
+
+/* Profile icons container */
+.profile-icons {
+  display: flex;
+  align-items: center;
+}
+
+/* Profile icons list */
+.profile-icons ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-icons li {
+  display: flex;
+  align-items: center;
+}
+
+/* Scrolled effect */
+.scrolled {
+  background-color: var(--white);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Select dropdown styling */
+select {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 5px;
+}
+.logout {
+  color: var(--red);
+}
+.profile {
+  background-color: var(--skillhub-blue);
+  color: var(--white);
+}

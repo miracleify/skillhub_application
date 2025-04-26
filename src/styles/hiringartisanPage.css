@@ -1,184 +1,340 @@
 :root {
   --white: #ffffff;
-  --black: #000000;
+  --black: #171717;
   --inactive-grey: #8f8f8f;
+  --grey: #e8e8e8;
   --skillhub-blue: #0575e6;
   --skillhub-hover-blue: #0518e6;
+  --star-colour: #ff9988;
+  --red: red;
+  --completion-green: #008000;
+  --debug-colour: #add8e6;
 }
 
-.form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* .main-container {
+  margin-top: 0;
+} */
+
+.hiring-form-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-#fullName, #email, #jobDescription, #notes, #startDate, #endDate, #startTime {
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+.mandatory-asterik {
+  color: var(--red);
 }
 
-#fullName, #email {
-    width: 490px;
+/* Input fields */
+.hire-page-form-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
 }
 
-#jobDescription, #notes {
-    /* width: 1000px; */
-    min-height: 120px;
-    resize: vertical;
+.hiring-page-input-field-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
 }
 
-#startDate, #endDate, #startTime {
-    width: 320px;
+.hire-form-text-area-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+.text-area-input {
+  width: 100%;
+  min-height: 300px;
+}
+
+.hire-form-input-field:focus {
+  border: 1px solid var(--skillhub-blue);
+}
+
+.hire-form-input-field::placeholder {
+  font-size: 16px;
+  text-align: left;
+}
+
+#fullName,
+#email,
+#jobDescription,
+#notes,
+#startDate,
+#endDate,
+#startTime {
+  padding: 12px 15px;
+  border: 1px solid var(--inactive-grey);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+#fullName,
+#email {
+  width: 500px;
+}
+
+#jobDescription,
+#notes {
+  min-height: 200px;
+  resize: vertical;
+}
+
+#startDate,
+#endDate,
+#startTime {
+  width: 100%;
 }
 
 /* Input focus animations */
-#fullName:focus, #email:focus, 
-#jobDescription:focus, #notes:focus, 
-#startDate:focus, #endDate:focus, 
+#fullName:focus,
+#email:focus,
+#jobDescription:focus,
+#notes:focus,
+#startDate:focus,
+#endDate:focus,
 #startTime:focus {
-    outline: none;
-    border-color: var(--skillhub-blue);
-    box-shadow: 0 0 0 3px rgba(5, 117, 230, 0.2);
-    transform: translateY(-2px);
+  outline: none;
+  border-color: var(--skillhub-blue);
+  box-shadow: 0 0 0 3px rgba(5, 117, 230, 0.2);
+  transform: translateY(-2px);
 }
 
 /* Placeholder animation */
-input::placeholder, textarea::placeholder {
-    transition: all 0.3s ease;
-    color: #aaa;
+input::placeholder,
+textarea::placeholder {
+  transition: all 0.3s ease;
+  color: var(--inactive-grey);
 }
 
-input:focus::placeholder, textarea:focus::placeholder {
-    transform: translateX(5px);
-    opacity: 0.5;
+input:focus::placeholder,
+textarea:focus::placeholder {
+  transform: translateX(5px);
+  opacity: 0.5;
 }
 
 .button-group {
-    display: flex;
-    margin-right: -620px;
-    gap: 20px;
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
 button {
-    width: 180px;
-    height: 40px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  width: 180px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quote-btn,
+.hiring-btn {
+  width: 200px;
 }
 
 .quote-btn {
-    border: 2px solid var(--skillhub-blue);
-    border-radius: 10px;
-    background-color: #fff;
-    color: var(--skillhub-blue);
+  border: 2px solid var(--skillhub-blue);
+  border-radius: 10px;
+  background-color: var(--white);
+  color: var(--skillhub-blue);
 }
 
 .quote-btn:hover {
-    background-color: #f0f8ff;
+  background-color: var(--white);
 }
 
 .hiring-btn {
-    border: none;
-    border-radius: 10px;
-    background-color: var(--skillhub-blue);
-    color: #fff;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--skillhub-blue);
+  color: var(--white);
 }
 
 .hiring-btn:hover {
-    background-color: var(--skillhub-blue);
+  background-color: var(--skillhub-blue);
 }
 
-#chexkbox-container{
-    display: flex;
-    flex-direction: row;
+#chexkbox-container {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
- 
 }
-#chexkbox{
-    background-color: var(--skillhub-blue);
-    height: 30px;
-    margin-left: -53px;
+#chexkbox {
+  background-color: var(--skillhub-blue);
+  height: 30px;
+  margin-left: -53px;
 }
-a{
-    color: var(--skillhub-blue); 
+a {
+  color: var(--skillhub-blue);
 }
 
 /* Hide the default checkbox */
 input[type="checkbox"] {
-    opacity: 0;
-    position: absolute;
-  }
-  
-  /* Style the label that will act as our custom checkbox */
-  input[type="checkbox"] + label {
-    position: relative;
-    padding-left: 30px;
-    cursor: pointer;
-  }
-  
-  /* Create the custom checkbox appearance */
-  input[type="checkbox"] + label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ddd;
-    background: #fff;
-    border-radius: 4px;
-  }
-  
-  /* Style for checked state */
-  input[type="checkbox"]:checked + label:before {
-    background: var(--skillhub-blue);
-    border-color: var(--skillhub-blue);
-  }
-  
-  /* Create checkmark (hidden when not checked) */
-  input[type="checkbox"] + label:after {
-    content: '';
-    position: absolute;
-    left: 7px;
-    top: 3px;
-    width: 6px;
-    height: 12px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-    opacity: 0;
-  }
-  
-  /* Show checkmark when checked */
-  input[type="checkbox"]:checked + label:after {
-    opacity: 1;
+  opacity: 0;
+  position: absolute;
+}
+
+/* Style the label that will act as our custom checkbox */
+input[type="checkbox"] + label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+/* Create the custom checkbox appearance */
+input[type="checkbox"] + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--skillhub-blue);
+  background: var(--white);
+  border-radius: 4px;
+}
+
+/* Style for checked state */
+input[type="checkbox"]:checked + label:before {
+  background: var(--skillhub-blue);
+  border-color: var(--skillhub-blue);
+}
+
+/* Create checkmark (hidden when not checked) */
+input[type="checkbox"] + label:after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: solid var(--white);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+}
+
+/* Show checkmark when checked */
+input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 767px) {
+  .main-container {
+    margin-top: 100px;
   }
 
-  @media (max-width:480px){
-    #fullName, #email, #jobDescription, #notes{
-        width: 320px;
-    }
-    #chexkbox-container{
-       width:300px;
-       margin: auto;
-    }
-    .button-group{
-        flex-direction: column;
-        margin: auto;
-        
-    }
-    .hiring-btn,.quote-btn{
-        width: 320px;
-    } 
+  .hire-page-form-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
   }
+
+  #fullName,
+  #email,
+  #jobDescription,
+  #notes {
+    width: 100%;
+  }
+
+  #chexkbox-container {
+    width: 100%;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hiring-btn,
+  .quote-btn {
+    width: 100%;
+  }
+}
+
+/* iPhone 5 Responsiveness */
+/* Mobile Responsiveness */
+@media (max-width: 400px) {
+  .main-container {
+    margin-top: 100px;
+  }
+
+  .hire-page-form-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+  }
+
+  #fullName,
+  #email,
+  #jobDescription,
+  #notes {
+    width: 100%;
+  }
+
+  #chexkbox-container {
+    width: 100%;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hiring-btn,
+  .quote-btn {
+    width: 100%;
+  }
+}
+
+/* Tablet Responsiveness */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .main-container {
+    margin-top: 100px;
+  }
+
+  .hire-page-form-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+  }
+
+  #fullName,
+  #email,
+  #jobDescription,
+  #notes {
+    width: 100%;
+  }
+
+  #chexkbox-container {
+    width: 100%;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hiring-btn,
+  .quote-btn {
+    width: 100%;
+  }
+}

@@ -11,6 +11,7 @@ const ViewProfile = () => {
   const navigate = useNavigate();
   const defaultImageUrl =
     "https://tse1.mm.bing.net/th/id/OIP.yyVZtJgcX_k4j10PaEadSgHaHa?rs=1&pid=ImgDetMain";
+  // const defaultVideoUrl = "https://tse1.mm.bing.net/th/id/OIP.0v2r3Xk4a5bq6c7x8g9Y0wHaEK?pid=ImgDet&w=300&h=300&rs=1";
 
   // Alternative method to get ID from URL
   const location = window.location.pathname;
@@ -97,7 +98,7 @@ const ViewProfile = () => {
     navigate(`/hiringartisanPage/${userId}`);
   }
 
-  if (loading) return <div>Loading profile...</div>;
+  if (loading) return <div>Loading Profile...</div>;
 
   if (error || !user) {
     setTimeout(() => navigate("/"), 2000); // Redirect after 2 seconds
