@@ -108,7 +108,8 @@ const ViewProfile = () => {
     <div className="main-container">
       {/* Profile Header */}
       <div className="profile-heading">
-        <img
+        <div className="image-profile-details-container">
+          <img
           src={user.photoURL || defaultImageUrl}
           className="viewprofile-img"
           alt={user.full_name}
@@ -136,30 +137,31 @@ const ViewProfile = () => {
               {user.ratings || "No ratings yet"}
             </span>
           </div>
+        </div>
+        </div>
 
-          {/* Profile actions */}
-          <div className="profile-action-button-container">
-            {/* Hire button */}
-            <button className="artisan-hire-button" onClick={hireArtisanPage}>
-              Hire
-            </button>
+        {/* Profile actions */}
+        <div className="profile-action-button-container">
+          {/* Hire button */}
+          <button className="artisan-hire-button" onClick={hireArtisanPage}>
+            Hire
+          </button>
 
-            {/* Message button */}
-            <button
-              onClick={() => navigate("/chatbox")}
-              className="message-button"
-            >
-              Message
-            </button>
+          {/* Message button */}
+          <button
+            onClick={() => navigate("/chatbox")}
+            className="message-button"
+          >
+            Message
+          </button>
 
-            {/* Favourites button */}
-            <button className="favourites-button">
-              <i className="fa-regular fa-heart"></i>
-            </button>
+          {/* Favourites button */}
+          <button className="favourites-button">
+            <i className="fa-regular fa-heart"></i>
+          </button>
 
-            {/* View Portfolio button */}
-            <button className="view-portfolio-button">View Portfolio</button>
-          </div>
+          {/* View Portfolio button */}
+          <button className="view-portfolio-button">View Portfolio</button>
         </div>
       </div>
 
@@ -184,8 +186,7 @@ const ViewProfile = () => {
               src={user.video || defaultImageUrl}
               alt="An introductory video"
               controls
-            >          
-            </video>
+            ></video>
             <p className="video-caption">
               {user.caption ||
                 `Get to know ${user.full_name} via this short introductory video`}
