@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import "../styles/getstarted.css"
 import { uploadImageToImgbb } from "../utils/imageUpload";
+import "../styles/consumerNextpage.css";
 
 function ConsumerNextPage() {
   const navigate = useNavigate();
-   const location = useLocation();
+  const location = useLocation();
   const [selectedOption, setSelectedOption] = useState("skilled");
-  
+
   const prevFormData = location.state?.formData || {};
   const [formData, setFormData] = useState({
-    ...prevFormData, 
+    ...prevFormData,
     role: "consumer",
     full_name: "",
     address: "",
@@ -19,7 +19,6 @@ function ConsumerNextPage() {
     photoURL: "",
     videoURL: ""
   });
-
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -67,7 +66,6 @@ function ConsumerNextPage() {
     navigate("/consumerbtn");
   };
 
-
   const handlePhotoChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -94,7 +92,7 @@ function ConsumerNextPage() {
     try {
       const response = await axios.post(
         "https://skillhub-api-y3gi.onrender.com/api/auth/signup",
-        { ...formData, role: "consumer" }, 
+        { ...formData, role: "consumer" },
         { headers: { "Content-Type": "application/json" } }
       );
       if (response.status === 200 || response.status === 201) {
@@ -119,14 +117,14 @@ function ConsumerNextPage() {
   };
 
   return (
-    <div className="consumer-verification-container">
-      <h2>Create Account</h2>
+    <div className="consumer-profile-info-container">
+      {/* <h2>Create Account</h2>
       <h3>
         Already have an account? <a href="/signin">sign in</a>
-      </h3>
+      </h3> */}
 
       {/* switch button */}
-      <div className="switch-button-container">
+      <div className="consumer-profile-info-switch-button-container">
         <div className="button">
           <button
             className={`consumer-btn ${
@@ -174,8 +172,8 @@ function ConsumerNextPage() {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleCreateAccount} className="form-container">
-        <div className="profile-pic-upload">
+      <form onSubmit={handleCreateAccount} className="consumer-profile-info-form-container">
+        <div className="consumer-profile-page-profile-pic-upload">
           <div className="dashed-border profile-image-icon-file-button-container">
             <img
               className="profile-image-icon"
@@ -200,29 +198,28 @@ function ConsumerNextPage() {
               </strong>
             </p>
           </div>
-          
         </div>
 
         <div className="consumer-profile-info-form-container">
           <div className="form-row">
             {/* Full name */}
-            <div className="form-group">
+            <div className="consumer-profile-info-form-group">
               <label htmlFor="fullname">
                 Full Name <sup className="mandatory-asterik">*</sup>
               </label>
               <input
+                className="full_name consumer-profile-info-input-field"
                 type="text"
                 id="fullname"
                 required
                 value={formData.full_name}
                 onChange={handleInputChange}
-                className="full-name"
                 placeholder="Enter your full name"
               />
             </div>
 
             {/* Address */}
-            <div className="form-group">
+            <div className="consumer-profile-info-form-group">
               <label htmlFor="address">
                 Address{" "}
                 <span>
@@ -231,6 +228,7 @@ function ConsumerNextPage() {
                 </span>
               </label>
               <input
+                className="consumer-profile-info-input-field"
                 type="text"
                 id="address"
                 required
@@ -242,11 +240,13 @@ function ConsumerNextPage() {
           </div>
 
           {/* Bio */}
-          <div className="form-group">
+          <div className="consumer-profile-info-form-group">
             <label htmlFor="bio">
               Bio<sup className="mandatory-asterik">*</sup>
+              
             </label>
             <textarea
+              className="consumer-profile-info-textarea"
               id="bio"
               required
               maxLength={200}
@@ -259,7 +259,7 @@ function ConsumerNextPage() {
           {/* Create account button */}
           <button
             id="create-btn"
-            className="buttons"
+            className="consumer-profile-info-submit-button"
             type="submit"
             disabled={loading}
           >

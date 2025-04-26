@@ -14,14 +14,107 @@
 }
 
 /* Form */
-.switch-button-container {
+.consumer-profile-info-switch-button-container {
+  margin-top: 100px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .consumer-profile-info-form-container {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+
+.consumer-profile-page-profile-pic-upload {
+  width: 100%;
+  border: 1px solid var(--inactive-grey);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.consumer-profile-page-profile-pic-upload:hover {
+  cursor: pointer;
+  border: 1px solid var(--skillhub-blue);
+}
+
+.consumer-profile-info-form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.consumer-profile-info-form-group label {
+  text-align: left;
+}
+
+.consumer-profile-info-input-field,
+.consumer-profile-info-textarea {
+  width: 100%;
+  height: 50px;
+  border: 1px solid var(--inactive-grey);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.consumer-profile-info-input-field {
+  height: 50px;
+}
+
+.consumer-profile-info-textarea {
+  height: 150px;
+}
+
+.consumer-profile-info-input-field:focus,
+.consumer-profile-info-textarea:focus {
+  outline: none;
+  border: 1px solid var(--skillhub-blue);
+}
+
+.consumer-profile-info-input-field::placeholder,
+.consumer-profile-info-textarea::placeholder {
+  font-size: 16px;
+  text-align: left;
+}
+
+.consumer-profile-info-submit-button {
+  width: auto;
+  height: 50px;
+  background-color: var(--skillhub-blue);
+  color: var(--white);
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767px) {
+  .consumer-profile-info-form-container {
+    padding: 0 10px;
+  }
+  .consumer-profile-page-profile-pic-upload {
+    width: auto;
+  }
+
+  .consumer-profile-info-form-group {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .consumer-profile-page-profile-pic-upload {
+    width: auto;
+  }
+
+  .consumer-profile-info-form-group {
+    width: 100%;
+  }
 }
