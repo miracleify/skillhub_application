@@ -184,9 +184,7 @@ const ViewProfile = () => {
               src={user.video || defaultImageUrl}
               alt="An introductory video"
               controls
-            >            git add .
-            git commit -m "Resolve conflicts and save changes"
-              Your browser does not support this file format
+            >          
             </video>
             <p className="video-caption">
               {user.caption ||
