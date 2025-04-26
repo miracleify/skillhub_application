@@ -1,9 +1,9 @@
 :root {
-  --white: #FFFFFF;
+  --white: #ffffff;
   --black: #000000;
-  --grey: #8F8F8F;
-  --skillhub-blue: #0575E6;
-  --skillhub-hover-blue: #0518E6;
+  --grey: #8f8f8f;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
   --skillhub-light-blue: #e5f1ff;
 }
 
@@ -49,7 +49,7 @@
 
 /* Index Numbering */
 .faq li::before {
-  content: counter(list-item) '.';
+  content: counter(list-item) ".";
   counter-increment: list-item;
   margin-right: 15px;
   font-weight: 600;
@@ -89,8 +89,8 @@
 
 /* Dropdown Indicator */
 .faq summary::after {
-  content: '▶';
-  transform: rotate(-90deg);
+  content: "▶";
+  transform: rotate(90deg);
   /* content: '🔼'; */
   font-size: 16px;
   color: black;
@@ -99,7 +99,7 @@
 
 /* Rotate dropdown when open */
 .faq details[open] summary::after {
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
 }
 
 .faq summary:hover {
@@ -110,7 +110,7 @@
 .faq p {
   font-size: 16px;
   line-height: 1.6;
-  color: #2A2A2A;
+  color: #2a2a2a;
   margin-top: 10px;
   padding: 0 10px;
   text-align: left;

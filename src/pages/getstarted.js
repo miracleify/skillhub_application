@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../styles/getstarted.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../styles/getstarted.css";
 
 function Getstarted() {
   const navigate = useNavigate(); // Corrected variable name to start with lowercase

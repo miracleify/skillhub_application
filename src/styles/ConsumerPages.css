@@ -1,0 +1,131 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --inactive-grey: #8f8f8f;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
+  --red: red;
+  --completion-green: #008000;
+  --debug-colour: #add8e6;
+}
+
+/* Titling */
+.consumer-basic-profile-info-title-container {
+  text-align: left;
+}
+
+.create {
+  color: var(--skillhub-blue);
+}
+
+.account {
+  font-variant: var(--black);
+}
+
+.switch-button-container {
+  margin-top: 90px;
+}
+
+/* Form */
+.consumer-page-form-container {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px 0 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.consumer-basic-info-pic {
+  width: 600px;
+  height: 500px;
+}
+
+.consumer-page-form-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.consumer-basic-info-input-field-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.consumer-basic-info-input-field-container label {
+  text-align: left;
+}
+
+.consumer-page-basic-info-input-field {
+  height: 50px;
+  width: 400px;
+  border: 1px solid var(--inactive-grey);
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+.consumer-page-basic-info-input-field:focus {
+  outline: none;
+  border: 1px solid var(--skillhub-blue);
+  box-shadow: 0px 0px 5px var(--skillhub-blue);
+}
+
+.consumer-page-basic-info-input-field::placeholder {
+  color: var(--inactive-grey);
+  font-size: 14px;
+  text-align: left;
+}
+
+.consumer-page-next-button {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+  background-color: var(--skillhub-blue);
+  color: var(--white);
+  border: none;
+  display: flex;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.consumer-page-next-button:hover {
+  background-color: var(--skillhub-hover-blue);
+  cursor: pointer;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .switch-button-container {
+    margin-top: 30px;
+  }
+
+  .progress-step {
+    width: 50px;
+    height: 50px;
+  }
+
+  .consumer-basic-profile-info-title-container {
+    margin-top: 0;
+  }
+
+  .consumer-page-form-container {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width: 350px;
+    padding: 0 10px;
+  }
+
+  .consumer-basic-info-pic {
+    display: none;
+  }
+
+  .consumer-page-basic-info-input-field {
+    width: 330px;
+  }
+}

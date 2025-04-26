@@ -2,55 +2,56 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Lexend';
+  font-family: "Lexend", sans-serif;
 }
 
 :root {
-  --white: #FFFFFF;
+  --white: #ffffff;
   --black: #000000;
-  --inactive-grey: #8F8F8F;
-  --skillhub-blue: #0575E6;
-  --skillhub-hover-blue: #0518E6;
+  --inactive-grey: #8f8f8f;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
 }
 
-body, html {
+body,
+html {
   width: 100%;
   min-height: 100%;
-  /* overflow-x: hidden;  */
-}
-
-.link-headline {
-  top: 50px;
-  position: relative;
-  width: 1250px;
-  height: auto;
-  margin: 45px auto 0;
-  padding: 0 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 72px; 
-  color: var(--white);
-  text-align: center;
-  z-index: 1;
 }
 
 .home-container {
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  height: 370px;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(.images/backG.png);
+  height: 250px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(.images/backG.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
-  width: 100vw; /* Use viewport width to ensure full screen width */
+  width: 100%; /* Use viewport width to ensure full screen width */
   left: 50%; /* Center the container */
   right: 50%; /* Center the container */
   margin-left: -50vw; /* Offset to ensure full width */
-  margin-right: -50vw ; /* Offset to ensure full width */
+  margin-right: -50vw; /* Offset to ensure full width */
   margin-top: 30px;
 }
 
-.block-text{
+.link-headline {
+  margin-top: 50px;
+  width: auto;
+  font-size: 80px;
+  font-weight: 600;
+  line-height: 50px;
+  color: var(--white);
+  text-align: center;
+  z-index: 1000;
+}
+
+.block-text {
   position: relative;
   max-width: 1135px;
   width: 100%;
@@ -165,6 +166,7 @@ input::placeholder {
   align-items: center;
   justify-content: space-between;
   gap: 30px;
+  padding: 0 50px;
   margin-bottom: 40px;
 }
 
@@ -187,7 +189,7 @@ input::placeholder {
 
 /* Responsive styles */
 @media (max-width: 1024px) {
-  .link-headline{
+  .link-headline {
     width: 600px;
   }
   .content-section {
@@ -210,33 +212,33 @@ input::placeholder {
     position: relative;
     left: 30px;
     top: 120px;
-    color: #0575E6;
+    color: #0575e6;
   }
   .search-container {
     margin-top: 100px;
     max-width: 90%;
   }
-  .link-headline{
+  .link-headline {
     width: 600px;
     font-weight: 600px;
     font-size: 20px;
   }
-  
+
   .input-Bar {
     height: 56px;
     font-size: 1rem;
   }
-  
+
   input::placeholder {
     font-size: 16px;
   }
-  
+
   .search-btn {
     height: 56px;
     font-size: 14px;
     padding: 0 15px;
   }
-  
+
   .headliner {
     font-size: 28px;
     line-height: 36px;
@@ -252,28 +254,27 @@ input::placeholder {
   .search-container {
     width: 90%;
   }
-  .link-headline{
+  .link-headline {
     width: 680px;
     font-weight: 600px;
     font-size: 30px;
-    
   }
-  
+
   .input-Bar {
     width: 50%;
     font-size: 1.5rem;
     height: 56px;
   }
-  
+
   .icon {
     height: 56px;
   }
-  
+
   .search-btn {
     height: 56px;
     width: 120px;
   }
-  
+
   .headliner {
     font-size: 28px;
     line-height: 36px;
@@ -282,27 +283,28 @@ input::placeholder {
 }
 
 /* Mobile Responsive */
-@media screen and (max-width: 480px) {
+@media (max-width: 767px) {
   .home-container {
-    height: 280px; /* Reduced height for mobile */
+    width: 100vw;
+    height: 150px;
     margin-top: 60px;
+    padding: 0 20px;
   }
 
   .link-headline {
     font-size: 20px;
     line-height: 24px;
-    width: 300px;
     margin: 15px auto 0;
     top: 60px;
     padding: 0 10px;
   }
-  
+
   .block-text {
     font-size: 28px;
     line-height: 36px;
     margin-top: -40px;
   }
-  
+
   .search-container {
     width: 90%;
     margin: 15px auto;
@@ -311,7 +313,7 @@ input::placeholder {
     flex-direction: row; /* Keep as row to maintain side-by-side layout */
     align-items: center;
   }
-  
+
   .input-Bar {
     position: relative;
     width: 70%;
@@ -320,11 +322,11 @@ input::placeholder {
     top: 0;
     border-radius: 8px 0 0 8px;
   }
-  
+
   input::placeholder {
     font-size: 14px;
   }
-  
+
   .search-btn {
     position: relative;
     width: 30%;
@@ -335,26 +337,26 @@ input::placeholder {
     border-radius: 0 8px 8px 0;
     font-size: 14px;
   }
-  
+
   .icon {
     display: none; /* Hide icon on mobile for simplicity */
   }
-  
+
   .content-section {
     padding: 0 15px;
   }
-  
+
   .headliner {
     font-size: 22px;
     line-height: 28px;
     margin: 40px auto 20px;
     padding: 0 15px;
   }
-  
+
   .multi-image img {
     height: auto;
   }
-  
+
   .article {
     font-size: 15px;
     line-height: 1.5;

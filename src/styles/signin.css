@@ -1,312 +1,329 @@
-/* Base styling */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  :root {
-    --white: #ffffff;
-    --black: #000000;
-    --inactive-grey: #8f8f8f;
-    --skillhub-blue: #0575e6;
-    --skillhub-hover-blue: #0518e6;
-    --light-grey: #f5f5f5;
-    --border-grey: #e0e0e0;
-  }
-  
-  body {
-    background-color: var(--white);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .signin-container {
-    width: 100%;
-    max-width: 1200px;
-    padding: 2rem;
-    animation: fadeIn 0.8s ease-in-out;
-  }
-  
-  .signin-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-  
-  .welcome-section {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    animation: slideDown 0.6s ease-out;
-  }
-  
-  .welcome-title {
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: var(--black);
-  }
-  
-  .skillhub {
-    color: var(--skillhub-blue);
-  }
-  
-  .hub {
-    color: var(--black);
-  }
-  
-  /* FORM STYLES */
-  .signin-form {
-    padding: 3rem;
-    width: 100%;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    animation: slideUp 0.8s ease-out;
-  }
-  
-  .input-field-container {
-    display: flex;
-    flex-direction: column; /* Ensures vertical stacking */
-    width: 100%;
-    position: relative;
-    opacity: 0;
-    animation: fadeIn 0.5s ease-out forwards;
-  }
-  
-  .input-label {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--black);
-    text-align: left;
-    width: 100%;
-    margin-bottom: 15px; /* Clear space between label and input */
-    display: block; /* Ensures the label is a block element */
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-  
-  .required-asterisk {
-    color: red;
-  }
-  .form-inputn::placeholder {
-    transition: opacity 0.3s ease;
-    font-size: medium;
-  
-  }
-  .form-n:focus::placeholder {
-    opacity: 0.5;
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --inactive-grey: #8f8f8f;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
+  --red: red;
+  --light-grey: #f5f5f5;
+  --border-grey: #e0e0e0;
+  --debug-colour: #add8e6;
+}
 
+body {
+  background-color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Section titling */
+.welcome-section {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  animation: slideDown 0.6s ease-out;
+}
+
+.welcome-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.skillhub {
+  color: var(--skillhub-blue);
+}
+
+.hub {
+  color: var(--black);
+}
+
+/* Form and image container */
+.sign-in-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 70px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  /* animation: fadeIn 0.8s ease-in-out; */
+}
+
+/* FORM STYLES */
+.sign-in-image-form-wrapper {
+  display: flex;
+  width: 100%;
+  height: 500px;
+  align-items: center;
+}
+
+.sign-in-image {
+  width: 750px;
+  display: flex;
+  justify-content: stretch;
+}
+
+.welcome-title {
+  font-size: 25px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.signin-form {
+  padding: 3rem;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  /* animation: slideUp 0.8s ease-out; */
+}
+
+.field-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sign-in-input-field-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  /* animation: fadeIn 0.5s ease-out forwards; */
+}
+
+.input-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--black);
+  text-align: left;
+  width: 100%;
+  margin-bottom: 15px; /* Clear space between label and input */
+  display: block; /* Ensures the label is a block element */
+  /* transition: transform 0.3s ease, color 0.3s ease; */
+}
+
+.mandatory-asterisk {
+  color: var(--red);
+}
+
+.sign-in-input-field {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--inactive-grey);
+  border-radius: 8px;
+  font-size: 1rem;
+  display: block; /* Ensures the input is a block element */
+
+  /* transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; */
+}
+
+.sign-in-input-field:focus {
+  outline: none;
+  border: 1px solid var(--skillhub-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(5, 117, 230, 0.2);
+}
+
+.sign-in-input-field::placeholder {
+  /* transition: opacity 0.3s ease; */
+  font-size: 14px;
+  text-align: left;
+}
+
+/* BUTTONS AND LINKS */
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  width: 100%;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.login-button,
+.google-signin-button {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-button {
+  background-color: var(--skillhub-blue);
+  color: var(--white);
+  border: none;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-button:hover {
+  background-color: var(--skillhub-hover-blue);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(5, 24, 230, 0.3);
+}
+
+.login-button:active {
+  transform: translateY(-1px);
+}
+
+.google-signin-button {
+  background-color: var(--white);
+  color: var(--skillhub-blue);
+  border: 1px solid var(--border-grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.google-signin-button:hover {
+  background-color: var(--light-grey);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.forgot-password-link {
+  text-align: center;
+  color: var(--skillhub-blue);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  display: block;
+  width: 100%;
+  transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+  color: var(--skillhub-hover-blue);
+}
+
+.new-user-prompt {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--inactive-grey);
+  width: 100%;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+.signup-link {
+  color: var(--skillhub-blue);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+  color: var(--skillhub-hover-blue);
+}
+
+/* LAYOUT FOR IMAGE AND FORM */
+.sign-in-form-container {
+  background-color: var(--white);
+  border-radius: 15px;
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */
+  overflow: hidden;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-form-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+.login-image {
+  width: 50%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.login-image:hover {
+  transform: scale(1.03);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 767px) {
+  .signin-form {
+    height: 100%;
+    padding: 20px;
   }
-  .form-inputn {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    border: 2px solid var(--border-grey);
-    border-radius: 8px;
-    font-size: 1rem;
-    display: block; /* Ensures the input is a block element */
-    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .form-input:focus {
-    outline: none;
-    border-color: var(--skillhub-blue);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(5, 117, 230, 0.2);
-  }
-  
-  /* BUTTONS AND LINKS */
-  .form-actions {
-    display: flex;
+
+  /* .sign-in-image-form-wrapper {
     flex-direction: column;
-    gap: 1rem;
-    margin-top: 1.5rem;
+  } */
+
+  .sign-in-image {
+    display: none;
+  }
+
+  .form-input,
+  .form-actions {
+    max-width: 100%;
+  }
+}
+
+/* Tablet responsiveness */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .signin-form {
+    height: 500px;
     width: 100%;
+    padding: 20px;
+  }
+
+  .sign-in-image {
+    height: 100%;
+    width: 400px;
+  }
+
+  .form-input,
+  .form-actions {
+    max-width: 100%;
+  }
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from {
     opacity: 0;
-    animation: fadeIn 0.5s ease-out forwards;
-    animation-delay: 0.3s;
   }
-  
-  .login-button,
-  .google-signin-button {
-    width: 100%;
-    padding: 0.8rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  to {
+    opacity: 1;
   }
-  
-  .login-button {
-    background-color: var(--skillhub-blue);
-    color: var(--white);
-    border: none;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .login-button:hover {
-    background-color: var(--skillhub-hover-blue);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(5, 24, 230, 0.3);
-  }
-  
-  .login-button:active {
-    transform: translateY(-1px);
-  }
-  
-  .google-signin-button {
-    background-color: var(--white);
-    color: var(--skillhub-blue);
-    border: 1px solid var(--border-grey);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-  
-  .google-signin-button:hover {
-    background-color: var(--light-grey);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .forgot-password-link {
-    text-align: center;
-    color: var(--skillhub-blue);
-    text-decoration: none;
-    font-size: 0.9rem;
-    margin-top: 1rem;
-    display: block;
-    width: 100%;
-    transition: color 0.3s ease;
-  }
-  
-  .forgot-password-link:hover {
-    text-decoration: underline;
-    color: var(--skillhub-hover-blue);
-  }
-  
-  .new-user-prompt {
-    text-align: center;
-    margin-top: 1.5rem;
-    color: var(--inactive-grey);
-    width: 100%;
+}
+
+@keyframes slideDown {
+  from {
     opacity: 0;
-    animation: fadeIn 0.5s ease-out forwards;
-    animation-delay: 0.4s;
+    transform: translateY(-20px);
   }
-  
-  .signup-link {
-    color: var(--skillhub-blue);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .signup-link:hover {
-    text-decoration: underline;
-    color: var(--skillhub-hover-blue);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  /* LAYOUT FOR IMAGE AND FORM */
-  .form-container {
-    background-color: var(--white);
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .form-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  }
-  
-  .image-form-wrapper {
-    display: flex;
-    align-items: stretch;
-  }
-  
-  .login-image {
-    width: 50%;
-    height: auto;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-  
-  .login-image:hover {
-    transform: scale(1.03);
-  }
-  
-  /* ANIMATIONS */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* RESPONSIVE ADJUSTMENTS */
-  @media (max-width: 900px) {
-    .image-form-wrapper {
-      flex-direction: column;
-    }
-    
-    .login-image {
-      width: 100%;
-      max-height: 300px;
-    }
-    
-    .signin-form {
-      padding: 2rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .signin-container {
-      padding: 1rem;
-    }
-    
-    .welcome-title {
-      font-size: 2rem;
-    }
-    
-    .signin-form {
-      padding: 1.5rem;
-    }
-    
-    .form-input,
-    .form-actions {
-      max-width: 100%; /* Full width on small screens */
-    }
-  }
+}
