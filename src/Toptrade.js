@@ -29,6 +29,16 @@ const TopTrades = () => {
       location: "Lagos, Nigeria",
       ratings: "★★★★★",
     },
+     {
+      id: 2,
+      name: "Adewale OgunLeye",
+      profession: "Plumber",
+      verified: true,
+      image: "/userProfile/wale.png",
+      expertise: "Wiring, repairs, lighting, electrical upgrades",
+      location: "Lagos, Nigeria",
+      ratings: "★★★★★",
+    },
     {
       id: 3,
       name: "Zainab Suleiman",
