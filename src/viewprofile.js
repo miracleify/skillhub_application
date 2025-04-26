@@ -110,34 +110,39 @@ const ViewProfile = () => {
       <div className="profile-heading">
         <div className="image-profile-details-container">
           <img
-          src={user.photoURL || defaultImageUrl}
-          className="viewprofile-img"
-          alt={user.full_name}
-        />
+            src={user.photoURL || defaultImageUrl}
+            className="viewprofile-img"
+            alt={user.full_name}
+          />
 
-        <div className="profile-details">
-          <h2 className="viewprofile-name">
-            {user.full_name}
-            {user.verified && (
-              <i className="fa-solid fa-circle-check verification-icon"></i>
-            )}
-          </h2>
+          <div className="profile-details">
+            <h2 className="viewprofile-name">
+              {user.full_name}
+              {user.verified && (
+                <i className="fa-solid fa-circle-check verification-icon"></i>
+              )}
+            </h2>
 
-          <p className="viewprofile-expertise">
-            <strong>Expertise:</strong> {user.skill || "Not specified"}
-          </p>
+            {/* expertise */}
+            <p className="viewprofile-expertise">
+              <strong>Expertise:</strong>
+              {user.skill || "Not specified"}
+            </p>
 
-          <p className="viewprofile-location">
-            <strong>Service Area:</strong> {user.address || "Not specified"}
-          </p>
+            {/* service area */}
+            <p className="viewprofile-location">
+              <strong>Service Area:</strong>
+              {user.address || "Not specified"}
+            </p>
 
-          <div className="ratings">
-            <strong>Overall Rating:</strong>
-            <span className="rating-stars">
-              {user.ratings || "No ratings yet"}
-            </span>
+            {/* ratings */}
+            <div className="">
+              <strong>Overall Rating: </strong>
+              <span className="rating-stars">
+                {user.ratings || "No ratings yet"}
+              </span>
+            </div>
           </div>
-        </div>
         </div>
 
         {/* Profile actions */}
