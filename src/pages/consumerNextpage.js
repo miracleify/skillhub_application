@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "../styles/getstarted.css"
@@ -6,7 +6,9 @@ import { uploadImageToImgbb } from "../utils/imageUpload";
 
 function ConsumerNextPage() {
   const navigate = useNavigate();
-   const location = useLocation();
+  const location = useLocation();
+  const fileInputRef = useRef(null);
+  
   const [selectedOption, setSelectedOption] = useState("skilled");
   
   const prevFormData = location.state?.formData || {};
@@ -20,10 +22,14 @@ function ConsumerNextPage() {
     videoURL: ""
   });
 
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
+  
+  // New states for image preview
+  const [showImagePreview, setShowImagePreview] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const [progressSteps] = useState([
     {
@@ -67,23 +73,56 @@ function ConsumerNextPage() {
     navigate("/consumerbtn");
   };
 
-
-  const handlePhotoChange = async (e) => {
+  // Modified to show preview first
+  const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    setLoading(true);
+    
     setError("");
+    setSelectedFile(file);
+    
+    // Create a preview URL
+    const reader = new FileReader();
+    reader.onload = () => {
+      setPreviewImage(reader.result);
+      setShowImagePreview(true);
+    };
+    reader.readAsDataURL(file);
+  };
+  
+  // New function to confirm the selected image
+  const confirmImage = async () => {
+    if (!selectedFile) return;
+    
+    setLoading(true);
     try {
-      const photoURL = await uploadImageToImgbb(file);
+      const photoURL = await uploadImageToImgbb(selectedFile);
       setFormData((prev) => ({
         ...prev,
         photoURL,
       }));
+      setShowImagePreview(false);
     } catch (err) {
       setError("Image upload failed. " + err.message);
     } finally {
       setLoading(false);
     }
+  };
+  
+  // New function to cancel the image selection
+  const cancelImageSelection = () => {
+    setShowImagePreview(false);
+    setPreviewImage(null);
+    setSelectedFile(null);
+    // Reset the file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+  
+  // Function to trigger file input click
+  const triggerFileInput = () => {
+    fileInputRef.current.click();
   };
 
   const handleCreateAccount = async (e) => {
@@ -167,9 +206,41 @@ function ConsumerNextPage() {
         </ul>
       </div>
 
+      {/* Image Preview Modal */}
+      {showImagePreview && (
+        <div className="image-preview-overlay">
+          <div className="image-preview-container">
+            <h3>Preview Profile Image</h3>
+            <div className="image-preview">
+              <img src={previewImage} alt="Profile Preview" />
+            </div>
+            <div className="image-preview-actions">
+              <button 
+                className="confirm-image-btn" 
+                onClick={confirmImage}
+                disabled={loading}
+              >
+                {loading ? "Uploading..." : "Confirm Image"}
+              </button>
+              <button 
+                className="cancel-image-btn" 
+                onClick={cancelImageSelection}
+                disabled={loading}
+              >
+                Cancel
+              </button>
+            </div>
+            {error && <p className="error-message">{error}</p>}
+          </div>
+        </div>
+      )}
+
       <form onSubmit={handleCreateAccount}>
         <div className="profile-pic-upload">
-          <div className="dashed-border profile-image-icon-file-button-container">
+          <div 
+            className="dashed-border profile-image-icon-file-button-container"
+            onClick={triggerFileInput}
+          >
             <img
               className="profile-image-icon"
               src={formData.photoURL || "/images/camera.png"}
@@ -183,6 +254,8 @@ function ConsumerNextPage() {
             id="profile-photo"
             accept="image/*"
             onChange={handlePhotoChange}
+            ref={fileInputRef}
+            style={{ display: 'none' }}
             required
           />
 
@@ -194,7 +267,6 @@ function ConsumerNextPage() {
               </strong>
             </p>
           </div>
-          
         </div>
 
         <div className="form-row">
@@ -326,6 +398,113 @@ function ConsumerNextPage() {
 
         .continue-btn:hover {
           background-color: rgb(35, 112, 194);
+        }
+        
+        /* Image preview styles */
+        .image-preview-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.7);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        }
+
+        .image-preview-container {
+          background-color: white;
+          border-radius: 8px;
+          padding: 24px;
+          width: 90%;
+          max-width: 500px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .image-preview-container h3 {
+          margin-top: 0;
+          margin-bottom: 16px;
+          color: #333;
+        }
+
+        .image-preview {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-bottom: 20px;
+          max-height: 350px;
+          overflow: hidden;
+        }
+
+        .image-preview img {
+          max-width: 100%;
+          max-height: 350px;
+          object-fit: contain;
+          border-radius: 4px;
+        }
+
+        .image-preview-actions {
+          display: flex;
+          gap: 16px;
+          margin-top: 8px;
+        }
+
+        .confirm-image-btn, .cancel-image-btn {
+          padding: 10px 20px;
+          border-radius: 4px;
+          font-weight: 500;
+          cursor: pointer;
+          border: none;
+          transition: all 0.2s ease;
+        }
+
+        .confirm-image-btn {
+          background-color: #4a90e2;
+          color: white;
+        }
+
+        .confirm-image-btn:hover {
+          background-color: #357abD;
+        }
+
+        .confirm-image-btn:disabled {
+          background-color: #a0c0e8;
+          cursor: not-allowed;
+        }
+
+        .cancel-image-btn {
+          background-color: #f5f5f5;
+          color: #333;
+          border: 1px solid #ddd;
+        }
+
+        .cancel-image-btn:hover {
+          background-color: #e5e5e5;
+        }
+
+        .cancel-image-btn:disabled {
+          color: #999;
+          cursor: not-allowed;
+        }
+
+        .error-message {
+          color: red;
+          margin-top: 12px;
+          text-align: center;
+        }
+        
+        /* Make the profile upload area clickable */
+        .profile-image-icon-file-button-container {
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .profile-image-icon-file-button-container:hover {
+          opacity: 0.8;
         }
       `}</style>
     </div>

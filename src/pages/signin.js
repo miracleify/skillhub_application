@@ -132,7 +132,7 @@ export default function SignIn() {
                 Skill<span className="hub">Hub</span>
               </span>
               ?{" "}
-              <Link to="/getstarted" className="signup-link">
+              <Link to="/consumerpages" className="signup-link">
                 Sign Up
               </Link>
             </div>

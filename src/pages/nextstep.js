@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/nextstep.css";
 import { uploadImageToImgbb } from "../utils/imageUpload";
@@ -6,15 +6,16 @@ import { uploadImageToImgbb } from "../utils/imageUpload";
 function Nextstep() {
   const Navigate = useNavigate();
   const location = useLocation();
+  const fileInputRef = useRef(null);
 
   const [selectedOption, setSelectedOption] = useState("skilled");
   const prevFormData = location.state?.formData || {};
-   const [formData, setFormData] = useState({
-     ...prevFormData,
+  const [formData, setFormData] = useState({
+    ...prevFormData,
     role: "skilled",
     full_name: "",
     areas_of_expertise: "",
-    skill: "", // This will now hold the dropdown selection
+    skill: "",
     address: "",
     service_area: "",
     bio: "",
@@ -22,6 +23,11 @@ function Nextstep() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  
+  // New states for image preview
+  const [showImagePreview, setShowImagePreview] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const [progressSteps] = useState([
     {
@@ -38,9 +44,10 @@ function Nextstep() {
     },
     { id: 2, text: "Verification", longText: "Verification", completed: false },
   ]);
-function changeStep(){
-    Navigate("/laststep", { state: { formData } }); // Pass formData to the next page
-  };
+
+  function changeStep() {
+    Navigate("/laststep", { state: { formData } });
+  }
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -72,22 +79,56 @@ function changeStep(){
     changeStep();
   };
 
-  const handlePhotoChange = async (e) => {
+  // Modified to show preview first
+  const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    setLoading(true);
+    
     setError("");
+    setSelectedFile(file);
+    
+    // Create a preview URL
+    const reader = new FileReader();
+    reader.onload = () => {
+      setPreviewImage(reader.result);
+      setShowImagePreview(true);
+    };
+    reader.readAsDataURL(file);
+  };
+  
+  // New function to confirm the selected image
+  const confirmImage = async () => {
+    if (!selectedFile) return;
+    
+    setLoading(true);
     try {
-      const photoURL = await uploadImageToImgbb(file);
+      const photoURL = await uploadImageToImgbb(selectedFile);
       setFormData((prev) => ({
         ...prev,
         photoURL,
       }));
+      setShowImagePreview(false);
     } catch (err) {
       setError("Image upload failed. " + err.message);
     } finally {
       setLoading(false);
     }
+  };
+  
+  // New function to cancel the image selection
+  const cancelImageSelection = () => {
+    setShowImagePreview(false);
+    setPreviewImage(null);
+    setSelectedFile(null);
+    // Reset the file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+  
+  // Function to trigger file input click
+  const triggerFileInput = () => {
+    fileInputRef.current.click();
   };
 
   return (
@@ -137,35 +178,68 @@ function changeStep(){
           ))}
         </ul>
       </div>
-        <div className="profile-pic-upload">
-          {/* <sup className="mandatory-asterik">*</sup> */}
-
-          <div className="dashed-border profile-image-icon-file-button-container">
-            <img
-              className="profile-image-icon"
-              src={formData.photoURL || "/images/camera.png"}
-              alt="Profile Image Upload"
-            />
-          </div>
-
-          {/* choose image file */}
-          <input
-            className="profile-image-upload-button"
-            type="file"
-            id="profile-photo"
-            accept="image/*"
-            onChange={handlePhotoChange}
-          />
-
-          <div className="key-image-upload-guidlines">
-            <p>Drag & drop or choose file to upload an image of yourself.</p>
-            <p>
-              <strong>
-                (PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)
-              </strong>
-            </p>
+      
+      {/* Image Preview Modal */}
+      {showImagePreview && (
+        <div className="image-preview-overlay">
+          <div className="image-preview-container">
+            <h3>Preview Profile Image</h3>
+            <div className="image-preview">
+              <img src={previewImage} alt="Profile Preview" />
+            </div>
+            <div className="image-preview-actions">
+              <button 
+                className="confirm-image-btn" 
+                onClick={confirmImage}
+                disabled={loading}
+              >
+                {loading ? "Uploading..." : "Confirm Image"}
+              </button>
+              <button 
+                className="cancel-image-btn" 
+                onClick={cancelImageSelection}
+                disabled={loading}
+              >
+                Cancel
+              </button>
+            </div>
+            {error && <p className="error-message">{error}</p>}
           </div>
         </div>
+      )}
+
+      <div className="profile-pic-upload">
+        <div 
+          className="dashed-border profile-image-icon-file-button-container"
+          onClick={triggerFileInput}
+        >
+          <img
+            className="profile-image-icon"
+            src={formData.photoURL || "/images/camera.png"}
+            alt="Profile Image Upload"
+          />
+        </div>
+
+        {/* Hidden file input */}
+        <input
+          className="profile-image-upload-button"
+          type="file"
+          id="profile-photo"
+          accept="image/*"
+          onChange={handlePhotoChange}
+          ref={fileInputRef}
+          style={{ display: 'none' }}
+        />
+
+        <div className="key-image-upload-guidlines">
+          <p>Drag & drop or choose file to upload an image of yourself.</p>
+          <p>
+            <strong>
+              (PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)
+            </strong>
+          </p>
+        </div>
+      </div>
       <br></br> <br></br>
 
       <div className="form-container">
@@ -294,4 +368,5 @@ function changeStep(){
     </>
   );
 }
+
 export default Nextstep;
