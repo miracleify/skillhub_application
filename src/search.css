@@ -106,7 +106,8 @@
   overflow-x: auto;
   overflow: scroll;
   gap: 10px;
-  max-width: 1200px;
+  width: 1220px;
+  max-width: 1240px;
   padding-bottom: 10px;
 }
 

@@ -110,9 +110,14 @@
 .artisan-page-trade-card {
   border: 1px solid var(--inactive-grey);
   border-radius: 10px;
-  height: 305px;
+  height: auto;
   width: auto;
   transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0;
 }
 
 .artisan-page-trade-card:hover {
@@ -131,6 +136,7 @@
   justify-content: center;
   gap: 7px;
   height: 150px;
+  width: 100%;
   margin-top: 15px;
   padding: 10px;
   text-align: center;
@@ -150,7 +156,6 @@
   border: 1px solid var(--skillhub-blue);
   border-radius: 5px;
   transition: 0.2s ease;
-  margin-top: 10px;
 }
 
 .artisan-page-view-profile-btn:hover {
@@ -166,7 +171,6 @@
 /* Mobile Responsiveness */
 @media (max-width: 767px) {
   .artisan-page-search-container {
-    margin-top: 10px;
     backdrop-filter: blur(10px);
     height: 100px;
     display: flex;
@@ -229,7 +233,8 @@
   .artisan-page-trade-card {
     align-items: center;
     width: 165px;
-    height: 270px;
+    display: flex;
+    padding-top: 30px;
   }
 
   .artisan-page-trade-info {
@@ -277,7 +282,6 @@
 
   .artisan-page-trade-card {
     width: 165px;
-    height: 270px;
   }
 
   .artisan-page-trade-info {
