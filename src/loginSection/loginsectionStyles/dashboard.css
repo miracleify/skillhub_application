@@ -8,9 +8,7 @@
     --completion-green: #008000;
     --debug-colour: #add8e6;
   }
-.navbar {
-    display: none;
-  }
+
   
   /* Navigation container - fixed position */
   .nav-container {
