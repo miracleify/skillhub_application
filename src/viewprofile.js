@@ -58,8 +58,8 @@ const ViewProfile = () => {
               ? foundUser.full_name.split(" ").slice(1).join(" ")
               : "",
             image: foundUser.photoURL || defaultImageUrl,
-            expertise: foundUser.profession || "Not specified",
-            location: foundUser.location || "Not specified",
+            expertise: foundUser.areas_of_expertise || "Not specified",
+            location: foundUser.address || "Not specified",
             ratings: foundUser.ratings || "No ratings yet",
             verified: foundUser.verified || false,
           };
@@ -105,44 +105,39 @@ const ViewProfile = () => {
   }
 
   return (
-    <>
-      <div className="main-container">
-        {/* Reworked */}
-        <div className="profile-heading">
-          <div className="image-profile-details-container">
-            <img
-              src={user.photoURL || defaultImageUrl}
-              className="viewprofile-img"
-              alt={user.full_name}
-            />
+    <div className="main-container">
+      {/* Profile Header */}
+      <div className="profile-heading">
+        <img
+          src={user.photoURL || defaultImageUrl}
+          className="viewprofile-img"
+          alt={user.full_name}
+        />
 
-            <div className="profile-details">
-              <h2 className="viewprofile-name">
-                {user.full_name}
-                {user.verified && (
-                  <i className="fa-solid fa-circle-check verification-icon"></i>
-                )}
-              </h2>
+        <div className="profile-details">
+          <h2 className="viewprofile-name">
+            {user.full_name}
+            {user.verified && (
+              <i className="fa-solid fa-circle-check verification-icon"></i>
+            )}
+          </h2>
 
-              <p className="viewprofile-expertise">
-                <strong>Expertise:</strong> {user.profession || "Not specified"}
-              </p>
+          <p className="viewprofile-expertise">
+            <strong>Expertise:</strong> {user.skill || "Not specified"}
+          </p>
 
-              <p className="viewprofile-location">
-                <strong>Service Area:</strong>{" "}
-                {user.location || "Not specified"}
-              </p>
+          <p className="viewprofile-location">
+            <strong>Service Area:</strong> {user.address || "Not specified"}
+          </p>
 
-              <div className="ratings-details">
-                <strong>Overall Rating:</strong>
-                <span className="rating-stars">
-                  {user.ratings || `${""} No ratings yet`}
-                </span>
-              </div>
-            </div>
+          <div className="ratings">
+            <strong>Overall Rating:</strong>
+            <span className="rating-stars">
+              {user.ratings || "No ratings yet"}
+            </span>
           </div>
 
-          {/* profile actions */}
+          {/* Profile actions */}
           <div className="profile-action-button-container">
             {/* Hire button */}
             <button className="artisan-hire-button" onClick={hireArtisanPage}>
@@ -166,125 +161,121 @@ const ViewProfile = () => {
             <button className="view-portfolio-button">View Portfolio</button>
           </div>
         </div>
+      </div>
 
-        {/* Biography and video Section */}
-        <section className="biography-and-video-section">
-          <div className="biography-section">
-            {/* bio title */}
-            <h2 className="biography-title">BIOGRAPHY</h2>
-            {/* bio content */}
-            <div className="biography-content">
-              {/* bio */}
-              <p className="viewprofile-biography">
-                {user.bio || "No biography available."}
-              </p>
-            </div>
+      {/* Biography and video Section */}
+      <section className="biography-and-video-section">
+        <div className="biography-section">
+          {/* Bio title */}
+          <h2 className="biography-title">BIOGRAPHY</h2>
+          {/* Bio content */}
+          <div className="biography-content">
+            <p className="viewprofile-biography">
+              {user.bio || "No biography available."}
+            </p>
+          </div>
+        </div>
+
+        {/* Bio Video */}
+        <div className="biography-media-container">
+          <div className="video-container">
+            <video
+              className="bio-video"
+              src={user.video || defaultImageUrl}
+              alt="An introductory video"
+              controls
+            >            git add .
+            git commit -m "Resolve conflicts and save changes"
+              Your browser does not support this file format
+            </video>
+            <p className="video-caption">
+              {user.caption ||
+                `Get to know ${user.full_name} via this short introductory video`}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Service Area and Availability Section */}
+      <section className="service-area-section">
+        <h2 className="section-heading">SERVICE AREA (MAP)</h2>
+
+        <div className="service-area-content">
+          {/* Service Area and availability */}
+          <div className="map-container">
+            <iframe
+              title="Service Area Map"
+              src={
+                user.serviceArea ||
+                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.3231686058723!2d7.044031874795928!3d4.891650295369944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1069cc25ef06d95d%3A0xf8743fbd94c6b3fa!2sRivers%20State%20University!5e0!3m2!1sen!2sng!4v1718716654675!5m2!1sen!2sng"
+              }
+              frameBorder="0"
+              allowFullScreen
+            ></iframe>
           </div>
 
-          {/* bio Video */}
-          <div className="biography-media-container">
-            <div className="video-container">
-              <video
-                className="bio-video"
-                src={user.video || defaultImageUrl}
-                alt="An introductory video"
-                controls
-              >
-                Your browser does not support this file format
-              </video>
-              <p className="video-caption">
-                {user.caption ||
-                  `Get to know ${user.full_name} via this short introductory video`}
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Service Area and Availability Section */}
-        <section className="service-area-section">
-          <h2 className="section-heading">SERVICE AREA (MAP)</h2>
-
-          <div className="service-area-content">
-            {/* Service Area and availability*/}
-            <div className="map-container">
-              <iframe
-                title="Service Area Map"
-                src={
-                  user.serviceArea ||
-                  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.3231686058723!2d7.044031874795928!3d4.891650295369944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1069cc25ef06d95d%3A0xf8743fbd94c6b3fa!2sRivers%20State%20University!5e0!3m2!1sen!2sng!4v1718716654675!5m2!1sen!2sng"
-                }
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
-            </div>
-
-            {/* Availability Section */}
-            <div className="service-availability-container">
-              {/* Availability */}
-              <div className="availability-container">
-                <div className="user-availability">
-                  <div className="availability-status">
-                    <div className="availability-title">
-                      <h2
-                        className={`status-text ${
-                          user.isOnline ? "online" : "offline"
-                        }`}
-                      >
-                        {user.full_name.split(" ")[0]} is{" "}
-                        {user.isOnline ? "Available" : "Unavailable"}
-                      </h2>
-                      <span
-                        className={`status-indicator ${
-                          user.isOnline ? "online" : "offline"
-                        }`}
-                      ></span>
-                    </div>
-                    <p
-                      className={`status-description ${
-                        user.isOnline ? "available" : "fully-booked"
+          {/* Availability Section */}
+          <div className="service-availability-container">
+            <div className="availability-container">
+              <div className="user-availability">
+                <div className="availability-status">
+                  <div className="availability-title">
+                    <h2
+                      className={`status-text ${
+                        user.isOnline ? "online" : "offline"
                       }`}
                     >
-                      {user.isOnline ? "Available for hire" : "Fully Booked"}
-                    </p>
+                      {user.full_name.split(" ")[0]} is{" "}
+                      {user.isOnline ? "Available" : "Unavailable"}
+                    </h2>
+                    <span
+                      className={`status-indicator ${
+                        user.isOnline ? "online" : "offline"
+                      }`}
+                    ></span>
                   </div>
+                  <p
+                    className={`status-description ${
+                      user.isOnline ? "available" : "fully-booked"
+                    }`}
+                  >
+                    {user.isOnline ? "Available for hire" : "Fully Booked"}
+                  </p>
+                </div>
 
-                  {/* Availaibility actions */}
-                  <div className="availability-actions">
-                    {user.isOnline ? (
-                      <>
-                        {/* Enabled Hire button */}
-                        <button
-                          className="hire-button"
-                          onClick={hireArtisanPage}
-                        >
-                          Hire {user.full_name.split(" ")[0]}
-                        </button>
+                {/* Availability actions */}
+                <div className="availability-actions">
+                  {user.isOnline ? (
+                    <>
+                      {/* Enabled Hire button */}
+                      <button className="hire-button" onClick={hireArtisanPage}>
+                        Hire {user.full_name.split(" ")[0]}
+                      </button>
 
-                        <button className="availability-button">
-                          Check Availability
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        {/* disabled hore button */}
-                        <button className="disabled-button" disabled>
-                          Hire {user.full_name.split(" ")[0]}
-                        </button>
+                      <button className="availability-button">
+                        Check Availability
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      {/* Disabled Hire button */}
+                      <button className="disabled-button" disabled>
+                        Hire {user.full_name.split(" ")[0]}
+                      </button>
 
-                        {/* waitlist button */}
-                        <button className="waitlist-button">
-                          Join Waiting List
-                        </button>
-                      </>
-                    )}
-                  </div>
+                      {/* Waitlist button */}
+                      <button className="waitlist-button">
+                        Join Waiting List
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
           </div>
-        </section>
-      </div>
-    </>
+        </div>
+      </section>
+    </div>
   );
 };
 

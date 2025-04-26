@@ -157,7 +157,7 @@ function Artisan() {
                       {user.ratings || "No ratings yet"}
                     </p>
                     <p className="artisan-page-personP">
-                      {user.profession || "Unknown Skill"}
+                      {user.skill || "Unknown Skill"}
                     </p>
 
                     {/* View profile button */}
