@@ -9,7 +9,7 @@ function App() {
     <div className="container">
       <ErrorBoundary>
         <TradesProvider>
-          <Header />
+        <Header />
         </TradesProvider>
       </ErrorBoundary>
     </div>

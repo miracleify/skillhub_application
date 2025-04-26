@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import "../styles/getstarted.css"
 import { uploadImageToImgbb } from "../utils/imageUpload";
-import "../styles/consumerNextpage.css";
 
 function ConsumerNextPage() {
   const navigate = useNavigate();
-  const location = useLocation();
+   const location = useLocation();
   const [selectedOption, setSelectedOption] = useState("skilled");
-
+  
   const prevFormData = location.state?.formData || {};
   const [formData, setFormData] = useState({
-    ...prevFormData,
+    ...prevFormData, 
     role: "consumer",
     full_name: "",
     address: "",
@@ -19,6 +19,7 @@ function ConsumerNextPage() {
     photoURL: "",
     videoURL: ""
   });
+
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -48,7 +49,7 @@ function ConsumerNextPage() {
     let key = id;
     if (id === "fullname") key = "full_name";
     if (id === "technical-skills") key = "consumer";
-
+   
     setFormData({ ...formData, [key]: value });
   };
 
@@ -65,6 +66,7 @@ function ConsumerNextPage() {
     setSelectedOption(option);
     navigate("/consumerbtn");
   };
+
 
   const handlePhotoChange = async (e) => {
     const file = e.target.files[0];
@@ -92,7 +94,7 @@ function ConsumerNextPage() {
     try {
       const response = await axios.post(
         "https://skillhub-api-y3gi.onrender.com/api/auth/signup",
-        { ...formData, role: "consumer" },
+        { ...formData, role: "consumer" }, 
         { headers: { "Content-Type": "application/json" } }
       );
       if (response.status === 200 || response.status === 201) {
@@ -117,37 +119,31 @@ function ConsumerNextPage() {
   };
 
   return (
-    <div className="consumer-profile-info-container">
-      {/* <h2>Create Account</h2>
+    <div className="consumer-verification-container">
+      <h2>Create Account</h2>
       <h3>
         Already have an account? <a href="/signin">sign in</a>
-      </h3> */}
-
-      {/* switch button */}
-      <div className="consumer-profile-info-switch-button-container">
-        <div className="button">
-          <button
-            className={`consumer-btn ${
-              selectedOption === "consumer" ? "active" : ""
-            }`}
-            onClick={() => handleOptionChange1("consumer")}
-          >
-            Consumer
-          </button>
-          <button
-            id="ski-btn"
-            className={`skill-btn ${
-              selectedOption === "skilled" ? "active" : ""
-            }`}
-            onClick={() => handleOptionChange2("skilled")}
-          >
-            Skilled Person
-          </button>
-        </div>
+      </h3>
+      <div className="button">
+        <button
+          className={`consumer-btn ${
+            selectedOption === "consumer" ? "active" : ""
+          }`}
+          onClick={() => handleOptionChange1("consumer")}
+        >
+          Consumer
+        </button>
+        <button
+          id="ski-btn"
+          className={`skill-btn ${
+            selectedOption === "skilled" ? "active" : ""
+          }`}
+          onClick={() => handleOptionChange2("skilled")}
+        >
+          Skilled Person
+        </button>
       </div>
-
-      {/* Progress bar
-       */}
+      
       <div className="progressbar">
         <ul>
           {progressSteps.map((step, index) => (
@@ -171,9 +167,8 @@ function ConsumerNextPage() {
         </ul>
       </div>
 
-      {/* Form */}
-      <form onSubmit={handleCreateAccount} className="consumer-profile-info-form-container">
-        <div className="consumer-profile-page-profile-pic-upload">
+      <form onSubmit={handleCreateAccount}>
+        <div className="profile-pic-upload">
           <div className="dashed-border profile-image-icon-file-button-container">
             <img
               className="profile-image-icon"
@@ -188,6 +183,7 @@ function ConsumerNextPage() {
             id="profile-photo"
             accept="image/*"
             onChange={handlePhotoChange}
+            required
           />
 
           <div className="key-image-upload-guidlines">
@@ -198,76 +194,65 @@ function ConsumerNextPage() {
               </strong>
             </p>
           </div>
+          
         </div>
 
-        <div className="consumer-profile-info-form-container">
-          <div className="form-row">
-            {/* Full name */}
-            <div className="consumer-profile-info-form-group">
-              <label htmlFor="fullname">
-                Full Name <sup className="mandatory-asterik">*</sup>
-              </label>
-              <input
-                className="full_name consumer-profile-info-input-field"
-                type="text"
-                id="fullname"
-                required
-                value={formData.full_name}
-                onChange={handleInputChange}
-                placeholder="Enter your full name"
-              />
-            </div>
-
-            {/* Address */}
-            <div className="consumer-profile-info-form-group">
-              <label htmlFor="address">
-                Address{" "}
-                <span>
-                  (only visible to you)
-                  <sup className="mandatory-asterik">*</sup>
-                </span>
-              </label>
-              <input
-                className="consumer-profile-info-input-field"
-                type="text"
-                id="address"
-                required
-                value={formData.address}
-                onChange={handleInputChange}
-                placeholder="Enter your address"
-              />
-            </div>
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="fullname">
+              Full Name{" "}
+              <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+            </label>
+            <input
+              type="text"
+              id="fullname"
+              required
+              value={formData.full_name}
+              onChange={handleInputChange}
+              className="fullname"
+            />
           </div>
-
-          {/* Bio */}
-          <div className="consumer-profile-info-form-group">
+          
+          <div className="form-group">
+            <label htmlFor="address">
+              Address{" "}
+              <span>
+                (only visible to you)
+                <sup className="mandatory-asterik">*</sup>
+              </span>
+            </label>
+            <input
+              type="text"
+              id="address"
+              required
+              value={formData.address}
+              onChange={handleInputChange}
+            />
+          </div>
+          
+          <div className="form-group">
             <label htmlFor="bio">
-              Bio<sup className="mandatory-asterik">*</sup>
-              
+              Bio<sup style={{ color: "red", fontSize: "10px" }}>*</sup>
             </label>
             <textarea
-              className="consumer-profile-info-textarea"
               id="bio"
               required
               maxLength={200}
               value={formData.bio}
               onChange={handleTextAreaChange}
-              placeholder="Write a short bio about yourself"
             />
           </div>
-
-          {/* Create account button */}
+          
           <button
             id="create-btn"
-            className="consumer-profile-info-submit-button"
+            className="buttons"
             type="submit"
             disabled={loading}
           >
             {loading ? "Creating..." : "Create Account"}
           </button>
         </div>
-
-        {/* Error Boundary */}
+        
         {error && (
           <div style={{ color: "red", marginTop: "10px" }}>{error}</div>
         )}

@@ -3,94 +3,28 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FiArrowRight, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import axios from "axios";
 import "./search.css";
 
 const TopTrades = () => {
-  const [tradespeople, setTradespeople] = useState([
-    {
-      id: 1,
-      name: "Kola Adekunle",
-      profession: "Painter",
-      verified: true,
-      image: "/userProfile/kola.png",
-      expertise: "Wiring, repairs, lighting, electrical upgrades",
-      location: "Lagos, Nigeria",
-      ratings: "★★★★★",
-      biography:
-        "Hi, I'm Kelly, a certified electrician with over 10 years of experience in residential and commercial electrical work. I take pride in delivering reliable, professional, and affordable electrical solutions. Whether it's a small repair or a major installation, you can count on me to get it done right the first time. My goal is to provide top-quality service while keeping your home or business powered and secure.",
-    },
-    {
-      id: 2,
-      name: "Adewale OgunLeye",
-      profession: "Plumber",
-      verified: true,
-      image: "/userProfile/wale.png",
-      expertise: "Wiring, repairs, lighting, electrical upgrades",
-      location: "Lagos, Nigeria",
-      ratings: "★★★★★",
-    },
-     {
-      id: 2,
-      name: "Adewale OgunLeye",
-      profession: "Plumber",
-      verified: true,
-      image: "/userProfile/wale.png",
-      expertise: "Wiring, repairs, lighting, electrical upgrades",
-      location: "Lagos, Nigeria",
-      ratings: "★★★★★",
-    },
-    {
-      id: 3,
-      name: "Zainab Suleiman",
-      profession: "Electrician",
-      verified: true,
-      image: "../userProfile/zainab.png",
-      expertise: "Wiring, repairs, lighting, electrical upgrades",
-      location: "Lagos, Nigeria",
-      ratings: "★★★★★",
-    },
-    {
-      id: 4,
-      name: "Chinedu okafor",
-      profession: "Carpenter",
-      verified: true,
-      image: "/userProfile/okafor.png",
-      expertise: "Wiring, repairs, lighting, electrical upgrades",
-      location: "Lagos, Nigeria",
-      ratings: "★★★★★",
-    },
-    {
-      id: 4,
-      name: "Chinedu okafor",
-      profession: "Carpenter",
-      verified: true,
-      image: "/userProfile/okafor.png",
-      expertise: "Wiring, repairs, lighting, electrical upgrades",
-      location: "Lagos, Nigeria",
-      ratings: "★★★★★",
-    },
-    {
-      id: 4,
-      name: "Chinedu okafor",
-      profession: "Carpenter",
-      verified: true,
-      image: "/userProfile/okafor.png",
-      expertise: "Wiring, repairs, lighting, electrical upgrades",
-      location: "Lagos, Nigeria",
-      ratings: "★★★★★",
-    },
-  ]);
+  const [tradespeople, setTradespeople] = useState([]);
+  const [filteredPeople, setFilteredPeople] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Search state
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredPeople, setFilteredPeople] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const navigate = useNavigate();
 
   // Ref for the scroll container
   const scrollContainerRef = useRef(null);
   // Track if we're in mobile view
   const [isMobileView, setIsMobileView] = useState(false);
+
+  // Default placeholder image URL
+  const defaultImageUrl =
+    "https://static.vecteezy.com/system/resources/previews/020/765/399/large_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg";
 
   // Check for mobile view on component mount and window resize
   useEffect(() => {
@@ -108,20 +42,50 @@ const TopTrades = () => {
     return () => window.removeEventListener("resize", checkMobileView);
   }, []);
 
-  // Filter tradespeople based on search term
+  // Fetch users data from API
   useEffect(() => {
     setIsLoading(true);
+    axios
+      .get("https://skillhub-api-y3gi.onrender.com/api/users/")
+      .then((response) => {
+        console.log("User data:", response.data);
+        setTradespeople(response.data);
+        setFilteredPeople(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+        setError("Failed to load trades and artisans");
+        setIsLoading(false);
+      });
+  }, []); // Empty dependency array means this runs once on mount
+
+  // Filter tradespeople based on search term
+  useEffect(() => {
+    setIsSearching(true);
     // Simulate API call delay
     const timeoutId = setTimeout(() => {
-      const filtered = tradespeople.filter(
-        (person) =>
-          person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          person.profession.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (person.expertise &&
-            person.expertise.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
-      setFilteredPeople(filtered);
-      setIsLoading(false);
+      if (searchTerm.trim() === "") {
+        setFilteredPeople(tradespeople);
+      } else {
+        const filtered = tradespeople.filter(
+          (person) =>
+            (person.full_name &&
+              person.full_name
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())) ||
+            (person.profession &&
+              person.profession
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())) ||
+            (person.expertise &&
+              person.expertise
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase()))
+        );
+        setFilteredPeople(filtered);
+      }
+      setIsSearching(false);
     }, 300);
 
     return () => clearTimeout(timeoutId);
@@ -131,7 +95,7 @@ const TopTrades = () => {
   const handleViewProfile = (e, person) => {
     e.preventDefault(); // Prevent default link behavior
     sessionStorage.setItem("selectedTradesPerson", JSON.stringify(person));
-    navigate(`/profile/${person.id}`);
+    navigate(`/profile/${person.id || person._id}`); // Handle both id formats
   };
 
   // Navigation functions for mobile view
@@ -157,18 +121,6 @@ const TopTrades = () => {
 
   return (
     <>
-      {/* Search input within the component */}
-      {/* <div className="search-var" data-aos="fade-up">
-        <FaMapMarkerAlt className="search-icon" />
-        <input
-          type="text"
-          placeholder="What skill are you looking for?"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="trades-search-input"
-        />
-      </div> */}
-
       {/* Top trades section */}
       <section className="top-trades-section">
         {/* Section title */}
@@ -185,7 +137,11 @@ const TopTrades = () => {
         {/* Top trades container */}
         <div className="top-trade-container">
           {isLoading ? (
-            <div className="loading">Loading...</div>
+            <div className="loading">Loading Artisans...</div>
+          ) : error ? (
+            <div className="error">{error}</div>
+          ) : isSearching ? (
+            <div className="loading">Searching...</div>
           ) : filteredPeople.length === 0 ? (
             <div className="no-results">No matching trades found</div>
           ) : (
@@ -200,22 +156,25 @@ const TopTrades = () => {
               >
                 <div className="trades-grid">
                   {filteredPeople.map((person) => (
-                    <div className="trade-card" key={person.id}>
+                    <div
+                      className="trade-card"
+                      key={person.id || person._id || Math.random()}
+                    >
                       {/* Trade image and info container */}
                       <div className="trade-image-and-info-container">
                         {/* Trade image */}
                         <div className="trade-image-container">
                           <img
                             className="img"
-                            src={person.image}
-                            alt={person.name}
+                            src={person.photoURL || defaultImageUrl}
+                            alt={person.full_name || "Artisan"}
                           />
                         </div>
 
                         {/* trade info */}
                         <div className="trade-info-container">
                           <h3>
-                            {person.name}{" "}
+                            {person.full_name || "Unnamed Artisan"}{" "}
                             {person.verified && (
                               <span className="verified-badge">
                                 <i className="fa-solid fa-circle-check verification-icon"></i>
@@ -223,14 +182,18 @@ const TopTrades = () => {
                             )}{" "}
                           </h3>
 
-                          <p className="ratings">{person.ratings}</p>
-                          <p className="personP">{person.profession}</p>
+                          <p className="ratings">
+                            {person.ratings || "★★★★★"}
+                          </p>
+                          <p className="personP">
+                            {person.profession || "Skilled Professional"}
+                          </p>
                         </div>
                       </div>
 
                       {/* View profile button */}
                       <a
-                        href={`/profile/${person.id}`}
+                        href={`/profile/${person.id || person._id}`}
                         className="view-profile-button"
                         onClick={(e) => handleViewProfile(e, person)}
                       >
