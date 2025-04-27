@@ -22,7 +22,7 @@ class PaymentService {
           email,
           amount: amount * 100,
           reference,
-          callback_url: `${baseUrl}/payment/callback`
+          callback_url: `${baseUrl}/PaymentCallback`
         },
         {
           headers: {

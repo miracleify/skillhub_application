@@ -3,6 +3,8 @@ import Footer from "../footer";
 import PaymentService from "../services/paymentService";
 import "../styles/hirepage.css";
 
+const user = JSON.parse(localStorage.getItem("user"));
+
 function Hire() {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,7 +20,7 @@ function Hire() {
       const paymentService = new PaymentService();
       // Demo values - replace with real user/job data as needed
       const amount = 5000; // Amount in NGN
-      const email = "demo@email.com"; // Replace with user's email
+      const email = user.email; // Replace with user's email
       const reference = "SKILLHUB_" + Math.floor(Math.random() * 1000000000 + 1);
 
       const authUrl = await paymentService.initiatePayment(amount, email, reference);
@@ -128,3 +130,68 @@ function Hire() {
 }
 
 export default Hire;
+
+
+
+// import React, { useState } from "react";
+// import Footer from "../footer";
+// import PaymentService from "../services/paymentService";
+// import "../styles/hirepage.css";
+
+// function Hire() {
+//   const [paymentMethod, setPaymentMethod] = useState("");
+//   const [loading, setLoading] = useState(false);
+
+//   const handlePaymentChange = (method) => {
+//     setPaymentMethod(method);
+//   };
+
+//   // Get logged-in user's email from localStorage (or adjust as needed)
+//   const getUserEmail = () => {
+//     const user = JSON.parse(localStorage.getItem("user"));
+//     return user?.email || "";
+//   };
+
+//   // Handler for Continue to Payment
+//   const handleContinueToPayment = async () => {
+//     setLoading(true);
+//     try {
+//       const paymentService = new PaymentService();
+//       const amount = 5000; // Amount in NGN
+//       const email = getUserEmail(); // Use logged-in user's email
+//       if (!email) {
+//         alert("No user email found. Please log in.");
+//         setLoading(false);
+//         return;
+//       }
+//       const reference = "SKILLHUB_" + Math.floor(Math.random() * 1000000000 + 1);
+
+//       const authUrl = await paymentService.initiatePayment(amount, email, reference);
+//       window.location.href = authUrl; // Redirect to Paystack payment page
+//     } catch (err) {
+//       alert("Failed to initiate payment: " + err.message);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <>
+//       <div className="hirepage">
+//         {/* ...existing code... */}
+//         <div className="button-container">
+//           <button
+//             className="cont-btn"
+//             disabled={!paymentMethod || loading}
+//             onClick={handleContinueToPayment}
+//           >
+//             {loading ? "Processing..." : "Continue to Payment"}
+//           </button>
+//         </div>
+//       </div>
+//       {/* <Footer /> */}
+//     </>
+//   );
+// }
+
+// export default Hire;
