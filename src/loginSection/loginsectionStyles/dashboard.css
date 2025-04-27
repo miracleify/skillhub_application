@@ -11,12 +11,6 @@
   --debug-colour: #add8e6;
 }
 
-/* some chnage to push */
-
-.navbar {
-  display: none;
-}
-
 /* Navigation container - fixed position */
 .nav-container {
   width: 100%;
