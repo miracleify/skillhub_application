@@ -11,10 +11,6 @@
   --debug-colour: #add8e6;
 }
 
-/* .main-container {
-  margin-top: 0;
-} */
-
 .hiring-form-container {
   width: 100%;
   display: flex;
@@ -53,6 +49,7 @@
 .text-area-input {
   width: 100%;
   min-height: 300px;
+  display: flex;
 }
 
 .hire-form-input-field:focus {
