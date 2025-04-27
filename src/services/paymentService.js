@@ -1,12 +1,9 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 class PaymentService {
   constructor() {
     this.paystackUrl = 'https://api.paystack.co';
-    this.secretKey = psk_test_65ca8bc05e78901dccec3da3e605a3663fbf5fc6|| '';
+    this.secretKey = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY || '';
   }
 
   /**
