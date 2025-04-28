@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./chatbox.css";
 
 // Replace with your backend chat server URL
-const SOCKET_URL = "https://skillhub-api-y3gi.onrender.com"; // or your deployed backend
+const SOCKET_URL = "https://chatservice-skillhub.onrender.com"; // or your deployed backend
 
 const ChatBox = ({ tradesperson }) => {
   const [socket, setSocket] = useState(null);

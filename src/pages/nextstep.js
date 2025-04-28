@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/nextstep.css";
 import { uploadImageToImgbb } from "../utils/imageUpload";
-import { uploadVideoToCloudinary } from "../utils/vimeoUpload"; // Update: now Cloudinary
+import { uploadVideoToCloudinary } from "../utils/videoUpload"; // Update: now Cloudinary
 
 function Nextstep() {
   const Navigate = useNavigate();
