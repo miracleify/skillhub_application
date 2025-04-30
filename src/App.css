@@ -7,10 +7,15 @@
 
 :root {
   --white: #ffffff;
-  --black: #000000;
+  --black: #171717;
   --inactive-grey: #8f8f8f;
+  --grey: #e8e8e8;
   --skillhub-blue: #0575e6;
   --skillhub-hover-blue: #0518e6;
+  --star-colour: #ff9988;
+  --red: red;
+  --completion-green: #008000;
+  --debug-colour: #add8e6;
 }
 
 body,
@@ -48,7 +53,7 @@ html {
   line-height: 50px;
   color: var(--white);
   text-align: center;
-  z-index: 1000;
+  z-index: 15000;
 }
 
 .block-text {
@@ -256,7 +261,7 @@ input::placeholder {
   }
   .link-headline {
     width: 680px;
-    font-weight: 600px;
+    font-weight: 600;
     font-size: 30px;
   }
 
