@@ -10,6 +10,7 @@ function ConsumerBTN() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    confirmPassword: ""
   });
 
   // Add error state
@@ -26,16 +27,10 @@ function ConsumerBTN() {
   };
 
   const changepage = () => {
-    // Only navigate if both fields are filled
-    if (!formData.email || !formData.password) {
-      setError("Email and password are required.");
-      return;
-    }
-    setError("");
-    navigate("/consumerNextpage", { state: { formData } }); // Pass formData to the next page
+    navigate("/consumerNextpage", { state: { formData } }); 
   };
 
-  // Add onChange handler for form inputs
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -46,12 +41,22 @@ function ConsumerBTN() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Only submit if both fields are filled
-    if (!formData.email || !formData.password) {
-      setError("Email and password are required.");
+    
+    
+    if (!formData.email || !formData.password || !formData.confirmPassword) {
+      setError("All fields are required.");
       return;
     }
+    
+    
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords must match.");
+      return;
+    }
+    
     setError("");
+    
+    // Log form data and navigate
     console.log("Form submitted:", formData);
     changepage();
   };
@@ -70,13 +75,13 @@ function ConsumerBTN() {
       completed: false,
     },
   ]);
-
+  
   return (
     <div className="consumer-signup-container">
       <div className="title-section">
         <div className="switch-button-container">
           {/* Switch Button */}
-          <h2>Which one are you?</h2>
+         
           <div className="button">
             <button
               className={`consumer-btn ${
@@ -147,6 +152,13 @@ function ConsumerBTN() {
               </h2>
             </div>
 
+            {/* Show error message if any */}
+            {error && (
+              <div className="error-message" style={{ color: "red", marginBottom: "10px" }}>
+                {error}
+              </div>
+            )}
+
             {/* Email */}
             <div className="consumer-basic-info-input-field-container">
               <label className="label-text">
@@ -161,63 +173,55 @@ function ConsumerBTN() {
                 placeholder="Enter a valid email address"
                 required
               />
-
-              {/* Password */}
-              <div className="consumer-basic-info-input-field-container">
-                <label className="label-text">
-                  Password
-                  <sup className="mandatory-asterik">*</sup>
-                </label>
-                <input
-                  className="consumer-page-basic-info-input-field"
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  placeholder="Enter your password"
-                  required
-                />
-              </div>
-
-              {/* Confirm Password */}
-              <div className="consumer-basic-info-input-field-container">
-                <label className="label-text">
-                  Confirm Password
-                  <sup className="mandatory-asterik">*</sup>
-                </label>
-                <input
-                  className="consumer-page-basic-info-input-field"
-                  type="password"
-                  name="confirm-password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  placeholder="Re-enter your password"
-                  required
-                />
-              </div>
-
-              {/* Next step button */}
-              <button
-                className="consumer-page-next-button"
-                onClick={changepage}
-                type="submit"
-              >
-                Next Step
-              </button>
-              <h3>
-                Already have an account? <a href="#">sign in</a>
-              </h3>
             </div>
 
-            {/* Show error if fields are empty */}
-            {error && (
-              <div
-                className="error-message"
-                style={{ color: "red", marginBottom: "10px" }}
-              >
-                {error}
-              </div>
-            )}
+            {/* Password */}
+            <div className="consumer-basic-info-input-field-container">
+              <label className="label-text">
+                Password
+                <sup className="mandatory-asterik">*</sup>
+              </label>
+              <input
+                id="password"
+                className="consumer-page-basic-info-input-field"
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+
+            {/* Confirm Password */}
+            <div className="consumer-basic-info-input-field-container">
+              <label className="label-text">
+                Confirm Password
+                <sup className="mandatory-asterik">*</sup>
+              </label>
+              <input
+                id="confirmpassword"
+                className="consumer-page-basic-info-input-field"
+                type="password"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                placeholder="Re-enter your password"
+                required
+              />
+            </div>
+              
+            {/* Next step button */}
+            <button
+              className="consumer-page-next-button"
+              type="submit"
+            >
+              Next Step
+            </button>
+            <h3>
+              Already have an account? <a href="#">sign in</a>
+            </h3>
+          
           </form>
         </div>
       </div>

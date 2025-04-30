@@ -21,9 +21,10 @@ function Home() {
       </div>
       <TopTrades />
       <hr />
+       <br></br>
       <div className="block"></div>
       <div className="container">
-        <h1 className="headline">WHO WE ARE & WHAT WE STAND FOR</h1>
+        <h1 className="headline">About us</h1>
 
         <div className="content-section">
           <div className="multi-image">

@@ -10,6 +10,9 @@ function Artisan() {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearching, setIsSearching] = useState(false);
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [filterOption, setFilterOption] = useState("none");
+   
   const navigate = useNavigate();
 
   function searchOnChange(e) {
@@ -23,7 +26,49 @@ function Artisan() {
   const handleViewProfile = (e, user) => {
     e.preventDefault(); // Prevent default link behavior
     sessionStorage.setItem("selectedTradesPerson", JSON.stringify(user));
-    navigate(`/profile/${user.id || user._id}`); // Handle both id formats
+    navigate(`/profile/${user.id || user._id}`); 
+  };
+
+  // Toggle filter modal
+  const toggleFilterModal = () => {
+    setIsFilterModalOpen(!isFilterModalOpen);
+  };
+
+  // Apply filter based on selected option
+  const applyFilter = (option) => {
+    setFilterOption(option);
+    
+    let sortedUsers = [...filteredUsers];
+    
+    switch(option) {
+      case "ratings":
+        sortedUsers.sort((a, b) => {
+          const ratingA = parseFloat(a.ratings) || 0;
+          const ratingB = parseFloat(b.ratings) || 0;
+          return ratingB - ratingA; // Higher ratings first
+        });
+        break;
+      case "name":
+        sortedUsers.sort((a, b) => {
+          const nameA = a.full_name ? a.full_name.toLowerCase() : "";
+          const nameB = b.full_name ? b.full_name.toLowerCase() : "";
+          return nameA.localeCompare(nameB);
+        });
+        break;
+      case "skills":
+        sortedUsers.sort((a, b) => {
+          const skillA = a.skill ? a.skill.toLowerCase() : "";
+          const skillB = b.skill ? b.skill.toLowerCase() : "";
+          return skillA.localeCompare(skillB);
+        });
+        break;
+      default:
+        // No sorting, use default order
+        break;
+    }
+    
+    setFilteredUsers(sortedUsers);
+    setIsFilterModalOpen(false);
   };
 
   // Fetch users data
@@ -68,6 +113,11 @@ function Artisan() {
         setFilteredUsers(filtered);
       }
       setIsSearching(false);
+      
+      // Re-apply current filter if one is selected
+      if (filterOption !== "none") {
+        applyFilter(filterOption);
+      }
     }, 300);
 
     return () => clearTimeout(timeoutId);
@@ -79,8 +129,6 @@ function Artisan() {
 
   return (
     <div className="artisan-container">
-      {/* <h1 className="artisan-heading">Artisans List</h1> */}
-
       {/* Search Bar */}
       <div className="artisan-page-search-container">
         <div className="artisan-page-search-bar">
@@ -94,12 +142,12 @@ function Artisan() {
 
           {/* Search Button */}
           <button className="artisan-page-search-button">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
 
         {/* Filter Button */}
-        <button className="artisan-page-filter-button">
+        <button className="artisan-page-filter-button" onClick={toggleFilterModal}>
           <div className="filter-icon-container">
             <svg
               className="filter-icon"
@@ -119,6 +167,48 @@ function Artisan() {
         </button>
       </div>
 
+      {/* Filter Modal */}
+      {isFilterModalOpen && (
+        <div className="filter-modal-overlay">
+          <div className="filter-modal">
+            <div className="filter-modal-header">
+              <h3>Filter By</h3>
+              <button className="close-modal-btn" onClick={toggleFilterModal}>
+                &times;
+              </button>
+            </div>
+            <div className="filter-options">
+              <button 
+                className={`filter-option ${filterOption === "ratings" ? "active" : ""}`}
+                onClick={() => applyFilter("ratings")}
+              >
+                <i className="fa-solid fa-star"></i> Highest Ratings
+              </button>
+              <button 
+                className={`filter-option ${filterOption === "name" ? "active" : ""}`}
+                onClick={() => applyFilter("name")}
+              >
+                <i className="fa-solid fa-sort-alpha-down"></i> Name (A-Z)
+              </button>
+              <button 
+                className={`filter-option ${filterOption === "skills" ? "active" : ""}`}
+                onClick={() => applyFilter("skills")}
+              >
+                <i className="fa-solid fa-tools"></i> Skills (A-Z)
+              </button>
+              {filterOption !== "none" && (
+                <button 
+                  className="filter-option clear-filter"
+                  onClick={() => applyFilter("none")}
+                >
+                  <i className="fa-solid fa-times"></i> Clear Filter
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Lazy loading */}
       {isSearching ? (
         <div className="loading-container">Searching...</div>
@@ -127,6 +217,18 @@ function Artisan() {
       ) : (
         // Artisan scrollable grid
         <>
+          {/* Display current filter if applied */}
+          {filterOption !== "none" && (
+            <div className="active-filter-indicator">
+              <span>Filtered by: {filterOption === "ratings" ? "Highest Ratings" : 
+                                  filterOption === "name" ? "Name (A-Z)" : 
+                                  filterOption === "skills" ? "Skills (A-Z)" : ""}</span>
+              <button onClick={() => applyFilter("none")} className="clear-filter-btn">
+                <i className="fa-solid fa-times"></i>
+              </button>
+            </div>
+          )}
+          
           <div className="scroll-section">
             {/* Profile Cards */}
             <div className="artisan-grid">
@@ -157,7 +259,7 @@ function Artisan() {
                       {user.ratings || "No ratings yet"}
                     </p>
                     <p className="artisan-page-personP">
-                      {user.skill || "Unknown Skill"}
+                      {user.skill || "Not specified"}
                     </p>
 
                     {/* View profile button */}
