@@ -47,13 +47,12 @@ html {
 
 .link-headline {
   margin-top: 50px;
-  width: auto;
-  font-size: 80px;
+  width: 1000px;
+  font-size: 40px;
   font-weight: 600;
-  line-height: 50px;
+  line-height: 60px;
   color: var(--white);
   text-align: center;
-  z-index: 15000;
 }
 
 .block-text {
@@ -150,32 +149,27 @@ input::placeholder {
   margin: 20px 0;
 }
 
-/* Who We Are section */
+/* About Us section */
 .container {
   max-width: 1100px;
-  margin: 0 auto;
   text-align: center;
 }
 
-/* Headline */
 .headliner {
   font-size: 28px;
   font-weight: 600;
-  color: #171717;
+  color: var(--black);
   margin-bottom: 30px;
 }
 
-/* Content section: Image and text side by side */
 .content-section {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  padding: 0 50px;
-  margin-bottom: 40px;
+  gap: 50px;
+  margin-bottom: 20px;
 }
 
-/* Image styling */
 .multi-image img {
   width: 100%;
   max-width: 500px;
@@ -183,41 +177,35 @@ input::placeholder {
   object-fit: cover;
 }
 
-/* Article text */
 .article {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
   text-align: left;
-  font-size: 16px;
+  font-size: 20px;
   color: #333;
   line-height: 1.6;
+  width: 500px;
 }
 
-/* Responsive styles */
-@media (max-width: 1024px) {
-  .link-headline {
-    width: 600px;
-  }
-  .content-section {
-    flex-direction: column;
-    text-align: center;
-  }
+.article span {
+  color: var(--skillhub-blue);
+}
 
-  .multi-image img {
-    max-width: 100%;
-  }
-
-  .article {
-    text-align: center;
-  }
+/* How do we help section */
+.what-we-do h1 {
+  margin-bottom: 30px;
 }
 
 /* Tablet Responsive */
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   .icon {
     position: relative;
     left: 30px;
     top: 120px;
-    color: #0575e6;
+    color: var(--skillhub-blue);
   }
   .search-container {
     margin-top: 100px;
@@ -252,38 +240,6 @@ input::placeholder {
   input::placeholder {
     font-weight: 500;
     font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .search-container {
-    width: 90%;
-  }
-  .link-headline {
-    width: 680px;
-    font-weight: 600;
-    font-size: 30px;
-  }
-
-  .input-Bar {
-    width: 50%;
-    font-size: 1.5rem;
-    height: 56px;
-  }
-
-  .icon {
-    height: 56px;
-  }
-
-  .search-btn {
-    height: 56px;
-    width: 120px;
-  }
-
-  .headliner {
-    font-size: 28px;
-    line-height: 36px;
-    max-width: 90%;
   }
 }
 
@@ -343,27 +299,99 @@ input::placeholder {
     font-size: 14px;
   }
 
-  .icon {
-    display: none; /* Hide icon on mobile for simplicity */
+  /* Top Trades Section */
+  .trades-grid {
+    width: 400px;
   }
 
+  /* About Us Section */
   .content-section {
-    padding: 0 15px;
-  }
-
-  .headliner {
-    font-size: 22px;
-    line-height: 28px;
-    margin: 40px auto 20px;
-    padding: 0 15px;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 30px;
   }
 
   .multi-image img {
-    height: auto;
+    height: 400px;
   }
 
   .article {
     font-size: 15px;
-    line-height: 1.5;
+    text-align: center;
+    width: 350px;
+  }
+}
+
+/* Tablet Responsiveness */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .home-container {
+    width: 100vw;
+    height: 150px;
+    margin-top: 60px;
+    padding: 0 20px;
+  }
+
+  .link-headline {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .block-text {
+    font-size: 28px;
+    line-height: 36px;
+    margin-top: -40px;
+  }
+
+  .search-container {
+    width: 90%;
+    margin: 15px auto;
+    position: relative;
+    display: flex;
+    flex-direction: row; /* Keep as row to maintain side-by-side layout */
+    align-items: center;
+  }
+
+  .input-Bar {
+    position: relative;
+    width: 70%;
+    height: 46px;
+    left: 0;
+    top: 0;
+    border-radius: 8px 0 0 8px;
+  }
+
+  input::placeholder {
+    font-size: 14px;
+  }
+
+  .search-btn {
+    position: relative;
+    width: 30%;
+    height: 46px;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+  }
+
+  /* Top Trades Section */
+  .trades-grid {
+    width: 400px;
+  }
+
+  /* About Us Section */
+  .content-section {
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  .multi-image img {
+    height: 350px;
+  }
+
+  .article {
+    font-size: 15px;
+    width: 350px;
   }
 }

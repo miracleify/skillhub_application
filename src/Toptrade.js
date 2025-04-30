@@ -79,9 +79,7 @@ const TopTrades = () => {
                 .toLowerCase()
                 .includes(searchTerm.toLowerCase())) ||
             (person.expertise &&
-              person.expertise
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase()))
+              person.expertise.toLowerCase().includes(searchTerm.toLowerCase()))
         );
         setFilteredPeople(filtered);
       }
@@ -156,21 +154,22 @@ const TopTrades = () => {
               >
                 <div className="trades-grid">
                   {filteredPeople.map((person) => (
+                    // Trade card
                     <div
                       className="trade-card"
                       key={person.id || person._id || Math.random()}
                     >
-                      {/* Trade image and info container */}
-                      <div className="trade-image-and-info-container">
-                        {/* Trade image */}
-                        <div className="trade-image-container">
-                          <img
-                            className="img"
-                            src={person.photoURL || defaultImageUrl}
-                            alt={person.full_name || "Artisan"}
-                          />
-                        </div>
+                      {/* Trade image */}
+                      <div className="trade-image-container">
+                        <img
+                          className="img"
+                          src={person.photoURL || defaultImageUrl}
+                          alt={person.full_name || "Artisan"}
+                        />
+                      </div>
 
+                      {/* Trade info and button container */}
+                      <div className="trade-info-and-button-container">
                         {/* trade info */}
                         <div className="trade-info-container">
                           <h3>
@@ -182,29 +181,27 @@ const TopTrades = () => {
                             )}{" "}
                           </h3>
 
-                          <p className="ratings">
-                            {person.ratings || "★★★★★"}
-                          </p>
+                          <p className="ratings">{person.ratings || "★★★★★"}</p>
                           <p className="personP">
-                            {person.skill || "Skilled Professional"}
+                            {person.skill || "Unspecified"}
                           </p>
                         </div>
-                      </div>
 
-                      {/* View profile button */}
-                      <a
-                        href={`/profile/${person.id || person._id}`}
-                        className="view-profile-button"
-                        onClick={(e) => handleViewProfile(e, person)}
-                      >
-                        View Profile
-                      </a>
+                        {/* View profile button */}
+                        <a
+                          href={`/profile/${person.id || person._id}`}
+                          className="view-profile-button"
+                          onClick={(e) => handleViewProfile(e, person)}
+                        >
+                          View Profile
+                        </a>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Navigation buttons */}
+              {/* Mobile Navigation buttons */}
               {isMobileView && filteredPeople.length > 1 && (
                 <div className="navigation-buttons">
                   <button

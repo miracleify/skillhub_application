@@ -7,24 +7,23 @@ import Review from "../revies";
 import "../review.css";
 import FAQ from "./faq";
 import Footer from "../footer";
-import "../footer.css"
+import "../footer.css";
 
 function Home() {
   return (
-    <div >
+    <div>
       <div className="home-container">
-      <h1 className="link-headline" >
+        <h1 className="link-headline">
           LINKING YOU WITH EXPERTS THAT WORK WITH PASSION AND PRECISION
         </h1>
         <Search />
-        <div></div>
       </div>
+
+      {/* Top Trades Section */}
       <TopTrades />
-      <hr />
-       <br></br>
-      <div className="block"></div>
+
       <div className="container">
-        <h1 className="headline">About us</h1>
+        <h1 className="headline">ABOUT US</h1>
 
         <div className="content-section">
           <div className="multi-image">
@@ -38,13 +37,16 @@ function Home() {
               networks. Random online searches often lead to unverified workers,
               inconsistent service quality, and a lack of transparency.
             </p>
-                    <br /><br /><br />
+
             <p>
-              <span style={{color:"#0575E6"}}>SKILL</span>HUB is here to change that. Our platform connects you with
-              skilled professionals—plumbers, electricians, artists, and
-              more—based on trusted recommendations and verified profiles.
-              Whether you're a homeowner, renter, or small business owner, we
-              make hiring seamless, secure, and stress-free.
+              <strong>
+                <span>Skill</span>Hub
+              </strong>{" "}
+              is here to change that. Our platform connects you with skilled
+              professionals—plumbers, electricians, artists, and more—based on
+              trusted recommendations and verified profiles. Whether you're a
+              homeowner, renter, or small business owner, we make hiring
+              seamless, secure, and stress-free.
             </p>
           </div>
         </div>
@@ -61,13 +63,16 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="what-we-do">
-        <h2 style={{ textAlign: "center" }}>HOW DO WE HELP</h2>
-        <WhatweDo />
 
-        <div>
-          <Review />
-        </div>
+      {/* How Do We Help */}
+      <div className="what-we-do">
+        <h1>HOW DO WE HELP?</h1>
+        <WhatweDo />
+      </div>
+
+      {/* Reviews */}
+      <div>
+        <Review />
       </div>
       <h2>Frequently Asked Questions (FAQ)</h2>
       {/* <div className="faq">
@@ -156,10 +161,10 @@ function Home() {
             </details>
           </li>
         </ol> */}
-        <FAQ/>
-        
+      <FAQ />
+
       {/* </div> */}
-      <Footer/>
+      <Footer />
     </div>
   );
 }

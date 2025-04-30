@@ -1,34 +1,27 @@
 :root {
-  --white: #FFFFFF;
-  --black: #000000;
-  --grey: #8F8F8F;
-  --light-grey: #EAEAEA;
-  --dark-grey: #666666;
-  --skillhub-blue: #0575E6;
-  --skillhub-hover-blue: #0518E6;
-  --skillhub-light-blue: #e5f1ff;
-  --star-colour: #FF9988;
-  --green: #1fff26;
+  --white: #ffffff;
+  --black: #171717;
+  --inactive-grey: #8f8f8f;
+  --grey: #e8e8e8;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
+  --star-colour: #ff9988;
+  --red: red;
+  --completion-green: #008000;
+  --debug-colour: #add8e6;
 }
 
-.review-container {
-  position: relative;
-  width: 100%;
-  left: 0;
-  top: 0;
-}
-
-.reviews-container {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 40px 0;
-  background-color: #f5f7fa;
+.reviews-section {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .reviews-title {
   text-align: center;
-  margin-bottom: 40px;
   font-size: 32px;
   color: #333;
 }
@@ -43,130 +36,96 @@
 }
 
 .review-card {
-  background-color: #fff;
+  background-color: var(--white);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  padding: 10px 20px;
+  border: 1px solid var(--grey);
+  transition: 0.3s ease;
 }
 
 .review-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.review-content {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  border: 1px solid var(--skillhub-blue);
 }
 
 .review-header {
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
 }
 
 .review-image {
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 16px;
-  border: 2px solid #f0f0f0;
+  border: 2px solid var(--white);
   margin-left: 10px;
   margin-top: 10px;
 }
 
 .review-user-info {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
 }
 
 .review-user {
   font-size: 18px;
   font-weight: 600;
-  margin: 0 0 4px 0;
   color: #333;
 }
 
 .review-stars {
   color: var(--star-colour);
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: 2px;
 }
 
 .review-caption {
+  display: flex;
   font-size: 18px;
   font-weight: 500;
   font-style: italic;
-  margin-bottom: 12px;
   color: #555;
 }
 
 .review-comments {
+  display: flex;
+  text-align: left;
   font-size: 16px;
   line-height: 1.6;
   color: #666;
-  flex-grow: 1;
 }
 
-/* Large screen adjustments */
-@media screen and (min-width: 1920px) {
+.see-more-reviews-button {
+  text-decoration: underline;
+  transition: 0.3s ease;
+}
+
+.see-more-reviews-button:hover {
+  color: var(--skillhub-hover-blue);
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 767px) {
+  /* Reviews Section */
+  .review-card {
+    padding: 10px;
+  }
+
   .reviews-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    max-width: 100%;
-    width: 100%;
-    padding: 0;
-  }
-}
-
-/* Responsive design */
-@media screen and (max-width: 1200px) {
-  .reviews-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 0 15px;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .reviews-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .review-content {
-    padding: 20px;
-  }
-
-  .review-caption {
-    font-size: 16px;
-  }
-
-  .review-comments {
-    font-size: 15px;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  .reviews-grid {
-    grid-template-columns: 1fr;
-    padding: 0 10px;
-  }
-
-  .reviews-title {
-    font-size: 28px;
-    margin-bottom: 30px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .reviews-container {
-    padding: 30px 0;
+    padding: 0 20px;
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .review-content {
@@ -174,19 +133,25 @@
   }
 
   .review-image {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
   }
 
   .review-user {
     font-size: 16px;
   }
 
+  .review-user-info {
+    gap: 0;
+  }
+
   .review-caption {
     font-size: 15px;
+    text-align: left;
   }
 
   .review-comments {
     font-size: 14px;
+    width: 100%;
   }
 }
