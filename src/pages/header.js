@@ -24,8 +24,8 @@ import ConsumerNextPage from './consumerNextpage';
 import ConsumerVerificationPage from './consumerVericationPage';
 import Dashboard from '../loginSection/dashboard';
 function Header() {
-  const { tradespeople } = useTrades();
-  const tradesperson = tradespeople[2]; // Using the first tradesperson as default
+  // const { tradespeople } = useTrades();
+  // const tradesperson = tradespeople[2]; // Using the first tradesperson as default
   
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -136,7 +136,7 @@ function Header() {
         <Route path="/signin" element={< Signin/>} />
         <Route path="/getstarted" element={<Getstarted />} />
         <Route path="/profile/:id" element={<ViewProfile />} />
-        <Route path='/chatbox' element={<ChatBox tradesperson={tradesperson} />} />
+        <Route path='/chatbox/:id' element={<ChatBox/>} />
          <Route path="/consumerbtn" element={< ConsumerBTN />} />
          <Route path="/nextstep" element={< Nextstep />} /> 
          <Route path="/laststep" element={< Laststep  />} />

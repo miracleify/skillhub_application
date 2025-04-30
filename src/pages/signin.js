@@ -26,7 +26,7 @@ export default function SignIn() {
     try {
       const response = await signInUser(formData);
       console.log("Login successful:", response.data);
-      navigate("/dashboard");
+      navigate("/dashboard/");
     } catch (err) {
       setError(err.message || "Network error. Please try again.");
       console.error("Login error:", err);

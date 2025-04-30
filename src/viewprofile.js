@@ -11,7 +11,6 @@ const ViewProfile = () => {
   const navigate = useNavigate();
   const defaultImageUrl =
     "https://tse1.mm.bing.net/th/id/OIP.yyVZtJgcX_k4j10PaEadSgHaHa?rs=1&pid=ImgDetMain";
-  // const defaultVideoUrl = "https://tse1.mm.bing.net/th/id/OIP.0v2r3Xk4a5bq6c7x8g9Y0wHaEK?pid=ImgDet&w=300&h=300&rs=1";
 
   // Alternative method to get ID from URL
   const location = window.location.pathname;
@@ -83,7 +82,7 @@ const ViewProfile = () => {
   }, [effectiveId]);
 
   function hireArtisanPage() {
-    // Make sure we have a valid user before navigating
+    
     if (!user) {
       console.error("Cannot navigate to hiring page: No user data available");
       return;
@@ -96,6 +95,22 @@ const ViewProfile = () => {
 
     // Navigate to the hiring page
     navigate(`/hiringartisanPage/${userId}`);
+  }
+  function MessageArtisan(){
+
+    if (!user) {
+      console.error("Cannot navigate to hiring page: No user data available");
+      return;
+    }
+
+    // Get the ID from the user object
+    const userId = user.id || user._id;
+    console.log("Navigating to hiring page with user:", user);
+    console.log("User ID for navigation:", userId);
+
+    // Navigate to the hiring page
+    // navigate(`/chatbox`);
+    navigate(`/chatbox/${userId}`);
   }
 
   if (loading) return <div>Loading Profile...</div>;
@@ -155,7 +170,7 @@ const ViewProfile = () => {
 
           {/* Message button */}
           <button
-            onClick={() => navigate("/chatbox")}
+            onClick={MessageArtisan}
             className="message-button"
           >
             Message
