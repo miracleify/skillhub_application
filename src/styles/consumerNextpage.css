@@ -49,23 +49,52 @@
   font-size: 16px;
 }
 
-
 /* Form */
-.profile-pic-upload {
+.consumer-profile-pic-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  border-radius: 10px;
   margin-bottom: 20px;
   border: 1px solid var(--inactive-grey);
+  height: auto;
+}
+
+.consumer-profile-image-icon-file-button-container {
+  height: 100px;
+  width: 100px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.consumer-profile-image-icon {
+  width: 45px;
+  height: 40px;
 }
 
 .consumer-profile-name-address-row {
-  width: 100%;
   display: flex;
+  width: 100%;
   gap: 10px;
 }
 
+.consumer-profile-form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0px;
+}
+
 .consumer-profile-input-field {
-  width: 100px;
+  width: 100%;
   height: 50px;
-  border: 1px soild var(--inactive-grey);
+  border: 1px solid var(--inactive-grey);
   border-radius: 10px;
   padding: 0 10px;
 }
@@ -75,124 +104,53 @@
   border: 1px solid var(--skillhub-blue);
 }
 
-.consumer-profile-input-field::placeholder {
-  font-size: 16px;
-  text-align: left;
-}
-
-.consumer-profile-form-group {
-  display: flex;
-  gap: 5px;
-  flex-direction: column;
-}
-
-.consumer-profile-text-area-input {
-  height: 300px;
-}
-
-/* Other */
-.consumer-profile-info-switch-button-container {
-  margin-top: 100px;
-  display: flex;
-  justify-content: center;
-}
-
-.consumer-profile-info-form-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.consumer-profile-page-profile-pic-upload {
-  width: 100%;
-  border: 1px solid var(--inactive-grey);
-  border-radius: 10px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  transition: 0.2s ease;
-}
-
-.consumer-profile-page-profile-pic-upload:hover {
-  cursor: pointer;
-  border: 1px solid var(--skillhub-blue);
-}
-
-.consumer-profile-info-form-group {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 100%;
-}
-
-.consumer-profile-info-form-group label {
-  text-align: left;
-}
-
-.consumer-profile-info-input-field,
-.consumer-profile-info-textarea {
-  width: 100%;
-  height: 50px;
-  border: 1px solid var(--inactive-grey);
+.consumer-profile-textarea-input {
+  min-height: 250px;
+  height: auto;
   border-radius: 10px;
   padding: 10px;
-}
-
-.consumer-profile-info-input-field {
-  height: 50px;
-}
-
-.consumer-profile-info-textarea {
-  height: 150px;
-}
-
-.consumer-profile-info-input-field:focus,
-.consumer-profile-info-textarea:focus {
   outline: none;
+}
+
+.consumer-profile-textarea-input:focus {
   border: 1px solid var(--skillhub-blue);
 }
 
-.consumer-profile-info-input-field::placeholder,
-.consumer-profile-info-textarea::placeholder {
+.consumer-profile-input-field::placeholder,
+.consumer-profile-textarea-input::placeholder {
   font-size: 16px;
   text-align: left;
 }
 
-.consumer-profile-info-submit-button {
-  width: auto;
-  height: 50px;
-  background-color: var(--skillhub-blue);
-  color: var(--white);
+.consumer-profile-create-button {
+  display: flex;
+  justify-self: flex-end;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
   border-radius: 10px;
-  border: none;
-  font-size: 16px;
   margin-bottom: 50px;
 }
 
 /* Mobile responsiveness */
 @media (max-width: 767px) {
-  .consumer-profile-info-form-container {
-    padding: 0 10px;
+  .progressbar ul {
+    display: none;
   }
-  .consumer-profile-page-profile-pic-upload {
-    width: auto;
+
+  .consumer-profile-pic-upload {
+    width: 350px;
   }
 
   .consumer-profile-info-form-group {
     width: 100%;
   }
-}
 
-/* Tablet Responsiveness */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .consumer-profile-page-profile-pic-upload {
-    width: auto;
+  .consumer-profile-name-address-row {
+    flex-direction: column;
   }
 
-  .consumer-profile-info-form-group {
+  .consumer-profile-create-button {
     width: 100%;
   }
 }

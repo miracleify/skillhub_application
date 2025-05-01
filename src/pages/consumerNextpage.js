@@ -253,16 +253,17 @@ function ConsumerNextPage() {
           {/* Profile information form */}
           <form onSubmit={handleCreateAccount}>
             {/* Profile pic upload */}
-            <div className="profile-pic-upload">
+            <div className="consumer-profile-pic-upload">
               <div
-                className="dashed-border profile-image-icon-file-button-container"
+                className="dashed-border consumer-profile-image-icon-file-button-container"
                 onClick={triggerFileInput}
               >
                 <img
-                  className="profile-image-icon"
+                  className="consumer-profile-image-icon"
                   src={formData.photoURL || "/images/camera.png"}
                   alt="Profile Image Upload"
                 />
+                <sup className="mandatory-asterik">*</sup>
               </div>
 
               <input
@@ -343,7 +344,7 @@ function ConsumerNextPage() {
             {/* create account button */}
             <button
               id="create-btn"
-              className="buttons"
+              className="consumer-profile-create-button"
               type="submit"
               disabled={loading}
             >
