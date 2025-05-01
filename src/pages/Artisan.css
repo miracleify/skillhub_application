@@ -115,9 +115,9 @@
   transition: 0.3s ease;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 5px 0;
+  padding: 0 10px;
 }
 
 .artisan-page-trade-card:hover {
@@ -138,7 +138,7 @@
   height: 150px;
   width: 100%;
   margin-top: 15px;
-  padding: 10px;
+
   text-align: center;
 }
 
@@ -182,7 +182,7 @@
 }
 
 .filter-modal {
-  background-color: white;
+  background-color: var(--white);
   border-radius: 8px;
   width: 90%;
   max-width: 400px;
@@ -195,7 +195,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--white);
 }
 
 .filter-modal-header h3 {
@@ -223,7 +223,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #f5f5f5;
+  background: var(--white);
   border: none;
   padding: 12px 15px;
   border-radius: 6px;
@@ -294,6 +294,8 @@
     height: 100px;
     display: flex;
     flex-direction: column;
+    z-index: 100;
+    margin-top: 1px;
   }
 
   .search-bar {
@@ -345,15 +347,16 @@
   }
 
   .img {
-    max-width: 70px;
-    max-height: 70px;
+    width: 70px;
+    height: 70px;
   }
 
   .artisan-page-trade-card {
     align-items: center;
     width: 165px;
     display: flex;
-    padding-top: 30px;
+    height: auto;
+    /* padding-top: 30px; */
   }
 
   .artisan-page-trade-info {

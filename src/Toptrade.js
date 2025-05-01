@@ -183,7 +183,7 @@ const TopTrades = () => {
 
                           <p className="ratings">{person.ratings || "★★★★★"}</p>
                           <p className="personP">
-                            {person.skill || "Unspecified"}
+                            {person.skill || "Skill Unspecified"}
                           </p>
                         </div>
 

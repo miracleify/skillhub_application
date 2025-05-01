@@ -58,6 +58,7 @@
 .review-header {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .review-image {
@@ -65,10 +66,7 @@
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 16px;
   border: 2px solid var(--white);
-  margin-left: 10px;
-  margin-top: 10px;
 }
 
 .review-user-info {

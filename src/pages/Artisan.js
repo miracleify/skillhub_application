@@ -12,7 +12,7 @@ function Artisan() {
   const [isSearching, setIsSearching] = useState(false);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [filterOption, setFilterOption] = useState("none");
-   
+
   const navigate = useNavigate();
 
   function searchOnChange(e) {
@@ -26,7 +26,7 @@ function Artisan() {
   const handleViewProfile = (e, user) => {
     e.preventDefault(); // Prevent default link behavior
     sessionStorage.setItem("selectedTradesPerson", JSON.stringify(user));
-    navigate(`/profile/${user.id || user._id}`); 
+    navigate(`/profile/${user.id || user._id}`);
   };
 
   // Toggle filter modal
@@ -37,10 +37,10 @@ function Artisan() {
   // Apply filter based on selected option
   const applyFilter = (option) => {
     setFilterOption(option);
-    
+
     let sortedUsers = [...filteredUsers];
-    
-    switch(option) {
+
+    switch (option) {
       case "ratings":
         sortedUsers.sort((a, b) => {
           const ratingA = parseFloat(a.ratings) || 0;
@@ -66,7 +66,7 @@ function Artisan() {
         // No sorting, use default order
         break;
     }
-    
+
     setFilteredUsers(sortedUsers);
     setIsFilterModalOpen(false);
   };
@@ -113,7 +113,7 @@ function Artisan() {
         setFilteredUsers(filtered);
       }
       setIsSearching(false);
-      
+
       // Re-apply current filter if one is selected
       if (filterOption !== "none") {
         applyFilter(filterOption);
@@ -147,7 +147,10 @@ function Artisan() {
         </div>
 
         {/* Filter Button */}
-        <button className="artisan-page-filter-button" onClick={toggleFilterModal}>
+        <button
+          className="artisan-page-filter-button"
+          onClick={toggleFilterModal}
+        >
           <div className="filter-icon-container">
             <svg
               className="filter-icon"
@@ -178,26 +181,32 @@ function Artisan() {
               </button>
             </div>
             <div className="filter-options">
-              <button 
-                className={`filter-option ${filterOption === "ratings" ? "active" : ""}`}
+              <button
+                className={`filter-option ${
+                  filterOption === "ratings" ? "active" : ""
+                }`}
                 onClick={() => applyFilter("ratings")}
               >
                 <i className="fa-solid fa-star"></i> Highest Ratings
               </button>
-              <button 
-                className={`filter-option ${filterOption === "name" ? "active" : ""}`}
+              <button
+                className={`filter-option ${
+                  filterOption === "name" ? "active" : ""
+                }`}
                 onClick={() => applyFilter("name")}
               >
                 <i className="fa-solid fa-sort-alpha-down"></i> Name (A-Z)
               </button>
-              <button 
-                className={`filter-option ${filterOption === "skills" ? "active" : ""}`}
+              <button
+                className={`filter-option ${
+                  filterOption === "skills" ? "active" : ""
+                }`}
                 onClick={() => applyFilter("skills")}
               >
                 <i className="fa-solid fa-tools"></i> Skills (A-Z)
               </button>
               {filterOption !== "none" && (
-                <button 
+                <button
                   className="filter-option clear-filter"
                   onClick={() => applyFilter("none")}
                 >
@@ -220,15 +229,25 @@ function Artisan() {
           {/* Display current filter if applied */}
           {filterOption !== "none" && (
             <div className="active-filter-indicator">
-              <span>Filtered by: {filterOption === "ratings" ? "Highest Ratings" : 
-                                  filterOption === "name" ? "Name (A-Z)" : 
-                                  filterOption === "skills" ? "Skills (A-Z)" : ""}</span>
-              <button onClick={() => applyFilter("none")} className="clear-filter-btn">
+              <span>
+                Filtered by:{" "}
+                {filterOption === "ratings"
+                  ? "Highest Ratings"
+                  : filterOption === "name"
+                  ? "Name (A-Z)"
+                  : filterOption === "skills"
+                  ? "Skills (A-Z)"
+                  : ""}
+              </span>
+              <button
+                onClick={() => applyFilter("none")}
+                className="clear-filter-btn"
+              >
                 <i className="fa-solid fa-times"></i>
               </button>
             </div>
           )}
-          
+
           <div className="scroll-section">
             {/* Profile Cards */}
             <div className="artisan-grid">

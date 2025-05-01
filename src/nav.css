@@ -16,7 +16,7 @@
   position: fixed;
   top: 0;
   z-index: 15000;
-  transition: background-color 0.3s ease, padding 0.3s ease;
+  transition: 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,16 +139,16 @@
   width: 50%;
   height: 100vh;
   display: flex;
+  background-color: var(--white);
   backdrop-filter: blur(50px);
-  background-color: rgba(255, 255, 255, 0.5);
   transition: right 0.3s ease-in-out;
-  z-index: 1000;
+  z-index: 100000;
   padding-top: 60px;
-  text-align: center;
 }
 
 .sidebar.open {
   right: 0;
+  /* width: 80%; */
 }
 
 /* Sidebar Header */
@@ -172,13 +172,15 @@
 /* Sidebar Links */
 .sidebar-list {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 100000;
 }
 
 .sidebar-list li {
-  padding: 10px 20px;
-  opacity: 0;
   transform: translateX(50px);
   animation: fadeIn 0.5s ease forwards;
 }
@@ -203,11 +205,10 @@
 .sidebar-list .get-started a {
   background-color: var(--skillhub-blue);
   color: var(--white);
-  padding: 8px 15px;
   border-radius: 5px;
-  margin-top: 10px;
   text-align: center;
   transition: all 0.3s ease;
+  width: 200px;
 }
 
 .sidebar-list .get-started a:hover {
@@ -220,22 +221,19 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
   z-index: 999;
-  opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .overlay.active {
-  opacity: 1;
   pointer-events: all;
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .nav-list {
     display: none;
   }
@@ -253,17 +251,26 @@
 
   .sidebar {
     right: -100%;
-    width: 70%;
+    width: 100%;
+    z-index: 100000;
+    /* padding-right: 100px; */
   }
 
   .sidebar.open {
-    right: 0;
-    z-index: 5000;
+    z-index: 100000;
+  }
+
+  .side-bar-lost-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    width: 100%;
   }
 }
 
 /* Tablet responsiveness */
-@media (min-width: 769px) and (max-width: 1400px) {
+@media (min-width: 768px) and (max-width: 1400px) {
   .sidebar {
     display: none;
   }

@@ -148,7 +148,7 @@
 
 /* Card Styling */
 .trade-card {
-  height: 100%;
+  max-height: 100%;
   flex: 0 0 250px;
   max-width: 250px;
   padding: 10px;
@@ -328,12 +328,22 @@
     width: 380px;
   }
 
+  .arrow-icon {
+    font-size: 20px;
+  }
+
   .trade-card {
     height: 280px;
   }
 
-  .arrow-icon {
-    font-size: 20px;
+  .img {
+    margin-top: 0;
+    max-width: 90px;
+    max-height: 90px;
+  }
+
+  .trade-info-and-button-container {
+    gap: 25px;
   }
 
   .navigation-buttons,
@@ -362,6 +372,11 @@
 @media (min-width: 767px) and (max-width: 1024px) {
   .top-trades-section {
     width: 100vw;
+  }
+
+  .trades-grid {
+    max-width: 380px;
+    background-color: var(--debug-colour);
   }
 
   .trade-card {
