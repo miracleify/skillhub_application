@@ -474,6 +474,10 @@ const ChatBox = ({}) => {
       </div>
     );
   };
+  const navigate =useNavigate()
+  function changePage(){
+    navigate(-1)
+      }
 
   return (
     <div className="chat-container">
@@ -501,27 +505,18 @@ const ChatBox = ({}) => {
 
       {/* Profile Card - Centered */}
       {userData && (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            padding: "15px",
-            backgroundColor: "#f7f9fa",
-            borderRadius: "8px",
-            marginTop: "50px",
-            position: "sticky",
-            top: "0",
-            zIndex: "100",
-            boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-          }}
+        <div 
+        className="chat-header"
+          
         >
-          <FiArrowLeft
-            className="arrowleft"
-            size={35}
-            style={{ marginRight: "15px", cursor: "pointer" }}
-          />
+        
+                <button className="left-btn" onClick={changePage}>
+                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.69125 13.494L15.0578 21.8606L12.9288 23.9523L0.976562 12L12.9288 0.047699L15.0578 2.13935L6.69125 10.5059H24.8811V13.494H6.69125Z" fill="black"/>
+</svg>
 
-          <div
+                </button>
+          <div 
             style={{
               position: "relative",
               display: "flex",
@@ -529,9 +524,9 @@ const ChatBox = ({}) => {
               width: "100%",
             }}
           >
-            <img
+            <img 
               src={userData.photoURL || "/default-avatar.png"}
-              alt={userData.full_name || "User"}
+              alt={userData.full_name }
               style={{
                 width: "60px",
                 height: "60px",
@@ -553,9 +548,7 @@ const ChatBox = ({}) => {
                 }}
               ></span>
             )}
-          </div>
-
-          <div style={{ flexGrow: "1", marginLeft: "-800px" }}>
+             <div >
             <h3 style={{ margin: "0 0 5px 0" }}>
               {userData.full_name || "Unknown User"}
             </h3>
@@ -565,11 +558,14 @@ const ChatBox = ({}) => {
            
           </div>
 
+          </div>
+
+         
           <button
             className="threedots"
             onClick={handlePopover}
             style={{
-              background: "transparent",
+           
               border: "none",
               cursor: "pointer",
               display: "flex",
@@ -577,7 +573,7 @@ const ChatBox = ({}) => {
               alignItems: "center",
               justifyContent: "center",
               padding: "8px",
-              marginLeft: "auto",
+              
             }}
           >
             <div
