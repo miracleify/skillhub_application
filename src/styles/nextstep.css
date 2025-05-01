@@ -1,12 +1,103 @@
+:root {
+  --white: #ffffff;
+  --black: #171717;
+  --inactive-grey: #8f8f8f;
+  --grey: #e8e8e8;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
+  --star-colour: #ff9988;
+  --red: red;
+  --completion-green: #008000;
+  --debug-colour: #add8e6;
+}
+
+.mandatory-asterik {
+  color: var(--red);
+  font-size: 10px;
+}
+
+.form-top-half {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+/* Profile image uplaod */
+.skilled-profile-pic-upload {
+  border: 1px solid var(--inactive-grey);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0px 0px 20px var(--grey);
+  transition: 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.skilled-profile-pic-upload:hover {
+  border: 1px solid var(--skillhub-blue);
+}
+
+.skilled-profile-image-container {
+  border: 3px dashed var(--skillhub-blue);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  width: 120px;
+  transition: 0.2s ease;
+}
+
+.skilled-profile-image-container:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.skilled-profile-image-icon {
+  height: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bio-and-video-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.back-btn {
+  height: 50px;
+  background-color: transparent;
+  color: var(--skillhub-blue);
+  border: 3px solid var(--skillhub-blue);
+  border-radius: 5px;
+  outline: none;
+}
+
+.back-btn:hover {
+  background-color: var(--skillhub-hover-blue);
+  color: var(--white);
+  border: none;
+}
 
 /* Improved Responsive Styles for Buttons */
-.consumer-btn, .skill-btn {
+.consumer-btn,
+.skill-btn {
   width: clamp(120px, 20vw, 150px);
   height: clamp(40px, 6vh, 45px);
-  font-family: 'Lexend', sans-serif;
   font-weight: 500;
   font-size: clamp(14px, 2.5vw, 18px);
-  color: black;
+  color: var(--black);
   border: none;
   border-radius: 300px;
   cursor: pointer;
@@ -17,8 +108,8 @@
 
 .skill-btn.active,
 .skill-btn:hover {
-  background-color: #0575E6;
-  color: white;
+  background-color: var(--skillhub-blue);
+  color: var(--white);
   transform: scale(1.05);
 }
 
@@ -40,7 +131,7 @@
 }
 
 .progressbar::-webkit-scrollbar-thumb {
-  background-color: #007bff;
+  background-color: var(--skillhub-blue);
   border-radius: 4px;
 }
 
@@ -68,19 +159,18 @@
   width: clamp(120px, 25vw, 200px);
   height: clamp(40px, 6vh, 50px);
   border-radius: 50px;
-  background-color: #fffdfd;
+  background-color: var(--white);
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  border: 1px solid #007bff;
+  border: 1px solid var(--skillhub-blue);
   margin-bottom: 5px;
   font-size: clamp(12px, 2vw, 15px);
   text-align: center;
   padding: clamp(5px, 1vw, 10px);
   box-sizing: border-box;
-  color: #007bff;
-  font-family: 'Lexend', sans-serif;
+  color: var(--skillhub-blue);
   font-style: normal;
   font-weight: 700;
   line-height: clamp(20px, 4vh, 40px);
@@ -90,14 +180,13 @@
 }
 
 .step-circle.active {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--skillhub-blue);
+  color: var(--white);
   width: clamp(120px, 25vw, 200px);
   border-radius: 50px;
   text-align: center;
   padding: clamp(5px, 1vw, 10px);
   box-sizing: border-box;
-  font-family: 'Lexend', sans-serif;
   font-style: normal;
   font-weight: 700;
   line-height: clamp(20px, 4vh, 40px);
@@ -108,13 +197,13 @@
 .connector-line {
   height: 5px;
   width: clamp(100px, 15vw, 320px);
-  background-color: #007bff;
+  background-color: var(--skillhub-blue);
   transition: all 0.5s ease;
   flex-shrink: 1;
 }
 
 .connector-line.active {
-  background-color: #007bff;
+  background-color: var(--skillhub-blue);
   width: clamp(80px, 15vw, 270px);
   animation: expandLine 1s ease-out;
 }
@@ -134,7 +223,7 @@
 }
 
 .image-preview-container {
-  background-color: white;
+  background-color: var(--white);
   border-radius: 8px;
   padding: 24px;
   width: 90%;
@@ -172,7 +261,8 @@
   margin-top: 8px;
 }
 
-.confirm-image-btn, .cancel-image-btn {
+.confirm-image-btn,
+.cancel-image-btn {
   padding: 10px 20px;
   border-radius: 4px;
   font-weight: 500;
@@ -182,27 +272,27 @@
 }
 
 .confirm-image-btn {
-  background-color: #4a90e2;
-  color: white;
+  background-color: var(--skillhub-blue);
+  color: var(--white);
 }
 
 .confirm-image-btn:hover {
-  background-color: #357abD;
+  background-color: var(--skillhub-hover-blue);
 }
 
 .confirm-image-btn:disabled {
-  background-color: #a0c0e8;
+  background-color: var(--inactive-grey);
   cursor: not-allowed;
 }
 
 .cancel-image-btn {
-  background-color: #f5f5f5;
+  background-color: var(--white);
   color: #333;
-  border: 1px solid #ddd;
+  border: 1px solid var(--inactive-grey);
 }
 
 .cancel-image-btn:hover {
-  background-color: #e5e5e5;
+  background-color: var(--red);
 }
 
 .cancel-image-btn:disabled {
@@ -211,28 +301,10 @@
 }
 
 .error-message {
-  color: red;
+  color: var(--red);
   margin-top: 12px;
   text-align: center;
 }
-
-/* Make the profile upload area clickable */
-.profile-image-icon-file-button-container {
-  cursor: pointer;
-  transition: all 0.2s ease;
-  height: 200px;
-  width: 200px;
-}
-
-.profile-image-icon-file-button-container:hover {
-  opacity: 0.8;
-}
-.profile-image-icon{
-  height:198px;
-  width:199px;
-  border-radius:100%;
-
-  }
 
 /* Tablet Responsiveness */
 @media (min-width: 481px) and (max-width: 1024px) {
@@ -240,84 +312,128 @@
     width: 100%;
     padding: 0 clamp(10px, 3vw, 20px);
   }
-  
-  #fullname, #password, #technical-skills, #address, #service-area, #bio, 
-  .video-upload, .submit-btn, .profilepice, .email {
+
+  #fullname,
+  #password,
+  #technical-skills,
+  #address,
+  #service-area,
+  #bio,
+  .video-upload,
+  .submit-btn,
+  .profilepice,
+  .email {
     width: 100%;
     max-width: 600px;
     margin: 10px auto;
   }
-  
+
   .email {
     background-color: transparent; /* Removing the red background */
   }
-  
+
   /* For tablets in portrait mode */
   @media (orientation: portrait) {
     .connector-line {
       width: clamp(80px, 10vw, 150px);
     }
-    
+
     .connector-line.active {
       width: clamp(80px, 10vw, 150px);
     }
-    
-    .step-circle, .step-circle.active {
+
+    .step-circle,
+    .step-circle.active {
       width: clamp(100px, 20vw, 150px);
       font-size: clamp(11px, 1.8vw, 14px);
     }
   }
-  
+
   /* For tablets in landscape mode */
   @media (orientation: landscape) {
-    .connector-line, .connector-line.active {
+    .connector-line,
+    .connector-line.active {
       width: clamp(100px, 12vw, 200px);
     }
-    
-    .step-circle, .step-circle.active {
+
+    .step-circle,
+    .step-circle.active {
       width: clamp(120px, 15vw, 180px);
     }
   }
 }
 
-/* Enhanced Mobile responsiveness (keeping your existing code but improved) */
-@media (max-width: 480px) {
+/* Mobile Responsiveness */
+@media (max-width: 767px) {
   .form-container {
     flex-direction: column;
-    width: 100%;
-    padding: 0 10px;
+    width: 350px;
+    padding: 0 20px;
   }
-  
-  #fullname, #password, #technical-skills, #address, #service-area, #bio,
-  .video-upload, .submit-btn, .profilepice {
-    width: 100%;
-    max-width: 390px;
-    border: 1px solid #007bff;
-    margin: 10px auto;
+
+  .form-top-half {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 350px;
   }
-  
-  .email {
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-    background-color: transparent; /* Removed red background */
+
+  .form-group label {
+    margin: 0;
   }
-  
+
+  #fullname,
+  #password,
+  #technical-skills,
+  #areas-of-expertise,
+  #address,
+  #service-area,
+  #custom-distance,
+  #bio,
+  .video-upload,
+  .submit-btn,
   .profilepice {
     width: 100%;
     max-width: 390px;
+    border: 1px solid var(--inactive-grey);
+    margin: 0;
   }
-  
+
+  /* #fullname:focus,
+  #password:focus,
+  #technical-skills:focus,
+  #areas-of-expertise:focus,
+  #address:focus,
+  #service-area:focus,
+  #custom-distance:focus,
+  #bio:focus {
+    border: 1px solid var(--skillhub-blue);
+  } */
+
+  .bio-and-video-container {
+    flex-direction: column;
+  }
+
+  .form-buttons {
+    flex-direction: column-reverse;
+  }
+
+  .back-btn {
+    width: 100%;
+  }
+
   /* Adjust progress indicators for mobile */
-  .step-circle, .step-circle.active {
+  .step-circle,
+  .step-circle.active {
     width: clamp(90px, 28vw, 120px);
     height: clamp(35px, 6vh, 40px);
     font-size: clamp(10px, 3vw, 12px);
     line-height: normal;
     padding: 5px;
   }
-  
-  .connector-line, .connector-line.active {
+
+  .connector-line,
+  .connector-line.active {
     width: clamp(40px, 10vw, 60px);
   }
 }
@@ -339,23 +455,5 @@
   }
   to {
     box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
-  }
-}
-
-/* iPad Pro and larger tablets specific adjustments */
-@media (min-width: 1025px) and (max-width: 1366px) {
-  .connector-line {
-    width: 250px;
-  }
-  
-  .connector-line.active {
-    width: 220px;
-  }
-  
-  #fullname, #password, #technical-skills, #address, #service-area, #bio,
-  .video-upload, .submit-btn, .profilepice, .email {
-    width: 100%;
-    max-width: 800px;
-    margin: 15px auto;
   }
 }
