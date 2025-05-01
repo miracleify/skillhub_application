@@ -1,22 +1,14 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.profile-image-icon{
-
- 
-  
-
-}
 :root {
   --white: #ffffff;
-  --black: #000000;
+  --black: #171717;
   --inactive-grey: #8f8f8f;
+  --grey: #e8e8e8;
   --skillhub-blue: #0575e6;
   --skillhub-hover-blue: #0518e6;
+  --star-colour: #ff9988;
   --red: red;
   --completion-green: #008000;
+  --debug-colour: #add8e6;
 }
 
 body {
@@ -61,7 +53,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 30px 0;
   animation: fadeIn 1.4s ease-in;
 }
 
@@ -88,7 +79,8 @@ body {
   width: 200px;
   height: 50px;
   border-radius: 50px;
-  background-color: var(--completion-green);
+  border: 3px solid var(--skillhub-blue);
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,8 +89,7 @@ body {
   font-size: 15px;
   text-align: center;
   padding: 10px;
-  box-sizing: border-box;
-  color: var(--white);
+  color: var(--skillhub-blue);
   font-style: normal;
   font-weight: 700;
   line-height: 40px;
@@ -124,7 +115,7 @@ body {
 .connector-line {
   height: 5px;
   width: 300px;
-  background-color: var(--completion-green);
+  background-color: var(--skillhub-blue);
   transition: all 0.5s ease;
 }
 
@@ -274,50 +265,51 @@ body {
     padding: 20px;
     margin: 15px auto;
   }
-  
+
   .input-field {
     width: 100% !important;
     max-width: 500px;
   }
-  
+
   .connector-line {
     width: 150px;
   }
-  
+
   .connector-line.active {
     width: 150px;
   }
-  
-  .step-circle, .step-circle.active {
+
+  .step-circle,
+  .step-circle.active {
     width: 160px;
     font-size: 14px;
     height: 45px;
     line-height: 25px;
     padding: 8px;
   }
-  
+
   .buttons-container {
     position: relative;
     justify-content: flex-end;
     margin: 30px 0 0 0;
     width: 100%;
   }
-  
+
   .buttons {
     width: 200px;
     height: 45px;
     font-size: 16px;
   }
-  
+
   .captions {
     gap: 50px;
     flex-wrap: wrap;
   }
-  
+
   .bvn-form {
     width: 100%;
   }
-  
+
   .image-upload-container {
     justify-content: center;
     flex-wrap: wrap;
@@ -331,13 +323,13 @@ body {
       width: 150px;
     }
   }
-  
+
   /* Fix for tab/tablet overflow issues */
   .progressbar {
     padding: 0 10px;
     margin: 20px 0;
   }
-  
+
   .progressbar ul {
     flex-wrap: nowrap;
     justify-content: center;
@@ -351,15 +343,17 @@ body {
     flex-direction: row;
     gap: 15px;
   }
-  
-  .connector-line, .connector-line.active {
+
+  .connector-line,
+  .connector-line.active {
     width: 180px;
   }
-  
-  .step-circle, .step-circle.active {
+
+  .step-circle,
+  .step-circle.active {
     width: 170px;
   }
-  
+
   .profilepices {
     width: 85% !important;
     padding: 25px;
@@ -376,21 +370,23 @@ body {
 }
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  .step-circle, .step-circle.active {
+  .step-circle,
+  .step-circle.active {
     width: 140px;
     font-size: 13px;
     padding: 5px;
   }
-  
-  .connector-line, .connector-line.active {
+
+  .connector-line,
+  .connector-line.active {
     width: 120px;
   }
-  
+
   .buttons-container {
     flex-direction: row;
     justify-content: center;
   }
-  
+
   .buttons {
     width: 180px;
   }

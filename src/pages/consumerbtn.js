@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/consumerbtn.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function ConsumerBTN() {
@@ -10,7 +10,7 @@ function ConsumerBTN() {
   // Add state for form inputs
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   // Add error state
@@ -26,7 +26,7 @@ function ConsumerBTN() {
     navigate("/consumerbtn");
   };
   const changepage = () => {
-// Only navigate if both fields are filled
+    // Only navigate if both fields are filled
     if (!formData.email || !formData.password) {
       setError("Email and password are required.");
       return;
@@ -76,10 +76,7 @@ function ConsumerBTN() {
     <>
       {/* Titling */}
       <div className="title-section">
-        <h2>Create Account</h2>
-        <h3>
-          Already have an account? <a href="#">sign in</a>
-        </h3>
+        <h2>Which one are you?</h2>
       </div>
 
       {/* Form Container */}
@@ -160,6 +157,7 @@ function ConsumerBTN() {
 
             {/* New Form */}
             <form className="new-form" onSubmit={handleSubmit}>
+              <h2>Create Account</h2>
               {/* Email */}
               <div className="input-field-container">
                 <label className="label-text">
@@ -196,15 +194,40 @@ function ConsumerBTN() {
                   minLength={3}
                 />
               </div>
-                        {/* Show error if fields are empty */}
+
+              {/* Confirm Password */}
+              <div className="input-field-container">
+                <label className="label-text">
+                  Confirm Password
+                  <sup className="mandatory-asterik">*</sup>
+                </label>
+
+                <input
+                  className="input-field"
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  placeholder="Re-nter your password"
+                  required
+                  minLength={3}
+                />
+              </div>
+              {/* Show error if fields are empty */}
               {error && (
-                <div className="error-message" style={{ color: "red", marginBottom: "10px" }}>
+                <div
+                  className="error-message"
+                  style={{ color: "red", marginBottom: "10px" }}
+                >
                   {error}
                 </div>
               )}
-                        <button onClick={changepage} className="next-btn" type="submit">
+              <button onClick={changepage} className="next-btn" type="submit">
                 Next Step
               </button>
+              <p>
+                Already have an account? <Link>Sign In</Link>
+              </p>
             </form>
           </div>
         </div>

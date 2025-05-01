@@ -1,18 +1,14 @@
-
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 :root {
   --white: #ffffff;
-  --black: #000000;
+  --black: #171717;
   --inactive-grey: #8f8f8f;
+  --grey: #e8e8e8;
   --skillhub-blue: #0575e6;
   --skillhub-hover-blue: #0518e6;
+  --star-colour: #ff9988;
   --red: red;
+  --completion-green: #008000;
+  --debug-colour: #add8e6;
 }
 
 body {
@@ -20,7 +16,57 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* margin-top: 20px; */
+}
+
+.title-section {
+  margin-top: 80px;
+}
+
+.image-form-container {
+  display: flex;
+  gap: 20px;
+  width: auto;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid var(--inactive-grey);
+  /* box-shadow: 0px 0px 10px var(--black); */
+}
+
+.login-pic {
+  height: 500px;
+  width: 700px;
+}
+
+.new-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+}
+
+.input-field-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.input-field {
+  outline: none;
+  width: 430px;
+  border: 1px solid var(--inactive-grey);
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+.input-field:focus {
+  border: 1px solid var(--skillhub-blue);
+}
+
+.input-field::placeholder {
+  text-align: left;
 }
 
 /* Keep your existing CSS and update/add these tablet and large screen responsiveness sections */
@@ -114,45 +160,13 @@ header img {
   font-size: clamp(14px, 2vw, 16px);
 }
 
-/* Enhanced Tablet Responsiveness */
-@media (min-width: 600px) and (max-width: 1024px) {
-  .form-container {
-    flex-direction: column;
-  }
-
-  .title-section {
-    margin-top: 60px;
-  }
-
-  .image-form-container {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 20px;
-  }
-
-  .switch-buttons {
-    height: 60px;
-    padding: 0 15px;
-    gap: 15px;
-  }
-
-  .consumer-btn,
-  .skill-btn {
-    font-size: 16px;
-    padding: 6px 12px;
-  }
-
-  .input-field {
-    height: 56px;
-  }
-
-  .next-btn {
-    height: 54px;
-  }
+/* Mobile Steps */
+.step-container {
+  display: none;
 }
 
 /* Mobile responsiveness */
-@media (min-width: 300px) and (max-width: 479px) {
+@media (max-width: 767px) {
   .login-pic {
     margin-left: 0;
     width: 80px;
@@ -175,17 +189,17 @@ header img {
     width: 150px;
   }
 
-  .connector-line, 
+  .connector-line,
   .connector-line.active {
     width: 80px;
   }
-  
+
   /* Adjust for tablet landscape */
   @media (orientation: landscape) {
     .image-form-container {
       gap: 30px;
     }
-    
+
     .login-pic {
       width: 120px;
       max-height: 350px;
@@ -193,72 +207,56 @@ header img {
   }
 }
 
-/* iPad Pro and larger tablets */
-@media (min-width: 1025px) and (max-width: 1366px) {
-  .login-pic {
-    height: 400px;
-    width: 90px;
-  }
-  
-  .connector-line {
-    width: 120px;
-  }
-  
-  .connector-line.active {
-    width: 150px;
-  }
-}
-
 /* Mobile responsiveness enhancements */
-@media (max-width: 599px) {
+/* @media (max-width: 599px) {
   .switch-buttons {
     flex-direction: column;
     height: auto;
     padding: 10px;
   }
-  
+
   .consumer-btn,
   .skill-btn {
     width: 100%;
     margin: 5px 0;
   }
-  
+
   .login-pic {
     display: none;
   }
-  
+
   .title-section {
     margin-top: 40px;
   }
-  
+
   .step-container {
     margin-top: 0 !important;
     gap: 5px;
   }
-  
+
   .step {
     width: 40px;
     height: 40px;
     font-size: 14px;
   }
-  
+
   .line {
     width: 60px;
-  }
-  
-  /* For very small screens */
-  @media (max-width: 350px) {
+  } */
+
+/* For very small screens */
+/* @media (max-width: 350px) {
     .step {
       width: 30px;
       height: 30px;
       font-size: 12px;
     }
-    
+
     .line {
       width: 40px;
     }
-  }
-}
+  } */
+/* } */
 
 /* Fix animation for expandLine to match responsive values */
 @keyframes expandLine {
