@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTrades } from "../TradesContext";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { hireService } from "../services/hiringService";
 import "../styles/hiringartisanPage.css";
 
 function HiringartisanPage() {
@@ -86,21 +86,11 @@ function HiringartisanPage() {
       };
 
 console.log (payload)
-      const response = await axios.post(
-        "https://skillhub-api-y3gi.onrender.com/api/hiring/hire",
-        payload,
-        { headers: { "Content-Type": "application/json" } }
-      );
-      if (response.status === 200 || response.status === 201) {
-        setSuccess(true);
-        // alert(
-        //   `${action} for ${person?.fname} ${person?.lname} submitted successfully!`
-        // );
-        if (action === "Confirm & Hire") {
-          hireArtisan();
-        }
-      } else {
-        setError(response.data.message || "Submission failed.");
+      const response = await hireService(payload);
+    localStorage.setItem("result", JSON.stringify(response.data.result));
+    setSuccess(true);
+    if (action === "Confirm & Hire") {
+      hireArtisan();
       }
     } catch (err) {
       setError(
