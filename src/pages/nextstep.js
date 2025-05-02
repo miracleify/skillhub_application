@@ -20,11 +20,11 @@ function Nextstep() {
     address: "",
     service_area: "",
     bio: "",
-    photoURL: ""
+    photoURL: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  
+
   // New states for image preview
   const [showImagePreview, setShowImagePreview] = useState(false);
   const [previewImage, setPreviewImage] = useState(null);
@@ -84,10 +84,10 @@ function Nextstep() {
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    
+
     setError("");
     setSelectedFile(file);
-    
+
     // Create a preview URL
     const reader = new FileReader();
     reader.onload = () => {
@@ -96,11 +96,11 @@ function Nextstep() {
     };
     reader.readAsDataURL(file);
   };
-  
+
   // New function to confirm the selected image
   const confirmImage = async () => {
     if (!selectedFile) return;
-    
+
     setLoading(true);
     try {
       const photoURL = await uploadImageToImgbb(selectedFile);
@@ -115,7 +115,7 @@ function Nextstep() {
       setLoading(false);
     }
   };
-  
+
   // New function to cancel the image selection
   const cancelImageSelection = () => {
     setShowImagePreview(false);
@@ -126,7 +126,7 @@ function Nextstep() {
       fileInputRef.current.value = "";
     }
   };
-  
+
   // Function to trigger file input click
   const triggerFileInput = () => {
     fileInputRef.current.click();
@@ -216,7 +216,6 @@ function Nextstep() {
           ))}
         </ul>
       </div>
-      
       {/* Image Preview Modal */}
       {showImagePreview && (
         <div className="image-preview-overlay">
@@ -226,15 +225,15 @@ function Nextstep() {
               <img src={previewImage} alt="Profile Preview" />
             </div>
             <div className="image-preview-actions">
-              <button 
-                className="confirm-image-btn" 
+              <button
+                className="confirm-image-btn"
                 onClick={confirmImage}
                 disabled={loading}
               >
                 {loading ? "Uploading..." : "Confirm Image"}
               </button>
-              <button 
-                className="cancel-image-btn" 
+              <button
+                className="cancel-image-btn"
                 onClick={cancelImageSelection}
                 disabled={loading}
               >
@@ -245,14 +244,14 @@ function Nextstep() {
           </div>
         </div>
       )}
-
-      <div className="profile-pic-upload">
-        <div 
-          className="dashed-border profile-image-icon-file-button-container"
+      {/* Profile image upload */}
+      <div className="skilled-profile-pic-upload">
+        <div
+          className="skilled-profile-image-container"
           onClick={triggerFileInput}
         >
           <img
-            className="profile-image-icon"
+            className="skilled-profile-image-icon"
             src={formData.photoURL || "/images/camera.png"}
             alt="Profile Image Upload"
           />
@@ -266,28 +265,26 @@ function Nextstep() {
           accept="image/*"
           onChange={handlePhotoChange}
           ref={fileInputRef}
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
         />
 
         <div className="key-image-upload-guidlines">
           <p>Drag & drop or choose file to upload an image of yourself.</p>
           <p>
-            <strong>
-              (PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)
-            </strong>
+            <strong>(PLEASE ENSURE IMAGE IS CLEAR AND SHOWS YOUR FACE)</strong>
           </p>
         </div>
       </div>
-      <br></br> <br></br>
 
-      <div className="form-container">
+      {/* Form */}
+      <div className="skilled-profile-form-container">
         <form className="signup-form" onSubmit={handleNextStep}>
-          {/* First row */}
-          <div className="form-row">
+          <div className="form-top-half">
+            {/* Full name */}
             <div className="form-group">
               <label htmlFor="fullname">
-                Full Name{" "}
-                <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+                Full Name
+                <sup className="mandatory-asterik">*</sup>
               </label>
               <input
                 type="text"
@@ -295,12 +292,15 @@ function Nextstep() {
                 required
                 value={formData.full_name}
                 onChange={handleInputChange}
-                className="email"
+                placeholder="Enter your full name"
               />
             </div>
+
+            {/* Skill selection */}
             <div className="form-group">
               <label htmlFor="technical-skills">
-                Please select your skill<sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+                Please select your skill
+                <sup className="mandatory-asterik">*</sup>
               </label>
               <select
                 id="technical-skills"
@@ -308,7 +308,7 @@ function Nextstep() {
                 value={formData.skill}
                 onChange={handleInputChange}
               >
-                <option value="">Please select your skill</option>
+                <option value="">Select a skill</option>
                 <option value="Artist">Artist</option>
                 <option value="Builder">Builder</option>
                 <option value="Decorator">Decorator</option>
@@ -316,21 +316,24 @@ function Nextstep() {
                 <option value="Other">Other</option>
               </select>
             </div>
+
+            {/* Area of expertise */}
             <div className="form-group">
-              <label htmlFor="areas_of_expertise">
-              Areas of expertise?<sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+              <label htmlFor="areas-of-expertise">
+                Areas of expertise?
+                <sup className="mandatory-asterik">*</sup>
               </label>
               <input
                 type="text"
-                id="areas_of_expertise"
+                id="areas-of-expertise"
                 required
                 value={formData.areas_of_expertise}
                 onChange={handleInputChange}
+                placeholder="Aspects you are very good at?"
               />
             </div>
-          </div>
-          {/* Second row */}
-          <div className="form-row">
+
+            {/* Address */}
             <div className="form-group">
               <label htmlFor="address">
                 Address{" "}
@@ -345,12 +348,15 @@ function Nextstep() {
                 required
                 value={formData.address}
                 onChange={handleInputChange}
+                placeholder="Enter your address"
               />
             </div>
+
+            {/* Service area */}
             <div className="form-group">
               <label htmlFor="service-area">
                 Service Area
-                <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+                <sup className="mandatory-asterik">*</sup>
               </label>
               <select
                 id="service-area"
@@ -359,19 +365,34 @@ function Nextstep() {
                 onChange={handleInputChange}
               >
                 <option value="">Select area of coverage </option>
-                <option value="1km">1km</option>
-                <option value="5km">5km</option>
-                <option value="10km">10km</option>
-                <option value="20km">20km</option>
+                <option value="1">1 miles</option>
+                <option value="5">5 miles</option>
+                <option value="10">10 miles</option>
+                <option value="20">20 miles</option>
                 <option value="Custom distance">Custom distance</option>
               </select>
             </div>
+
+            {/* Custom Distance */}
+            <div className="form-group">
+              <label htmlFor="custom-distance">Custom Distance</label>
+              <input
+                type="text"
+                id="custom-distance"
+                required
+                value={formData.address}
+                onChange={handleInputChange}
+                placeholder="Enter how far can you travel"
+              />
+            </div>
           </div>
-          {/* Fourth row */}
-          <div className="form-row">
+
+          {/* Bio and video container */}
+          <div className="bio-and-video-container">
+            {/* Bio */}
             <div className="form-group bio-group">
-              <label style={{ marginLeft: "-510px" }} htmlFor="bio">
-                Bio<sup style={{ color: "red", fontSize: "10px" }}>*</sup>
+              <label htmlFor="bio">
+                Bio<sup className="mandatory-asterik">*</sup>
               </label>
               <textarea
                 id="bio"
@@ -379,18 +400,18 @@ function Nextstep() {
                 maxLength={200}
                 value={formData.bio}
                 onChange={handleTextAreaChange}
+                placeholder="Write a short bio about yourself (200 Words Max)"
               />
             </div>
+
+            {/* Video upload */}
             <div className="form-group video-group">
-              <label htmlFor="intro-video">
-                Introductory Video{" "}
-                <span>
-                  (optional)
-                  <sup style={{ color: "red", fontSize: "10px" }}>*</sup>
-                </span>
-              </label>
+              <label htmlFor="intro-video">Introductory Video (Optional)</label>
               <div className="video-upload">
-                <div className="dotted-border-video" onClick={() => document.getElementById("intro-video").click()}>
+                <div
+                  className="dotted-border-video"
+                  onClick={() => document.getElementById("intro-video").click()}
+                >
                   <img src="/images/videocam.png" alt="video camera" />
                 </div>
                 <input
@@ -414,7 +435,11 @@ function Nextstep() {
                 )}
                 {videoURL && (
                   <div style={{ marginTop: 10 }}>
-                    <a href={videoURL} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={videoURL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       View Uploaded Video
                     </a>
                   </div>
@@ -423,7 +448,12 @@ function Nextstep() {
               </div>
             </div>
           </div>
+
+          {/* Form Buttons */}
           <div className="form-buttons">
+            <button type="submit" onClick={changeStep} className="back-btn">
+              Back
+            </button>
             <button type="submit" onClick={changeStep} className="submit-btn">
               Next Step
             </button>
