@@ -27,9 +27,14 @@ export default function SignIn() {
       const response = await signInUser(formData);
       console.log("Login successful:", response.data);
 
-       // Save user info to localStorage
-    localStorage.setItem("user", JSON.stringify(response.data.user));
-      navigate("/dashboard");
+      // Save user info to localStorage
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+      
+      // Get the user ID from the response and redirect to profile page with ID in URL
+      const userId = response.data.user._id || response.data.user.id;
+      if (userId) {
+        navigate(`/dashboard/${userId}`);
+      } 
     } catch (err) {
       setError(err.message || "Network error. Please try again.");
       console.error("Login error:", err);
@@ -140,7 +145,6 @@ export default function SignIn() {
               </Link>
             </div>
           </form>
-
         </div>
       </div>
     </div>

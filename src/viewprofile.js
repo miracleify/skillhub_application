@@ -34,12 +34,12 @@ const ViewProfile = () => {
 
     console.log("Fetching user with ID:", effectiveId);
 
-    // If your API doesn't support getting single users by ID, fetch all and filter
+
     axios
       .get(`https://skillhub-api-y3gi.onrender.com/api/users/`)
       .then((response) => {
         console.log("All users data:", response.data);
-        // Find the user with the matching ID
+       
         const foundUser = response.data.find(
           (u) =>
             u.id === parseInt(effectiveId) ||
@@ -50,7 +50,7 @@ const ViewProfile = () => {
         if (foundUser) {
           console.log("Found user:", foundUser);
           setUser(foundUser);
-          // Format the user data to match what HiringartisanPage expects
+        
           const formattedUser = {
             id: foundUser.id || foundUser._id,
             fname: foundUser.full_name ? foundUser.full_name.split(" ")[0] : "",
