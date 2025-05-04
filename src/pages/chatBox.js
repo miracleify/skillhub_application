@@ -41,7 +41,7 @@ const ChatBox = ({}) => {
   console.log("Using ID:", effectiveId);
 
   useEffect(() => {
-    // Check if effectiveId exists and is valid before making the API call
+    
     if (!effectiveId || effectiveId === "undefined") {
       setError("No user ID provided");
       setLoading(false);
@@ -958,15 +958,6 @@ const ChatBox = ({}) => {
               >
                 <i className="fa-solid fa-paper-plane"></i>
               </button>
-              <button
-                className="menu-button"
-                onClick={() => setOpenModal(true)}
-                aria-label="Open attachment options"
-              >
-                <div className="circle"></div>
-                <div className="circle"></div>
-                <div className="circle"></div>
-              </button>
               <div className="all-emojis">
                 <button
                   className="option-btn"
@@ -1025,6 +1016,16 @@ const ChatBox = ({}) => {
                   </svg>
                 </button>
               </div>
+              <button
+                className="menu-button"
+                onClick={() => setOpenModal(true)}
+                aria-label="Open attachment options"
+              >
+                <div className="circle"></div>
+                <div className="circle"></div>
+                <div className="circle"></div>
+              </button>
+              
             </div>
 
             {/* Hidden file inputs */}

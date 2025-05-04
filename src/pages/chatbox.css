@@ -75,9 +75,10 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 915px;
+  max-width: 900px;
   margin-right: 20px;
   flex-grow: 1;
+  
 }
 
 .left-btn {
@@ -126,6 +127,7 @@
   align-items: center;
   background-color: var(--skillhub-blue);
   cursor: pointer;
+  
 }
 
 .form .send-btn.disabled {
@@ -404,7 +406,7 @@
   }
 
   .all-emojis {
-    margin-left: 0;
+    margin-left: 0 ;
   }
 } */
 
@@ -485,7 +487,7 @@
 
   .form .send-btn {
     height: 45px;
-    width: 45px;
+    width: 45px !important;
     min-width: 45px;
   }
 

@@ -15,7 +15,7 @@ class PaymentService {
    */
   async initiatePayment(amount, email, reference) {
     try {
-      const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+      const baseUrl = 'https://skill-hub-yk14.vercel.app/' || process.env.BASE_URL;
       const response = await axios.post(
         `${this.paystackUrl}/transaction/initialize`,
         {
