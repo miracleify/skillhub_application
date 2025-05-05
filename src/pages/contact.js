@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../styles/contact.css"; 
+import "../styles/contact.css";
+import { sendContactUs } from "../services/contactService";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -8,15 +9,34 @@ function Contact() {
     phoneNumber: "",
     message: ""
   });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setLoading(true);
+    setError("");
+    setSuccess("");
+    try {
+      await sendContactUs(formData);
+      setSuccess("Your message has been sent successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        message: ""
+      });
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -104,9 +124,11 @@ function Contact() {
               />
             </div>
             
-            <button type="submit" className="send-btn">
-              Send Message
+            <button type="submit" className="send-btn" disabled={loading}>
+              {loading ? "Sending..." : "Send Message"}
             </button>
+            {success && <div style={{ color: "green", marginTop: "10px" }}>{success}</div>}
+            {error && <div style={{ color: "red", marginTop: "10px" }}>{error}</div>}
           </form>
         </div>
       </div>
