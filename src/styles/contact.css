@@ -310,6 +310,9 @@
     .contact-container {
       padding: 1rem 0.5rem;
     }
+    .contact-label{
+      margin-left: 40px !important;
+    }
   }
   @media (max-width:834px){
     .contact-img {
