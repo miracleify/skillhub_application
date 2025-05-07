@@ -304,7 +304,6 @@ select:hover {
   color: #505659;
 }
 
-
 /* Job profile cards */
 .jobprofile-card {
   max-height: 500px;
@@ -360,19 +359,20 @@ select:hover {
 } */
 
 .user-profile {
-  background-color: var(--debug-colour);
+  /* background-color: var(--debug-colour); */
   display: flex;
+  margin-bottom: 20px;
 }
 
 .user-info {
   width: 100%;
   padding: 10px;
-  background-color: var(--completion-green);
+  /* background-color: var(--completion-green); */
 }
 
-.job-request-container {
-  
-}
+/* .job-request-container {
+
+} */
 
 .no-users {
   text-align: center;
