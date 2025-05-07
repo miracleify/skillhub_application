@@ -19,7 +19,7 @@ function Footer() {
       <div className="footer-top">
         <div className="footer-brand">
           <h2>
-            Skill<span>Hub</span>
+            <span>Skill</span>Hub
           </h2>
           <div className="social-icons">
             <a href="#">
@@ -37,7 +37,8 @@ function Footer() {
           </div>
         </div>
         <div className="footer-columns">
-          <div>
+          {/* Company Column */}
+          <div className="footer-column">
             <h4>Company</h4>
             <ul>
               <li>About</li>
@@ -45,7 +46,9 @@ function Footer() {
               <li>Blogs</li>
             </ul>
           </div>
-          <div>
+
+          {/* Legal Column */}
+          <div className="footer-column">
             <h4>Legal</h4>
             <ul>
               <li>Privacy Policy</li>
@@ -54,7 +57,9 @@ function Footer() {
               <li>Refund Policy</li>
             </ul>
           </div>
-          <div>
+
+          {/* Support Column */}
+          <div className="footer-column">
             <h4>Support</h4>
             <ul>
               <li>Help Centre</li>
@@ -63,6 +68,8 @@ function Footer() {
               <li>Refund Policy</li>
             </ul>
           </div>
+
+          {/* Reach Us Column */}
           <div>
             <h4>Reach Us</h4>
             <ul>
@@ -73,7 +80,8 @@ function Footer() {
           </div>
         </div>
       </div>
-      
+
+      {/* Copy Right */}
       <div className="footer-bottom">
         <p>© 2025 SkillHub. All Rights Reserved.</p>
       </div>
