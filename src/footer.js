@@ -43,9 +43,15 @@ function Footer() {
           <div className="footer-column">
             <h4>Company</h4>
             <ul>
-              <li>About</li>
-              <li>Contact</li>
-              <li>Blogs</li>
+              <li>
+                <a>About</a>
+              </li>
+              <li>
+                <a>Contact</a>
+              </li>
+              <li>
+                <a>Blogs</a>
+              </li>
             </ul>
           </div>
 
@@ -53,10 +59,18 @@ function Footer() {
           <div className="footer-column">
             <h4>Legal</h4>
             <ul>
-              <li>Privacy Policy</li>
-              <li>Terms & Conditions</li>
-              <li>Terms of Use</li>
-              <li>Refund Policy</li>
+              <li>
+                <a>Privacy Policy</a>
+              </li>
+              <li>
+                <a>Terms & Conditions</a>
+              </li>
+              <li>
+                <a>Terms of Use</a>
+              </li>
+              <li>
+                <a>Refund Policy</a>
+              </li>
             </ul>
           </div>
 
@@ -64,10 +78,18 @@ function Footer() {
           <div className="footer-column">
             <h4>Support</h4>
             <ul>
-              <li>Help Centre</li>
-              <li>FAQ</li>
-              <li>Contact</li>
-              <li>Refund Policy</li>
+              <li>
+                <a>Help Centre</a>
+              </li>
+              <li>
+                <a>FAQ</a>
+              </li>
+              <li>
+                <a>Contact</a>
+              </li>
+              <li>
+                <a>Refund Plicy</a>
+              </li>
             </ul>
           </div>
 
@@ -75,9 +97,15 @@ function Footer() {
           <div className="footer-column">
             <h4>Reach Us</h4>
             <ul>
-              <li>+123 801 234 5678</li>
-              <li>support@skillhub.com</li>
-              <li>123 Mainview Point, Lagos, Nigeria</li>
+              <li>
+                <a>+123 801 234 5678</a>
+              </li>
+              <li>
+                <a>support@skillhub.com</a>
+              </li>
+              <li>
+                <a>123 Mainview Point, Lagos, Nigeria</a>
+              </li>
             </ul>
           </div>
         </div>

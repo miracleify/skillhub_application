@@ -16,6 +16,7 @@
   display: flex;
   justify-content: center;
   border-top: 1px solid var(--inactive-grey);
+  gap: 20px;
 }
 
 .footer-top {
@@ -62,11 +63,17 @@
 
 .footer-columns ul {
   list-style: none;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .footer-columns li {
-  margin-bottom: 6px;
+  color: var(--black);
+  text-align: left;
+}
+
+.footer-columns li a {
   color: var(--black);
   text-align: left;
 }
@@ -74,6 +81,6 @@
 .footer-bottom {
   text-align: center;
   margin-top: 30px;
-  font-size: 14px;
+  font-size: 18px;
   color: var(--black);
 }
