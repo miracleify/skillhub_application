@@ -11,9 +11,11 @@
 }
 
 .footer {
+  height: 300px;
   flex-direction: column;
-  /* background-color: var(--debug-colour); */
-  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  background-color: var(--debug-colour);
 }
 
 .footer-top {
@@ -21,7 +23,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  gap: 40px;
+  gap: 10px;
 }
 
 .footer-brand h2 {
@@ -42,13 +44,15 @@
 .footer-column {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .footer-columns {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: 40px;
+  gap: 100px;
 }
 
 .footer-columns div h4 {
@@ -64,6 +68,7 @@
 .footer-columns li {
   margin-bottom: 6px;
   color: var(--black);
+  text-align: left;
 }
 
 .footer-bottom {

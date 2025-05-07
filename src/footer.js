@@ -36,6 +36,8 @@ function Footer() {
             </a>
           </div>
         </div>
+
+        {/* Footer Columns */}
         <div className="footer-columns">
           {/* Company Column */}
           <div className="footer-column">
@@ -70,7 +72,7 @@ function Footer() {
           </div>
 
           {/* Reach Us Column */}
-          <div>
+          <div className="footer-column">
             <h4>Reach Us</h4>
             <ul>
               <li>+123 801 234 5678</li>

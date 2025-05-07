@@ -175,13 +175,14 @@
 .cont-btn:active {
   transform: translateY(-1px);
 }
-.footer {
+
+/* .footer {
   display: flex;
   position: relative;
   justify-content: flex-end;
   margin: auto;
   margin-top: 60px;
-}
+} */
 
 /* Mobile Responsiveness */
 @media (max-width: 767px) {
