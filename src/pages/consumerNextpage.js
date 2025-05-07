@@ -341,15 +341,28 @@ function ConsumerNextPage() {
               />
             </div>
 
-            {/* create account button */}
-            <button
-              id="create-btn"
-              className="consumer-profile-create-button"
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? "Creating..." : "Create Account"}
-            </button>
+            {/* Buttons Container */}
+            <div className="consumer-profile-buttons-container">
+              {/* Back  button */}
+              <button
+                id="back-btn"
+                className="consumer-profile-back-button"
+                type="button"
+                onClick={() => navigate(-1)}
+              >
+                Back
+              </button>
+
+              {/* create account button */}
+              <button
+                id="create-btn"
+                className="consumer-profile-create-button"
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? "Creating..." : "Create Account"}
+              </button>
+            </div>
 
             {error && (
               <div style={{ color: "red", marginTop: "10px" }}>{error}</div>

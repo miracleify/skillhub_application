@@ -307,7 +307,7 @@
 }
 
 /* Tablet Responsiveness */
-@media (min-width: 767px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .form-container {
     width: 100%;
     padding: 0 clamp(10px, 3vw, 20px);

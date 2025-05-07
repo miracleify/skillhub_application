@@ -125,14 +125,23 @@
   text-align: left;
 }
 
+.consumer-profile-buttons-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.consumer-profile-back-button {
+  border-radius: 10px;
+}
+
 .consumer-profile-create-button {
   display: flex;
-  justify-self: flex-end;
+  /* justify-self: flex-end; */
   justify-content: center;
   align-items: center;
   padding: 10px;
   border-radius: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 /* Mobile responsiveness */

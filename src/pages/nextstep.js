@@ -450,7 +450,11 @@ function Nextstep() {
 
           {/* Form Buttons */}
           <div className="form-buttons">
-            <button type="submit" onClick={changeStep} className="back-btn">
+            <button
+              type="button"
+              onClick={() => Navigate(-1)}
+              className="back-btn"
+            >
               Back
             </button>
             <button type="submit" onClick={changeStep} className="submit-btn">

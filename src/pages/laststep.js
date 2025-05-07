@@ -295,7 +295,12 @@ function Laststep() {
           {/* Buttons Container */}
           <div className="buttons-container">
             {/* Back Button */}
-            <button id="back-btn" className="buttons" type="button">
+            <button
+              id="back-btn"
+              className="buttons"
+              type="button"
+              onClick={() => Navigate(-1)}
+            >
               Back
             </button>
 
