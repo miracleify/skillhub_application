@@ -278,10 +278,8 @@ function Dashboard() {
       {/* Earnings and Leads */}
       <div className="dashboard-rectangles">
         <div className="rect">
-          <h3 className="rect-text">Total Earnings</h3>
-          <span style={{ marginLeft: "-30px" }} className="points">
-            8000
-          </span>
+          <h3 className="rect-text">Total <br/> Earnings</h3>
+          <span className="points">8000</span>
         </div>
         <div className="rect">
           <h3 className="rect-text">Total Leads</h3>
@@ -319,9 +317,11 @@ function Dashboard() {
           </button>
         </div>
       </div>
+
+      {/* Job varieties container */}
       <div className="varitiesOfjob-container">
         {loading ? (
-          <div>Loading user data...</div>
+          <div>Loading User Data...</div>
         ) : (
           <div className="jobprofile-card">
             {filteredUsers && filteredUsers.length > 0 ? (

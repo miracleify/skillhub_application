@@ -212,6 +212,7 @@ select:hover {
 .rect-text {
   color: var(--white);
   font-size: clamp(1rem, 3vw, 1.875rem);
+  text-align: left;
 }
 
 .points {
