@@ -1,0 +1,66 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --inactive-grey: #8f8f8f;
+  --grey: #e8e8e8;
+  --skillhub-blue: #0575e6;
+  --skillhub-hover-blue: #0518e6;
+  --red: red;
+  --completion-green: #008000;
+  --debug-colour: #add8e6;
+}
+
+.footer {
+  background-color: var(--skillhub-blue);
+  color: var(--white);
+  padding: 40px 20px;
+  font-family: sans-serif;
+  flex-direction: column;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.footer-brand h2 {
+  font-size: 24px;
+}
+
+.footer-brand span {
+  color: #f5c542;
+}
+
+.social-icons a {
+  margin-right: 12px;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-columns div h4 {
+  margin-bottom: 10px;
+}
+
+.footer-columns ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-columns li {
+  margin-bottom: 6px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+}
