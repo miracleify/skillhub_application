@@ -15,7 +15,7 @@
   flex-direction: column;
   display: flex;
   justify-content: center;
-  background-color: var(--debug-colour);
+  border-top: 1px solid var(--inactive-grey);
 }
 
 .footer-top {
