@@ -283,12 +283,10 @@ select:hover {
   width: 100%;
   max-width: 500px;
   padding: 20px;
-  border: 1px solid var(--white);
   align-items: center;
   gap: 20px;
   border-radius: 10px;
   transition: box-shadow var(--animation-duration) ease;
-  margin: 0 auto;
 }
 
 .user-profile:hover {
@@ -306,11 +304,6 @@ select:hover {
   color: #505659;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
 
 /* Job profile cards */
 .jobprofile-card {
@@ -318,11 +311,11 @@ select:hover {
   overflow-y: auto;
   scroll-behavior: smooth;
   padding: 15px;
-  margin-top: 20px;
   width: 100%;
   max-width: 1200px;
   background-color: var(--white);
-  border-radius: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--inactive-grey);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: box-shadow var(--animation-duration) ease;
 }
@@ -351,7 +344,7 @@ select:hover {
   background: #555;
 }
 
-.jobcard {
+/* .jobcard {
   margin-bottom: 20px;
   padding: 15px;
   background: var(--white);
@@ -359,22 +352,32 @@ select:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform var(--animation-duration) ease,
     box-shadow var(--animation-duration) ease;
-}
+} */
 
-.jobcard:hover {
+/* .jobcard:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+} */
+
+.user-profile {
+  background-color: var(--debug-colour);
+  display: flex;
+}
+
+.user-info {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--completion-green);
+}
+
+.job-request-container {
+  
 }
 
 .no-users {
   text-align: center;
   padding: 20px;
   color: #666;
-}
-
-.user-info {
-  width: 100%;
-  padding: 10px;
 }
 
 /* Unified img styling with animation */

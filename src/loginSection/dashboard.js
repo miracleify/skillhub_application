@@ -228,6 +228,7 @@ function Dashboard() {
             </Link>
           </div>
 
+          {/* Nav icons */}
           <div className="profile-icons">
             <ul>
               <li>
@@ -278,7 +279,9 @@ function Dashboard() {
       {/* Earnings and Leads */}
       <div className="dashboard-rectangles">
         <div className="rect">
-          <h3 className="rect-text">Total <br/> Earnings</h3>
+          <h3 className="rect-text">
+            Total <br /> Earnings
+          </h3>
           <span className="points">8000</span>
         </div>
         <div className="rect">
@@ -323,6 +326,7 @@ function Dashboard() {
         {loading ? (
           <div>Loading User Data...</div>
         ) : (
+          // Profile Card
           <div className="jobprofile-card">
             {filteredUsers && filteredUsers.length > 0 ? (
               filteredUsers.map((otherUser, index) => (
@@ -331,47 +335,46 @@ function Dashboard() {
                   className="jobcard"
                 >
                   <div className="user-profile">
-                    <div className="container">
-                      <div className="user-info">
-                        <div className="aligned">
-                          <p className="skill">
-                            {`Seeking Skilled ${
-                              otherUser?.areas_of_expertise ||
-                              "No skills specified"
-                            }`}
-                          </p>
-                          <br></br>
-                          <h4 className="name-text">
-                            {" "}
-                            <a
-                              className="underline-text"
-                              href={`/profile/${
-                                otherUser?.id || otherUser?._id
-                              }`}
-                              onClick={(e) => handleViewProfile(e, otherUser)}
-                            >
-                              {otherUser?.full_name || "Unknown Name"}
-                            </a>{" "}
-                          </h4>
-                        </div>
+                    {/* Profile image */}
+                    <img
+                      className="dashboard-photourl"
+                      src={otherUser?.photoURL || defaultImageUrl}
+                      alt={otherUser?.full_name || "Artisan"}
+                    />
+
+                    {/* Job Request */}
+                    <div className="user-info">
+                      <div className="job-request-container">
+                        <p className="skill">
+                          {`Seeking Skilled ${
+                            otherUser?.areas_of_expertise ||
+                            "No Skills Specified"
+                          }`}
+                        </p>
+                        <p>January 04, 2025</p>
                       </div>
-                      <img
-                        className="dashboard-photourl"
-                        src={otherUser?.photoURL || defaultImageUrl}
-                        alt={otherUser?.full_name || "Artisan"}
-                      />
-                      {otherUser?.verified && (
-                        <span className="verified-badge">
-                          <i className="fa-solid fa-circle-check verification-icon"></i>
-                        </span>
-                      )}
-                      <p className="bio">
-                        {otherUser?.bio || "No bio available"}
-                      </p>
+
+                      <h4 className="name-text">
+                        {" "}
+                        <a
+                          className="underline-text"
+                          href={`/profile/${otherUser?.id || otherUser?._id}`}
+                          onClick={(e) => handleViewProfile(e, otherUser)}
+                        >
+                          {otherUser?.full_name || "Unknown Name"}
+                        </a>{" "}
+                      </h4>
                     </div>
+
+                    {otherUser?.verified && (
+                      <span className="verified-badge">
+                        <i className="fa-solid fa-circle-check verification-icon"></i>
+                      </span>
+                    )}
+                    <p className="bio">
+                      {otherUser?.bio || "No bio available"}
+                    </p>
                   </div>
-                  <br></br>
-                  <br></br>
                 </div>
               ))
             ) : (
