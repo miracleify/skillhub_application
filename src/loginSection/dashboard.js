@@ -255,11 +255,14 @@ function Dashboard() {
           </div>
         </div>
       </div>
+
+      {/* Dashboard content */}
       <div className="dashboard-content">
         <div className="dashboard-container">
+          {/* Dashboard header */}
           <div className="dashboard-header">
-            <div className="dash">
-              <h3>My Dashboard</h3>
+            <div className="dashboard-title-container">
+              <h1>My Dashboard</h1>
             </div>
             <div className="image-container">
               <img
@@ -271,7 +274,8 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      <br></br> <br></br>
+
+      {/* Earnings and Leads */}
       <div className="dashboard-rectangles">
         <div className="rect">
           <h3 className="rect-text">Total Earnings</h3>
@@ -284,11 +288,10 @@ function Dashboard() {
           <span className="points">50</span>
         </div>
       </div>
-      <br></br>
-      <br></br>
-      <br></br>
+
+      {/* Jobs you might like */}
       <div className="jobs-and-btn">
-        <h3>Jobs you might like !</h3>
+        <h1>Jobs you might like!</h1>
         <div className="jobs-butons">
           <button
             className={`job-btn ${
@@ -330,24 +333,27 @@ function Dashboard() {
                   <div className="user-profile">
                     <div className="container">
                       <div className="user-info">
-                     <div className="aligned">
-                     <p className="skill">
-                          {(`Seeking Skilled ${otherUser?.areas_of_expertise ||
-                            "No skills specified"}`)}
-                        </p>
-                        <br></br>
-                        <h4 className="name-text" >
-                          {" "}
-                          <a
-                          className="underline-text"
-                            href={`/profile/${otherUser?.id || otherUser?._id}`}
-                            onClick={(e) => handleViewProfile(e, otherUser)}
-                          >
-                            {otherUser?.full_name || "Unknown Name"}
-                          </a>{" "}
-                        </h4>
-                     </div>
-                       
+                        <div className="aligned">
+                          <p className="skill">
+                            {`Seeking Skilled ${
+                              otherUser?.areas_of_expertise ||
+                              "No skills specified"
+                            }`}
+                          </p>
+                          <br></br>
+                          <h4 className="name-text">
+                            {" "}
+                            <a
+                              className="underline-text"
+                              href={`/profile/${
+                                otherUser?.id || otherUser?._id
+                              }`}
+                              onClick={(e) => handleViewProfile(e, otherUser)}
+                            >
+                              {otherUser?.full_name || "Unknown Name"}
+                            </a>{" "}
+                          </h4>
+                        </div>
                       </div>
                       <img
                         className="dashboard-photourl"
@@ -355,7 +361,7 @@ function Dashboard() {
                         alt={otherUser?.full_name || "Artisan"}
                       />
                       {otherUser?.verified && (
-                      <span className="verified-badge">
+                        <span className="verified-badge">
                           <i className="fa-solid fa-circle-check verification-icon"></i>
                         </span>
                       )}
