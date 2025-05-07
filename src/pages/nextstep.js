@@ -194,6 +194,8 @@ function Nextstep() {
           Skilled Person
         </button>
       </div>
+
+      {/* Progress Bar */}
       <div className="progressbar">
         <ul>
           {progressSteps.map((step, index) => (
@@ -319,10 +321,7 @@ function Nextstep() {
 
             {/* Area of expertise */}
             <div className="form-group">
-              <label htmlFor="areas-of-expertise">
-                Areas of expertise?
-                <sup className="mandatory-asterik">*</sup>
-              </label>
+              <label htmlFor="areas-of-expertise">Areas of expertise?</label>
               <input
                 type="text"
                 id="areas-of-expertise"

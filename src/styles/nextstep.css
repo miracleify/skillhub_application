@@ -164,7 +164,7 @@
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  border: 1px solid var(--skillhub-blue);
+  border: 3px solid var(--skillhub-blue);
   margin-bottom: 5px;
   font-size: clamp(12px, 2vw, 15px);
   text-align: center;
@@ -307,7 +307,7 @@
 }
 
 /* Tablet Responsiveness */
-@media (min-width: 481px) and (max-width: 1024px) {
+@media (min-width: 767px) and (max-width: 1024px) {
   .form-container {
     width: 100%;
     padding: 0 clamp(10px, 3vw, 20px);
@@ -324,8 +324,8 @@
   .profilepice,
   .email {
     width: 100%;
-    max-width: 600px;
-    margin: 10px auto;
+    max-width: 100%;
+    /* margin: 10px auto; */
   }
 
   .email {

@@ -14,7 +14,7 @@ function Laststep() {
   const [showImagePreview, setShowImagePreview] = useState(false);
   const [previewImage, setPreviewImage] = useState(null);
   const fileInputRef = useRef(null);
-  
+
   const [progressSteps] = useState([
     {
       id: 0,
@@ -35,7 +35,7 @@ function Laststep() {
   const prevFormData = location.state?.formData || {};
   const [formData, setFormData] = useState({
     ...prevFormData,
-    bvn: "", 
+    bvn: "",
     bvn_URL: "",
   });
 
@@ -93,24 +93,24 @@ function Laststep() {
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    
+
     // Create a preview URL for the selected image
     const previewURL = URL.createObjectURL(file);
     setPreviewImage({
       file: file,
-      previewURL: previewURL
+      previewURL: previewURL,
     });
-    
+
     // Show the preview modal
     setShowImagePreview(true);
   };
-  
+
   const confirmImageUpload = async () => {
     if (!previewImage?.file) return;
-    
+
     setLoading(true);
     setError("");
-    
+
     try {
       const bvn_URL = await uploadImageToImgbb(previewImage.file);
       setFormData((prev) => ({
@@ -124,16 +124,16 @@ function Laststep() {
       setLoading(false);
     }
   };
-  
+
   const cancelImageUpload = () => {
     // Clean up the object URL to avoid memory leaks
     if (previewImage?.previewURL) {
       URL.revokeObjectURL(previewImage.previewURL);
     }
-    
+
     setPreviewImage(null);
     setShowImagePreview(false);
-    
+
     // Reset the file input
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
@@ -142,7 +142,11 @@ function Laststep() {
 
   return (
     <>
-      <div className={`last-page ${showModal || showImagePreview ? "blur-background" : ""}`}>
+      <div
+        className={`last-page ${
+          showModal || showImagePreview ? "blur-background" : ""
+        }`}
+      >
         <h2>Create Account</h2>
         <h3>
           Already have an account? <a href="#">Sign In</a>
@@ -199,13 +203,12 @@ function Laststep() {
           </ul>
         </div>
 
-        
         <form onSubmit={handleCreateAccount}>
-          <div className="image-upload-container">
+          <div className="upload-container">
             <div className="image-request-container">
               <div className="profile-pic-upload">
                 {/* Clickable dotted border container */}
-                <div 
+                <div
                   className="dashed-border profile-image-icon-file-button-container"
                   onClick={triggerFileInput}
                 >
@@ -241,45 +244,45 @@ function Laststep() {
                   </p>
                 </div>
               </div>
-             
-             {/* Take Photo Button */}
-          <div className="take-photo-request-container">
-            <div className="profilepices">
-              <div className="dashed-border">
-                <img
-                  src="/images/mobile.png"
-                  alt="video camera"
-                  className="take-photo-icon"
-                />
-              </div>
-              <div className="text">
-                <span>Click to take a photo of your face</span>
-                <strong>ENSURE PHOTO IS TAKEN IN WELL LIT CONDITIONS</strong>
+
+              {/* Take Photo Button */}
+              <div className="take-photo-request-container">
+                <div className="profilepices">
+                  <div className="dashed-border">
+                    <img
+                      src="/images/mobile.png"
+                      alt="video camera"
+                      className="take-photo-icon"
+                    />
+                  </div>
+                  <div className="text">
+                    <span>Click to take a photo of your face</span>
+                    <strong>
+                      ENSURE PHOTO IS TAKEN IN WELL LIT CONDITIONS
+                    </strong>
+                  </div>
+                </div>
+
+                {/* Why do we need this */}
+                <strong>
+                  Why do we need this?
+                  <a href="#" className="find-out-link">
+                    {" "}
+                    Find Out
+                  </a>
+                </strong>
               </div>
             </div>
-
-            {/* Why do we need this */}
-            <strong>
-              Why do we need this?
-              <a href="" className="find-out-link">
-                {" "}
-                Find Out
-              </a>
-            </strong>
-          </div>
-            
-            </div>
-
-            
           </div>
 
+          {/* BVN form input */}
           <div className="bvn-form-input-container">
             <label htmlFor="bvn">
               Bank Verification Number (BVN)
               <sup className="mandatory-asterik">*</sup>
             </label>
             <input
-              className="input-field"
+              className="bvn-input-field"
               type="number"
               id="bvn"
               placeholder="Enter your 11-digit BVN"
@@ -289,18 +292,27 @@ function Laststep() {
             />
           </div>
 
+          {/* Buttons Container */}
           <div className="buttons-container">
-            <button id="save-btn" className="buttons" type="button">
-              Save information
+            {/* Back Button */}
+            <button id="back-btn" className="buttons" type="button">
+              Back
             </button>
-            <button
-              id="create-btn"
-              className="buttons"
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? "Creating..." : "Create Account"}
-            </button>
+
+            {/* Save info and create buttons container  */}
+            <div className="save-info-create-account-button-container">
+              <button id="save-btn" className="buttons" type="button">
+                Save information
+              </button>
+              <button
+                id="create-btn"
+                className="buttons"
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? "Creating..." : "Create Account"}
+              </button>
+            </div>
           </div>
 
           {error && (
@@ -315,23 +327,23 @@ function Laststep() {
           <div className="image-preview-modal">
             <h3>Profile Image Preview</h3>
             <div className="preview-image-container">
-              <img 
-                src={previewImage?.previewURL} 
-                alt="Profile Preview" 
-                className="preview-image" 
+              <img
+                src={previewImage?.previewURL}
+                alt="Profile Preview"
+                className="preview-image"
               />
             </div>
             <p>Is this the image you want to use?</p>
             <div className="preview-buttons">
-              <button 
-                className="cancel-btn" 
+              <button
+                className="cancel-btn"
                 onClick={cancelImageUpload}
                 disabled={loading}
               >
                 Cancel
               </button>
-              <button 
-                className="confirm-btn" 
+              <button
+                className="confirm-btn"
                 onClick={confirmImageUpload}
                 disabled={loading}
               >
@@ -413,12 +425,12 @@ function Laststep() {
         .continue-btn:hover {
           background-color: rgb(35, 112, 194);
         }
-        
+
         /* Hide the default file input */
         .hidden {
           display: none !important;
         }
-        
+
         /* Make the dotted border clickable */
         .profile-image-icon-file-button-container {
           position: relative;
@@ -430,11 +442,11 @@ function Laststep() {
           justify-content: center;
           transition: background-color 0.3s;
         }
-        
+
         .profile-image-icon-file-button-container:hover {
           background-color: rgba(0, 123, 255, 0.05);
         }
-        
+
         /* Add upload text overlay */
         .upload-icon-overlay {
           position: absolute;
@@ -445,7 +457,7 @@ function Laststep() {
           border-radius: 4px;
           font-size: 12px;
         }
-        
+
         /* Image Preview Modal Styles */
         .image-preview-modal {
           background-color: white;
@@ -456,12 +468,12 @@ function Laststep() {
           text-align: center;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        
+
         .image-preview-modal h3 {
           color: #333;
           margin-bottom: 20px;
         }
-        
+
         .preview-image-container {
           width: 100%;
           height: 350px;
@@ -474,20 +486,20 @@ function Laststep() {
           border: 1px solid #ddd;
           background-color: #f8f8f8;
         }
-        
+
         .preview-image {
           max-width: 100%;
           max-height: 100%;
           object-fit: contain;
         }
-        
+
         .preview-buttons {
           display: flex;
           justify-content: center;
           gap: 20px;
           margin-top: 20px;
         }
-        
+
         .cancel-btn {
           background-color: #f2f2f2;
           color: #333;
@@ -498,11 +510,11 @@ function Laststep() {
           cursor: pointer;
           transition: background-color 0.3s;
         }
-        
+
         .cancel-btn:hover {
           background-color: #e6e6e6;
         }
-        
+
         .confirm-btn {
           background-color: #007bff;
           color: white;
@@ -513,33 +525,33 @@ function Laststep() {
           cursor: pointer;
           transition: background-color 0.3s;
         }
-        
+
         .confirm-btn:hover {
           background-color: rgb(35, 112, 194);
         }
-        
+
         .confirm-btn:disabled,
         .cancel-btn:disabled {
           opacity: 0.6;
           cursor: not-allowed;
         }
-        
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
           .image-preview-modal {
             padding: 20px;
             width: 95%;
           }
-          
+
           .preview-image-container {
             height: 250px;
           }
-          
+
           .preview-buttons {
             flex-direction: column;
             gap: 10px;
           }
-          
+
           .cancel-btn,
           .confirm-btn {
             width: 100%;
