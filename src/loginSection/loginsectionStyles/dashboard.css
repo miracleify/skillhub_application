@@ -362,6 +362,7 @@ select:hover {
   /* background-color: var(--debug-colour); */
   display: flex;
   margin-bottom: 20px;
+  border: 1px solid var(--inactive-grey);
 }
 
 .user-info {
