@@ -139,3 +139,41 @@
     text-align: center;
   }
 }
+
+/* Tablet Responsiveness */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .footer {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  .footer-top {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .footer-brand {
+    flex-direction: row;
+    align-items: flex-start;
+    align-self: center;
+    justify-content: center;
+    gap: 100px;
+  }
+
+  .social-icons {
+    margin-top: 5px;
+    gap: 20px;
+  }
+
+  .footer-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .footer-columns div {
+    text-align: center;
+  }
+}
