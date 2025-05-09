@@ -9,6 +9,11 @@ function ConsumerBTN() {
   // Add state for form inputs
   const [formData, setFormData] = useState({
     email: "",
+    password: ""
+  });
+
+  const [formData2, setFormData2] = useState({
+    email: "",
     password: "",
     confirmPassword: ""
   });
@@ -39,17 +44,25 @@ function ConsumerBTN() {
     });
   };
 
+  const handleInputChange2 = (e) => {
+    const { name, value } = e.target;
+    setFormData2({
+      ...formData2,
+      [name]: value,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     
     
-    if (!formData.email || !formData.password || !formData.confirmPassword) {
+    if (!formData.email || !formData.password || !formData2.confirmPassword) {
       setError("All fields are required.");
       return;
     }
     
     
-    if (formData.password !== formData.confirmPassword) {
+    if (formData.password !== formData2.confirmPassword) {
       setError("Passwords must match.");
       return;
     }
@@ -57,7 +70,7 @@ function ConsumerBTN() {
     setError("");
     
     // Log form data and navigate
-    console.log("Form submitted:", formData);
+    console.log("Form submitted:", formData, formData2);
     changepage();
   };
 
@@ -204,8 +217,8 @@ function ConsumerBTN() {
                 className="consumer-page-basic-info-input-field"
                 type="password"
                 name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
+                value={formData2.ConfirmPassword}
+                onChange={handleInputChange2}
                 placeholder="Re-enter your password"
                 required
               />
