@@ -9,8 +9,7 @@ function ConsumerBTN() {
   // Add state for form inputs
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
-    confirmPassword: ""
+    password: ""
   });
 
   // Add error state
@@ -204,7 +203,7 @@ function ConsumerBTN() {
                 className="consumer-page-basic-info-input-field"
                 type="password"
                 name="confirmPassword"
-                value={formData.confirmPassword}
+                value={confirmPassword}
                 onChange={handleInputChange}
                 placeholder="Re-enter your password"
                 required
