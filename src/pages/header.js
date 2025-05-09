@@ -157,7 +157,7 @@ function Header() {
           path="/consumerVericationPage"
           element={<ConsumerVerificationPage />}
         />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/:id" element={<Dashboard />} />
         <Route path="/PaymentCallback" element={<PaymentCallback />} />
 
         <Route path="*" element={<NotFound />} />

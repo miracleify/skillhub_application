@@ -474,10 +474,10 @@ const ChatBox = ({}) => {
       </div>
     );
   };
-  const navigate =useNavigate()
-  function changePage(){
-    navigate(-1)
-      }
+  const navigate = useNavigate();
+  function changePage() {
+    navigate(-1);
+  }
 
   return (
     <div className="chat-container">
@@ -505,18 +505,22 @@ const ChatBox = ({}) => {
 
       {/* Profile Card - Centered */}
       {userData && (
-        <div 
-        className="chat-header"
-          
-        >
-        
-                <button className="left-btn" onClick={changePage}>
-                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6.69125 13.494L15.0578 21.8606L12.9288 23.9523L0.976562 12L12.9288 0.047699L15.0578 2.13935L6.69125 10.5059H24.8811V13.494H6.69125Z" fill="black"/>
-</svg>
-
-                </button>
-          <div 
+        <div className="chat-header">
+          <button className="left-btn" onClick={changePage}>
+            <svg
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.69125 13.494L15.0578 21.8606L12.9288 23.9523L0.976562 12L12.9288 0.047699L15.0578 2.13935L6.69125 10.5059H24.8811V13.494H6.69125Z"
+                fill="black"
+              />
+            </svg>
+          </button>
+          <div
             style={{
               position: "relative",
               display: "flex",
@@ -524,9 +528,10 @@ const ChatBox = ({}) => {
               width: "100%",
             }}
           >
-            <img 
+            {/* User messaging profile image */}
+            <img
               src={userData.photoURL || "/default-avatar.png"}
-              alt={userData.full_name }
+              alt={userData.full_name}
               style={{
                 width: "60px",
                 height: "60px",
@@ -548,24 +553,22 @@ const ChatBox = ({}) => {
                 }}
               ></span>
             )}
-             <div >
-            <h3 style={{ margin: "0 0 5px 0" }}>
-              {userData.full_name || "Unknown User"}
-            </h3>
-            <p style={{ margin: "0", color: "#666" }}>
-              {userData.skill || "Not specified"}
-            </p>
-           
+
+            {/* Message Name */}
+            <div>
+              <h3 style={{ margin: "0 0 5px 0" }}>
+                {userData.full_name || "Unknown User"}
+              </h3>
+              <p style={{ margin: "0", color: "#666" }}>
+                {userData.skill || "Not specified"}
+              </p>
+            </div>
           </div>
 
-          </div>
-
-         
           <button
             className="threedots"
             onClick={handlePopover}
             style={{
-           
               border: "none",
               cursor: "pointer",
               display: "flex",
@@ -573,7 +576,6 @@ const ChatBox = ({}) => {
               alignItems: "center",
               justifyContent: "center",
               padding: "8px",
-              
             }}
           >
             <div
@@ -660,18 +662,10 @@ const ChatBox = ({}) => {
         </div>
       ) : (
         <>
+          {/* Messages container */}
           <div
             ref={messageContainerRef}
             className="messages-container"
-            style={{
-              height: "300px",
-              overflowY: "auto",
-              border: "none",
-              padding: "10px",
-              marginBottom: "10px",
-              display: "flex",
-              flexDirection: "column",
-            }}
           >
             {messages.length === 0 ? (
               <p>No messages yet. Be the first to send one!</p>
@@ -680,13 +674,12 @@ const ChatBox = ({}) => {
                 {messages.map((msg) => (
                   <div
                     key={msg.id || Math.random().toString()}
+                    className="message-bubble-container"
                     style={{
                       alignSelf:
                         msg.uid === user?.uid ? "flex-end" : "flex-start",
                       margin: "5px 0",
-                      maxWidth: "70%",
-                      display: "flex",
-                      flexDirection: "column",
+
                       alignItems:
                         msg.uid === user?.uid ? "flex-end" : "flex-start",
                     }}
@@ -701,18 +694,19 @@ const ChatBox = ({}) => {
                             ? "#0575E6" // Changed to the requested blue color
                             : "#f0f0f0",
                         color: msg.uid === user?.uid ? "white" : "inherit",
-                        borderRadius: "12px",
+                        borderRadius: "10px 20px 0px 10px",
                         wordBreak: "break-word",
                         border:
                           msg.failed || msg.status === "failed"
-                            ? "1px solid #ffa39e"
+                            ? "2px solid #ff0000"
                             : "none",
                       }}
                     >
+                      {/* Dusplay users name in text bubble */}
                       <strong>{msg.displayName || "User"}</strong>
-                      {msg.text && (
-                        <p style={{ margin: "5px 0" }}>{msg.text}</p>
-                      )}
+
+                      {/* user Message in message bubble */}
+                      {msg.text && <p>{msg.text}</p>}
 
                       {/* Display attachments */}
                       {msg.attachments && msg.attachments.length > 0 && (

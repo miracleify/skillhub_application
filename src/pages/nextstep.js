@@ -171,29 +171,36 @@ function Nextstep() {
 
   return (
     <>
-      <h2>Create Account</h2>
-      <h3>
-        Already have an account? <a href="#">sign in</a>
-      </h3>
-      <div className="button">
-        <button
-          className={`consumer-btn ${
-            selectedOption === "consumer" ? "active" : ""
-          }`}
-          onClick={() => handleOptionChange1("consumer")}
-        >
-          Consumer
-        </button>
-        <button
-          id="ski-btn"
-          className={`skill-btn ${
-            selectedOption === "skilled" ? "active" : ""
-          }`}
-          onClick={() => handleOptionChange2("skilled")}
-        >
-          Skilled Person
-        </button>
+      <div className="skilled-profile-header">
+        <h2>Create Account</h2>
+        <h3>
+          Already have an account? <a href="#">sign in</a>
+        </h3>
       </div>
+
+      <div className="skilled-profile-container">
+        <div className="skilled-profile-button">
+          <button
+            className={`consumer-btn ${
+              selectedOption === "consumer" ? "active" : ""
+            }`}
+            onClick={() => handleOptionChange1("consumer")}
+          >
+            Consumer
+          </button>
+          <button
+            id="ski-btn"
+            className={`skill-btn ${
+              selectedOption === "skilled" ? "active" : ""
+            }`}
+            onClick={() => handleOptionChange2("skilled")}
+          >
+            Skilled Person
+          </button>
+        </div>
+      </div>
+
+      {/* Progress Bar */}
       <div className="progressbar">
         <ul>
           {progressSteps.map((step, index) => (
@@ -451,7 +458,11 @@ function Nextstep() {
 
           {/* Form Buttons */}
           <div className="form-buttons">
-            <button type="submit" onClick={changeStep} className="back-btn">
+            <button
+              type="button"
+              onClick={() => Navigate(-1)}
+              className="back-btn"
+            >
               Back
             </button>
             <button type="submit" onClick={changeStep} className="submit-btn">

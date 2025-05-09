@@ -375,8 +375,8 @@
   }
 
   .trades-grid {
-    max-width: 380px;
-    background-color: var(--debug-colour);
+    max-width: 100%;
+    /* background-color: var(--debug-colour); */
   }
 
   .trade-card {
