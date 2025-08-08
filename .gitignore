@@ -50,3 +50,10 @@ docker-compose.override.yml
 .vscode/
 .idea/
 *.swp
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+.terraform/
