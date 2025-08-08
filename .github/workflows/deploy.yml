@@ -87,7 +87,8 @@ jobs:
             export AWS_ECR_REPOSITORY=${{ secrets.AWS_ECR_REPOSITORY }}
 
             # Navigate to the project directory on EC2
-            cd ~/inventory-management  # cd ~/inventory-management takes you to a specific folder inside the home directory, which is useful if your app files (like docker-compose.yml or Docker scripts) live there.
+            cd ~
+            # cd ~/inventory-management takes you to a specific folder inside the home directory, which is useful if your app files (like docker-compose.yml or Docker scripts) live there.
 
             # 1. Generate .env (Note: DB variables are commented out because frontend has no database)
             # echo "DB_USER=${{ secrets.DB_USER }}" > .env
@@ -102,9 +103,17 @@ jobs:
             aws ecr get-login-password --region $AWS_REGION \
               | docker login --username AWS --password-stdin $AWS_ECR_REGISTRY
 
-            # 3. Pull and run the new image
+            # 3. Stop & remove any existing container
+            docker stop skillhub || true
+            docker rm skillhub || true
+
+            # 4. Pull the new image
             docker pull $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:$IMAGE_TAG
-            sudo systemctl restart docker
-            docker-compose down --remove-orphans  # <- updated
-            docker-compose up -d --force-recreate  # <- updated
+
+            # 5. Run the container (mapping container port 3000 to host port 80)
+            docker run -d --name skillhub -p 80:3000 \
+              --env-file .env \
+              $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:$IMAGE_TAG
+
+            # 6. Cleanup old images
             docker image prune -af
