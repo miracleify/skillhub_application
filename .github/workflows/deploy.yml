@@ -37,42 +37,10 @@ jobs:
           push: true
           tags: ${{ secrets.AWS_ECR_REGISTRY }}/${{ secrets.AWS_ECR_REPOSITORY }}:${{ github.sha }}
 
-  deploy_to_staging: # This job runs after build
+  deploy_to_staging:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-      # --- Bastion deployment (commented out) ---
-      # (left here for reference in case we ever need private EC2 deployment)
-      # - name: Deploy to EC2 via Bastion (Private EC2)
-      #   uses: appleboy/ssh-action@master
-      #   if: github.ref == 'refs/heads/develop'
-      #   with:
-      #     host: ${{ secrets.BASTION_HOST }}
-      #     username: ${{ secrets.BASTION_USER }}
-      #     key: ${{ secrets.BASTION_SSH_KEY }}
-      #     script: |
-      #       set -ex
-      #       export IMAGE_TAG=${{ github.sha }}
-      #       ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.PRIVATE_EC2_USER }}@${{ secrets.PRIVATE_EC2_HOST }} << 'EOF'
-      #       cd ~/Basic-Authentication-System
-      #       cat <<EOT > .env
-      #       DB_USER=${{ secrets.DB_USER }}
-      #       DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-      #       DB_HOST=${{ secrets.DB_HOST }}
-      #       DB_NAME=${{ secrets.DB_NAME }}
-      #       DB_PORT=${{ secrets.DB_PORT }}
-      #       PORT=${{ secrets.APP_PORT }}
-      #       JWT_SECRET=${{ secrets.JWT_SECRET }}
-      #       EOT
-      #       aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_REGISTRY }}
-      #       docker pull ${{ secrets.AWS_ECR_REGISTRY }}/${{ secrets.AWS_ECR_REPOSITORY }}:${IMAGE_TAG}
-      #       sudo systemctl restart docker
-      #       docker-compose down --remove-orphans
-      #       docker-compose up -d --force-recreate
-      #       docker image prune -af
-      #       EOF
-
-      # --- Public EC2 Deployment (now active) ---
       - name: Deploy to Public EC2 Server
         uses: appleboy/ssh-action@master
         if: github.ref == 'refs/heads/develop'
@@ -87,35 +55,36 @@ jobs:
             export AWS_ECR_REGISTRY=${{ secrets.AWS_ECR_REGISTRY }}
             export AWS_ECR_REPOSITORY=${{ secrets.AWS_ECR_REPOSITORY }}
 
-            # Navigate to the project directory on EC2 (currently EC2 is empty, so we just work in ~)
+            # --- 0. Install prerequisites on fresh EC2 ---
+            sudo apt-get update -y
+            sudo apt-get install -y docker.io awscli
+            sudo systemctl enable docker
+            sudo systemctl start docker
+            sudo usermod -aG docker $USER || true
+
+            # Navigate to home directory (can change to project dir if needed)
             cd ~
 
             # 1. Generate .env (Note: DB variables are commented out because frontend has no database)
-            # echo "DB_USER=${{ secrets.DB_USER }}" > .env
+            echo "PORT=${{ secrets.APP_PORT }}" > .env
+            # echo "DB_USER=${{ secrets.DB_USER }}" >> .env
             # echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
             # echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
             # echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
             # echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
-            echo "PORT=${{ secrets.APP_PORT }}" > .env
             # echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
 
             # 2. Log in to AWS ECR
             aws ecr get-login-password --region $AWS_REGION \
               | docker login --username AWS --password-stdin $AWS_ECR_REGISTRY
 
-            # 3. Pull the latest image from ECR
+            # 3. Pull and run the new image
             docker pull $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:$IMAGE_TAG
             sudo systemctl restart docker
-
-            # 4. Stop any existing container (if running) to avoid conflict
-            docker rm -f skillhub-frontend || true
-
-            # 5. Run the container directly (no docker-compose needed)
-            docker run -d \
-              --name skillhub-frontend \
-              -p ${{ secrets.APP_PORT }}:${{ secrets.APP_PORT }} \
+            docker stop app || true
+            docker rm app || true
+            docker run -d --name app -p ${{ secrets.APP_PORT }}:${{ secrets.APP_PORT }} \
               --env-file .env \
               $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:$IMAGE_TAG
 
-            # 6. Clean up unused images
             docker image prune -af
