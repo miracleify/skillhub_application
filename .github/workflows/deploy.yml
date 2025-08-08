@@ -42,6 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # --- Bastion deployment (commented out) ---
+      # (left here for reference in case we ever need private EC2 deployment)
       # - name: Deploy to EC2 via Bastion (Private EC2)
       #   uses: appleboy/ssh-action@master
       #   if: github.ref == 'refs/heads/develop'
@@ -66,8 +67,8 @@ jobs:
       #       aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_REGISTRY }}
       #       docker pull ${{ secrets.AWS_ECR_REGISTRY }}/${{ secrets.AWS_ECR_REPOSITORY }}:${IMAGE_TAG}
       #       sudo systemctl restart docker
-      #       docker-compose down --remove-orphans  # <- updated
-      #       docker-compose up -d --force-recreate  # <- updated
+      #       docker-compose down --remove-orphans
+      #       docker-compose up -d --force-recreate
       #       docker image prune -af
       #       EOF
 
@@ -86,9 +87,8 @@ jobs:
             export AWS_ECR_REGISTRY=${{ secrets.AWS_ECR_REGISTRY }}
             export AWS_ECR_REPOSITORY=${{ secrets.AWS_ECR_REPOSITORY }}
 
-            # Navigate to the project directory on EC2
+            # Navigate to the project directory on EC2 (currently EC2 is empty, so we just work in ~)
             cd ~
-            # cd ~/inventory-management takes you to a specific folder inside the home directory, which is useful if your app files (like docker-compose.yml or Docker scripts) live there.
 
             # 1. Generate .env (Note: DB variables are commented out because frontend has no database)
             # echo "DB_USER=${{ secrets.DB_USER }}" > .env
@@ -103,17 +103,19 @@ jobs:
             aws ecr get-login-password --region $AWS_REGION \
               | docker login --username AWS --password-stdin $AWS_ECR_REGISTRY
 
-            # 3. Stop & remove any existing container
-            docker stop skillhub || true
-            docker rm skillhub || true
-
-            # 4. Pull the new image
+            # 3. Pull the latest image from ECR
             docker pull $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:$IMAGE_TAG
+            sudo systemctl restart docker
 
-            # 5. Run the container (mapping container port 3000 to host port 80)
-            docker run -d --name skillhub -p 80:3000 \
+            # 4. Stop any existing container (if running) to avoid conflict
+            docker rm -f skillhub-frontend || true
+
+            # 5. Run the container directly (no docker-compose needed)
+            docker run -d \
+              --name skillhub-frontend \
+              -p ${{ secrets.APP_PORT }}:${{ secrets.APP_PORT }} \
               --env-file .env \
               $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:$IMAGE_TAG
 
-            # 6. Cleanup old images
+            # 6. Clean up unused images
             docker image prune -af
