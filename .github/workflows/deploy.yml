@@ -60,7 +60,6 @@ jobs:
             sudo apt-get install -y docker.io awscli
             sudo systemctl enable docker
             sudo systemctl start docker
-            sudo usermod -aG docker $USER || true
 
             # Navigate to home directory (can change to project dir if needed)
             cd ~
@@ -76,15 +75,14 @@ jobs:
 
             # 2. Log in to AWS ECR
             aws ecr get-login-password --region $AWS_REGION \
-              | docker login --username AWS --password-stdin $AWS_ECR_REGISTRY
+              | sudo docker login --username AWS --password-stdin $AWS_ECR_REGISTRY
 
             # 3. Pull and run the new image
-            docker pull $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:$IMAGE_TAG
-            sudo systemctl restart docker
-            docker stop app || true
-            docker rm app || true
-            docker run -d --name app -p ${{ secrets.APP_PORT }}:${{ secrets.APP_PORT }} \
+            sudo docker pull $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:$IMAGE_TAG
+            sudo docker stop app || true
+            sudo docker rm app || true
+            sudo docker run -d --name app -p ${{ secrets.APP_PORT }}:${{ secrets.APP_PORT }} \
               --env-file .env \
               $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:$IMAGE_TAG
 
-            docker image prune -af
+            sudo docker image prune -af
