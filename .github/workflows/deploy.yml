@@ -1,0 +1,110 @@
+name: Deployment to EC2 server
+
+on:
+  push:
+    branches:
+      - develop  # Ensures deployment from the develop branch
+      - master   # Ensures deployment from the master branch
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code  # Fetch the latest code from the repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1  # Fetch only the latest commit
+
+      - name: Configure AWS credentials  # AWS CLI Configuration
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR  # AWS Elastic Container Registry (ECR) Authentication
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and Push Docker Image  # Build and push the Docker image to ECR
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.AWS_ECR_REGISTRY }}/${{ secrets.AWS_ECR_REPOSITORY }}:${{ github.sha }}
+
+  deploy_to_staging: # This job runs after build
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      # --- Bastion deployment (commented out) ---
+      # - name: Deploy to EC2 via Bastion (Private EC2)
+      #   uses: appleboy/ssh-action@master
+      #   if: github.ref == 'refs/heads/develop'
+      #   with:
+      #     host: ${{ secrets.BASTION_HOST }}
+      #     username: ${{ secrets.BASTION_USER }}
+      #     key: ${{ secrets.BASTION_SSH_KEY }}
+      #     script: |
+      #       set -ex
+      #       export IMAGE_TAG=${{ github.sha }}
+      #       ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.PRIVATE_EC2_USER }}@${{ secrets.PRIVATE_EC2_HOST }} << 'EOF'
+      #       cd ~/Basic-Authentication-System
+      #       cat <<EOT > .env
+      #       DB_USER=${{ secrets.DB_USER }}
+      #       DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+      #       DB_HOST=${{ secrets.DB_HOST }}
+      #       DB_NAME=${{ secrets.DB_NAME }}
+      #       DB_PORT=${{ secrets.DB_PORT }}
+      #       PORT=${{ secrets.APP_PORT }}
+      #       JWT_SECRET=${{ secrets.JWT_SECRET }}
+      #       EOT
+      #       aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_REGISTRY }}
+      #       docker pull ${{ secrets.AWS_ECR_REGISTRY }}/${{ secrets.AWS_ECR_REPOSITORY }}:${IMAGE_TAG}
+      #       sudo systemctl restart docker
+      #       docker-compose down --remove-orphans  # <- updated
+      #       docker-compose up -d --force-recreate  # <- updated
+      #       docker image prune -af
+      #       EOF
+
+      # --- Public EC2 Deployment (now active) ---
+      - name: Deploy to Public EC2 Server
+        uses: appleboy/ssh-action@master
+        if: github.ref == 'refs/heads/develop'
+        with:
+          host: ${{ secrets.PUBLIC_EC2_HOST }}        # Public EC2's IP or DNS
+          username: ${{ secrets.PUBLIC_EC2_USER }}    # SSH user (e.g. ubuntu)
+          key: ${{ secrets.PUBLIC_EC2_SSH_KEY }}      # Private key for your public EC2
+          script: |
+            set -ex
+            export IMAGE_TAG=${{ github.sha }}
+            export AWS_REGION=${{ secrets.AWS_REGION }}
+            export AWS_ECR_REGISTRY=${{ secrets.AWS_ECR_REGISTRY }}
+            export AWS_ECR_REPOSITORY=${{ secrets.AWS_ECR_REPOSITORY }}
+
+            # Navigate to the project directory on EC2
+            cd ~/inventory-management  # cd ~/inventory-management takes you to a specific folder inside the home directory, which is useful if your app files (like docker-compose.yml or Docker scripts) live there.
+
+            # 1. Generate .env (Note: DB variables are commented out because frontend has no database)
+            # echo "DB_USER=${{ secrets.DB_USER }}" > .env
+            # echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+            # echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+            # echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
+            # echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
+            echo "PORT=${{ secrets.APP_PORT }}" > .env
+            # echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+
+            # 2. Log in to AWS ECR
+            aws ecr get-login-password --region $AWS_REGION \
+              | docker login --username AWS --password-stdin $AWS_ECR_REGISTRY
+
+            # 3. Pull and run the new image
+            docker pull $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:$IMAGE_TAG
+            sudo systemctl restart docker
+            docker-compose down --remove-orphans  # <- updated
+            docker-compose up -d --force-recreate  # <- updated
+            docker image prune -af
