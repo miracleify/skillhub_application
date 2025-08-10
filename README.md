@@ -13,3 +13,4 @@ Dockerized frontend — ready to be containerized and deployed anywhere.
 CI/CD pipeline via GitHub Actions — builds, pushes, and deploys automatically to AWS whenever code is pushed to the develop or main branch.
 
 Structured and scalable setup — infrastructure-as-code (Terraform), deployment scripts, and secret handling for seamless delivery.
+https://imgur.com/a/2YooltG
